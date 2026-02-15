@@ -1,363 +1,541 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="QTOP Cheesecake - cheesecakes, brownies, cookies y bebidas. Pedidos online con recogida en tienda." />
-  <title>QTOP Cheesecake | Tú Momento Dulce</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QTOP Cheesecake - Tartas y Brownies en Coslada</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AZDOsVpSfBxSMz_cxCKjBdnf4c83u7DoTuhqB8IB144zdfWVJ5p6BfcHIr8uimwOqlFVuDyUPdYZt5Nh&currency=EUR"></script>
 
-  <!-- (Opcional) Favicon si lo creas: images/favicon.png -->
-  <!-- <link rel="icon" href="images/favicon.png" type="image/png" /> -->
+  <style>
+    :root {
+      --verde: #4a7c59;
+      --verde-oscuro: #3d6a4b;
+      --crema: #fdfbf7;
+      --gris-oscuro: #333;
+      --gris: #666;
+      --blanco: #fff;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--crema);
+      color: var(--gris-oscuro);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    header {
+      position: fixed;
+      top: 0; width: 100%;
+      background: var(--blanco);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-img { height: 68px; }
+
+    nav ul {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
+
+    nav a {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      transition: color 0.25s;
+    }
+    nav a:hover { color: var(--verde); }
+
+    .cart-btn {
+      background: var(--blanco);
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--verde);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cart-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+    .cart-badge {
+      background: #e74c3c;
+      color: white;
+      border-radius: 50%;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero {
+      min-height: 85vh;
+      background: linear-gradient(rgba(253,251,247,0.88), rgba(253,251,247,0.94)),
+                  url('https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=2070&auto=format&fit=crop') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      margin-top: 85px;
+    }
+
+    .hero-content { max-width: 820px; }
+    .hero-logo { max-width: 420px; height: auto; margin-bottom: 1.8rem; }
+
+    .hero p {
+      font-size: 1.38rem;
+      color: var(--gris);
+      font-style: italic;
+      margin: 0 auto 2.2rem;
+      max-width: 680px;
+    }
+
+    .btn-main {
+      padding: 14px 38px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      background: var(--verde);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .btn-main:hover { background: var(--verde-oscuro); }
+
+    .menu-section { padding: 6rem 2rem; max-width: 1240px; margin: 0 auto; }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--verde);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: var(--verde);
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.2rem;
+      margin-top: 2.5rem;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+      transition: transform 0.3s;
+    }
+    .menu-card:hover { transform: translateY(-6px); }
+
+    .product-name { font-size: 1.5rem; margin-bottom: 0.6rem; }
+    .product-price { font-size: 1.4rem; font-weight: 700; color: var(--verde); margin: 0.8rem 0; }
+    .btn-add {
+      background: var(--verde);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-add:hover { background: var(--verde-oscuro); }
+
+    .contact-section {
+      background: var(--verde);
+      color: white;
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    /* Carrito */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1999;
+      display: none;
+    }
+    .cart-overlay.open { display: block; }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(440px, 94vw);
+      height: 100%;
+      background: white;
+      z-index: 2000;
+      transform: translateX(100%);
+      transition: transform 0.28s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+    }
+    .cart-drawer.open { transform: translateX(0); }
+
+    .cart-header {
+      padding: 1.4rem 1.8rem;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-body { flex: 1; overflow-y: auto; padding: 1.2rem 1.8rem; }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .cart-footer {
+      padding: 1.6rem 1.8rem;
+      border-top: 1px solid #eee;
+      background: #fafafa;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.4rem;
+    }
+
+    #paypal-button-container { min-height: 50px; margin: 1.2rem 0; }
+
+    .wa-icon-btn {
+      background: #25D366;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wa-icon-btn:hover { background: #1ebe52; }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .cart-btn span:not(.cart-badge) { display: none; }
+      .hero-logo { max-width: 320px; }
+    }
+  </style>
 </head>
-
 <body>
-  <!-- Header -->
-  <header id="header">
-    <nav class="navbar">
-      <div class="container">
-        <div class="nav-wrapper">
-          <div class="logo">
-            <a href="#home" aria-label="Ir a inicio">
-              <!-- TU LOGO -->
-              <img src="images/logo.png" alt="QTOP Cheesecake Logo" id="logo-img" />
-            </a>
-          </div>
 
-          <div class="nav-menu" id="navMenu">
-            <ul class="nav-list">
-              <li><a href="#home" class="nav-link">Inicio</a></li>
-              <li><a href="#about" class="nav-link">Nosotros</a></li>
-              <li><a href="#products" class="nav-link">Productos</a></li>
-              <li><a href="#cart" class="nav-link">Carrito</a></li>
-              <li><a href="#contact" class="nav-link">Contacto</a></li>
-            </ul>
-          </div>
+<header>
+  <div class="nav-container">
+    <img src="https://z-cdn-media.chatglm.cn/files/afb9fb8c-196e-4455-a5cb-9709652d3320.png?auth_key=1871063276-63c4cbe92fdb4b1b9588f9e8a2f1196f-0-0a83f481d12b01ea8e70c0e25d231449" alt="QTOP" class="logo-img">
 
-          <div class="nav-actions">
-            <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
-              <i class="fas fa-shopping-cart"></i>
-              <span class="cart-count" id="cartCount">0</span>
-            </button>
-
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú móvil">
-              <i class="fas fa-bars"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#menu">Menú</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
     </nav>
-  </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">QTOP Cheesecake</h1>
-      <p class="hero-subtitle">Cheesecakes artesanales con toppings increíbles</p>
-      <p class="hero-description">Oreo, Lotus, Pistacho y más. Pide online y recoge en local.</p>
+    <button class="cart-btn" id="openCartBtn">
+      <i class="fa-solid fa-bag-shopping"></i>
+      <span>Carrito</span>
+      <span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
 
-      <div class="hero-buttons">
-        <a href="#products" class="btn btn-primary">Ver Productos</a>
-        <a href="https://wa.me/34645052784" target="_blank" rel="noopener" class="btn btn-secondary">
-          <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-        </a>
-      </div>
+<section id="inicio" class="hero">
+  <div class="hero-content">
+    <img src="https://z-cdn-media.chatglm.cn/files/afb9fb8c-196e-4455-a5cb-9709652d3320.png?auth_key=1871063276-63c4cbe92fdb4b1b9588f9e8a2f1196f-0-0a83f481d12b01ea8e70c0e25d231449" alt="QTOP Cheesecake" class="hero-logo">
+    <p>Arte en cada porción. Tartas, Brownies y Cookies artesanales preparados con pasión en Coslada.</p>
+
+    <button class="btn-main" id="verMenuBtn">Ver Menú</button>
+  </div>
+</section>
+
+<section id="menu" class="menu-section">
+  <h2 class="section-title">Nuestro Menú</h2>
+
+  <div class="menu-grid">
+
+    <!-- Cheesecake entera -->
+    <div class="menu-card">
+      <h3 class="product-name">Cheesecake Clásica Entera</h3>
+      <div class="product-price">29.50 €</div>
+      <button class="btn-add" data-name="Cheesecake Clásica Entera" data-price="29.50">Añadir al carrito</button>
     </div>
 
-    <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=1000&h=800&fit=crop" alt="Cheesecake" loading="lazy" />
+    <!-- Porción Cheesecake -->
+    <div class="menu-card">
+      <h3 class="product-name">Porción Cheesecake Clásica</h3>
+      <div class="product-price">6.00 €</div>
+      <button class="btn-add" data-name="Porción Cheesecake Clásica" data-price="6.00">Añadir al carrito</button>
     </div>
-  </section>
 
-  <!-- About -->
-  <section id="about" class="about">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Sobre Nosotros</h2>
-        <p class="section-subtitle">Pasión por la repostería artesanal</p>
-      </div>
-
-      <div class="about-content">
-        <div class="about-text">
-          <h3>Bienvenido a QTOP</h3>
-          <p>
-            En QTOP creamos cheesecakes de calidad artesanal con una variedad creativa de toppings y un servicio rápido y cercano,
-            para que disfrutes de un postre especial cuando te apetezca, sin esperas ni complicaciones.
-          </p>
-
-          <div class="features">
-            <div class="feature-item">
-              <i class="fas fa-check-circle"></i>
-              <div>
-                <h4>100% Artesanal</h4>
-                <p>Elaborado con ingredientes frescos.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <i class="fas fa-heart"></i>
-              <div>
-                <h4>Con cariño</h4>
-                <p>Cuidamos cada detalle del producto.</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <i class="fas fa-star"></i>
-              <div>
-                <h4>Calidad Premium</h4>
-                <p>Textura y sabor consistentes.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="info-box">
-            <h4><i class="fas fa-clock"></i> Horario</h4>
-            <p>Lunes a Domingo: 7:00 - 21:00</p>
-          </div>
-
-          <div class="info-box">
-            <h4><i class="fas fa-map-marker-alt"></i> Ubicación</h4>
-            <p>Madrid, Coslada, 28821</p>
-            <p><strong>🏪 Recogida en Local (Take Away)</strong></p>
-          </div>
-        </div>
-
-        <div class="about-images">
-          <div class="about-image-grid">
-            <img src="https://images.unsplash.com/photo-1533134242820-b4f29bf92e56?w=700&h=700&fit=crop" alt="Cheesecake" loading="lazy" />
-            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=700&h=700&fit=crop" alt="Brownie" loading="lazy" />
-          </div>
-        </div>
-      </div>
+    <!-- Brownie entero -->
+    <div class="menu-card">
+      <h3 class="product-name">Brownie Entero</h3>
+      <div class="product-price">30.00 €</div>
+      <button class="btn-add" data-name="Brownie Entero" data-price="30.00">Añadir al carrito</button>
     </div>
-  </section>
 
-  <!-- Products -->
-  <section id="products" class="products">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Nuestros Productos</h2>
-        <p class="section-subtitle">Cheesecakes, brownies, cookies y bebidas</p>
-      </div>
-
-      <div class="product-categories">
-        <button class="category-btn active" data-category="all">Todos</button>
-        <button class="category-btn" data-category="cheesecake">Cheesecakes</button>
-        <button class="category-btn" data-category="brownie">Brownies</button>
-        <button class="category-btn" data-category="cookie">Cookies</button>
-        <button class="category-btn" data-category="bebida">Bebidas</button>
-      </div>
-
-      <div class="products-grid" id="productsGrid"></div>
+    <!-- Porción Brownie -->
+    <div class="menu-card">
+      <h3 class="product-name">Porción Brownie</h3>
+      <div class="product-price">6.00 €</div>
+      <button class="btn-add" data-name="Porción Brownie" data-price="6.00">Añadir al carrito</button>
     </div>
-  </section>
 
-  <!-- Cart Page -->
-  <section id="cart" class="cart-page">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Carrito</h2>
-        <p class="section-subtitle">Revisa tu pedido y paga</p>
-      </div>
-
-      <div class="cart-page-card">
-        <div id="cartPageBody" class="cart-page-body">
-          <p class="empty-cart">Tu carrito está vacío</p>
-        </div>
-
-        <div class="cart-page-footer">
-          <div class="cart-total">
-            <span>Total:</span>
-            <span id="cartTotalPage">0.00€</span>
-          </div>
-
-          <div class="cart-actions">
-            <button class="btn btn-secondary" id="clearCartPage">Vaciar Carrito</button>
-
-            <button class="btn btn-whatsapp" id="orderWhatsappPage">
-              <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-            </button>
-
-            <div class="paypal-wrap">
-              <div class="paypal-title">Pagar con PayPal</div>
-              <div id="paypal-button-container-page"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p class="cart-page-note">*El pago por PayPal se crea con el total actual del carrito.*</p>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Contacto</h2>
-        <p class="section-subtitle">Estamos aquí para ti</p>
-      </div>
-
-      <div class="contact-content">
-        <div class="contact-info">
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <div>
-              <h4>WhatsApp</h4>
-              <a href="https://wa.me/34645052784" target="_blank" rel="noopener">+34 645 05 27 84</a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-              <h4>Email</h4>
-              <a href="mailto:qtopcheesecake@gmail.com">qtopcheesecake@gmail.com</a>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <div>
-              <h4>Dirección</h4>
-              <p>Madrid,Coslada, 28821</p>
-            </div>
-          </div>
-
-          <div class="social-links">
-            <h4>Síguenos</h4>
-            <div class="social-icons">
-              <a href="https://www.instagram.com/qtopcheesecake" target="_blank" rel="noopener" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="https://www.facebook.com/share/1ZwuUnBmdo/" target="_blank" rel="noopener" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-              </a>
-              <a href="https://wa.me/34645052784" target="_blank" rel="noopener" aria-label="WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3035.8073974665545!2d-3.6440399!3d40.4584217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4229ee84a1fb7b%3A0x8c4a8f2a7a8e8a8a!2sAlameda%20de%20Osuna%2C%2028042%20Madrid!5e0!3m2!1ses!2ses!4v1234567890"
-            width="100%"
-            height="400"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>QTOP Cheesecake</h3>
-          <p>Cheesecakes artesanales y toppings irresistibles.</p>
-        </div>
-
-        <div class="footer-section">
-          <h4>Enlaces</h4>
-          <ul>
-            <li><a href="#home">Inicio</a></li>
-            <li><a href="#about">Nosotros</a></li>
-            <li><a href="#products">Productos</a></li>
-            <li><a href="#cart">Carrito</a></li>
-            <li><a href="#contact">Contacto</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Contacto</h4>
-          <ul>
-            <li><i class="fas fa-phone"></i> +34 645 052 784</li>
-            <li><i class="fas fa-envelope"></i> qtopcheesecake@gmail.com</li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Redes</h4>
-          <div class="social-icons">
-            <a href="https://www.instagram.com/qtopcheesecake" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/share/1ZwuUnBmdo/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/34645052784" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 QTOP Cheesecake. Todos los derechos reservados.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Cart Modal -->
-  <div class="cart-modal" id="cartModal" aria-hidden="true">
-    <div class="cart-modal-content" role="dialog" aria-modal="true" aria-label="Carrito de compras">
-      <div class="cart-header">
-        <h2><i class="fas fa-shopping-cart"></i> Tu Carrito</h2>
-        <button class="close-cart" id="closeCart" aria-label="Cerrar carrito">&times;</button>
-      </div>
-
-      <div class="cart-body" id="cartBody">
-        <p class="empty-cart">Tu carrito está vacío</p>
-      </div>
-
-      <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total:</span>
-          <span id="cartTotal">0.00€</span>
-        </div>
-
-        <div class="cart-actions">
-          <button class="btn btn-secondary" id="clearCart">Vaciar Carrito</button>
-
-          <button class="btn btn-whatsapp" id="orderWhatsapp">
-            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-          </button>
-
-          <div class="paypal-wrap">
-            <div class="paypal-title">Pagar con PayPal</div>
-            <div id="paypal-button-container"></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
-  <!-- Product Modal -->
-  <div class="product-modal" id="productModal" aria-hidden="true">
-    <div class="product-modal-content" role="dialog" aria-modal="true" aria-label="Detalle del producto">
-      <button class="close-modal" id="closeProductModal" aria-label="Cerrar">&times;</button>
-      <div class="product-modal-body" id="productModalBody"></div>
+  <h3 class="drinks-title" style="margin: 5rem 0 2rem; text-align:center;">Bebidas (lata)</h3>
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <h3 class="product-name">Coca-Cola</h3>
+      <div class="product-price">2.00 €</div>
+      <button class="btn-add" data-name="Coca-Cola lata" data-price="2.00">Añadir</button>
     </div>
+
+    <div class="menu-card">
+      <h3 class="product-name">Coca-Cola Zero</h3>
+      <div class="product-price">2.00 €</div>
+      <button class="btn-add" data-name="Coca-Cola Zero lata" data-price="2.00">Añadir</button>
+    </div>
+
+    <div class="menu-card">
+      <h3 class="product-name">Fanta Naranja</h3>
+      <div class="product-price">2.00 €</div>
+      <button class="btn-add" data-name="Fanta Naranja lata" data-price="2.00">Añadir</button>
+    </div>
+
+    <div class="menu-card">
+      <h3 class="product-name">Sprite</h3>
+      <div class="product-price">2.00 €</div>
+      <button class="btn-add" data-name="Sprite lata" data-price="2.00">Añadir</button>
+    </div>
+
+    <div class="menu-card">
+      <h3 class="product-name">Aquarius Limón</h3>
+      <div class="product-price">2.00 €</div>
+      <button class="btn-add" data-name="Aquarius Limón lata" data-price="2.00">Añadir</button>
+    </div>
+
+    <div class="menu-card">
+      <h3 class="product-name">Café Frío</h3>
+      <div class="product-price">1.80 €</div>
+      <button class="btn-add" data-name="Café Frío" data-price="1.80">Añadir</button>
+    </div>
+
+    <!-- Puedes agregar más bebidas aquí si quieres -->
+
+  </div>
+</section>
+
+<section id="contacto" class="contact-section">
+  <h2>Haz tu Pedido</h2>
+  <p style="margin:2rem auto; max-width:720px; font-size:1.2rem; opacity:0.95;">
+    Escríbenos directamente por WhatsApp. Te confirmamos disponibilidad, precios y preparamos tu pedido con cariño.
+  </p>
+
+  <a href="https://wa.me/34645052784?text=Hola%21%20Quisiera%20hacer%20un%20pedido..." class="btn-whatsapp" target="_blank" style="font-size:1.25rem; padding:18px 60px; background:#25D366; color:white; border-radius:50px; text-decoration:none; display:inline-flex; align-items:center; gap:12px;">
+    <i class="fab fa-whatsapp fa-lg"></i> Pedir por WhatsApp
+  </a>
+</section>
+
+<!-- CARRITO DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>Tu Carrito</h2>
+    <button id="closeCartBtn" style="font-size:2rem; border:none; background:none; cursor:pointer; color:#555;">×</button>
   </div>
 
-  <!-- PayPal SDK (EUR) -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AZDOsVpSfBxSMz_cxCKjBdnf4c83u7DoTuhqB8IB&currency=EUR&intent=capture&components=buttons"></script>
+  <div class="cart-body" id="cartBody"></div>
 
-  <!-- JS -->
-  <script src="js/products.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="total-row">
+      <span>Total:</span>
+      <span id="cartTotal">0.00 €</span>
+    </div>
+
+    <div id="paypal-button-container"></div>
+
+    <button class="wa-icon-btn" onclick="window.open('https://wa.me/34645052784?text=Hola!%20Quiero%20confirmar%20mi%20pedido%20del%20carrito', '_blank')">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem('qtopCart')) || [];
+
+const cartCountEl    = document.getElementById('cartCount');
+const cartBodyEl     = document.getElementById('cartBody');
+const cartFooterEl   = document.getElementById('cartFooter');
+const cartTotalEl    = document.getElementById('cartTotal');
+const overlayEl      = document.getElementById('cartOverlay');
+const drawerEl       = document.getElementById('cartDrawer');
+const closeBtn       = document.getElementById('closeCartBtn');
+const openCartBtn    = document.getElementById('openCartBtn');
+
+function saveCart() {
+  localStorage.setItem('qtopCart', JSON.stringify(cart));
+  renderCart();
+}
+
+function renderCart() {
+  let total = 0;
+  cartCountEl.textContent = cart.reduce((acc, item) => acc + (item.qty || 1), 0);
+
+  if (cart.length === 0) {
+    cartBodyEl.innerHTML = '<p style="text-align:center; padding:4rem 1rem; color:#777;">Tu carrito está vacío</p>';
+    cartFooterEl.style.display = 'none';
+    return;
+  }
+
+  cartFooterEl.style.display = 'block';
+  let html = '';
+
+  cart.forEach((item, idx) => {
+    const qty = item.qty || 1;
+    const subt = item.price * qty;
+    total += subt;
+    html += `
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong><br>
+          <small>${item.price.toFixed(2)} € × ${qty}</small>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button onclick="changeQty(${idx}, -1)">−</button>
+          <span>${qty}</span>
+          <button onclick="changeQty(${idx}, 1)">+</button>
+          <button onclick="removeItem(${idx})" style="color:#e74c3c; font-weight:bold;">×</button>
+        </div>
+      </div>
+    `;
+  });
+
+  cartBodyEl.innerHTML = html;
+  cartTotalEl.textContent = total.toFixed(2) + ' €';
+
+  document.getElementById('paypal-button-container').innerHTML = '';
+
+  paypal.Buttons({
+    style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'paypal' },
+    createOrder(data, actions) {
+      return actions.order.create({
+        purchase_units: [{ amount: { value: total.toFixed(2), currency_code: 'EUR' } }]
+      });
+    },
+    onApprove(data, actions) {
+      return actions.order.capture().then(details => {
+        alert('¡Pago realizado con éxito!');
+        cart = [];
+        saveCart();
+        closeDrawer();
+      });
+    },
+    onError(err) {
+      console.error(err);
+      alert('Error en el pago.');
+    }
+  }).render('#paypal-button-container');
+}
+
+window.changeQty = (index, delta) => {
+  let item = cart[index];
+  item.qty = Math.max(1, (item.qty || 1) + delta);
+  saveCart();
+};
+
+window.removeItem = (index) => {
+  cart.splice(index, 1);
+  saveCart();
+};
+
+function openDrawer() { overlayEl.classList.add('open'); drawerEl.classList.add('open'); renderCart(); }
+function closeDrawer() { overlayEl.classList.remove('open'); drawerEl.classList.remove('open'); }
+
+openCartBtn.onclick = openDrawer;
+closeBtn.onclick = closeDrawer;
+overlayEl.onclick = closeDrawer;
+
+// Añadir al carrito
+document.querySelectorAll('.btn-add').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const name = btn.dataset.name;
+    const price = parseFloat(btn.dataset.price);
+
+    let found = cart.find(i => i.name === name);
+    if (found) {
+      found.qty = (found.qty || 1) + 1;
+    } else {
+      cart.push({ name, price, qty: 1 });
+    }
+    saveCart();
+  });
+});
+
+// Scroll suave
+document.getElementById('verMenuBtn').addEventListener('click', () => {
+  document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+});
+
+renderCart();
+</script>
 </body>
 </html>
