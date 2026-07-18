@@ -9,12 +9,16 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://qtopcoslada.com/">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon-qtop.png">
+  <link rel="apple-touch-icon" href="favicon-qtop.png">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="QTOP | Cheesecake, Cinnamon Rolls y Bakery en Coslada">
   <meta property="og:description" content="Cheesecakes, cinnamon rolls clásicos, cookies y pastelería seleccionada. Recogida en tienda en Coslada.">
   <meta property="og:url" content="https://qtopcoslada.com/">
-  <meta property="og:image" content="https://qtopcoslada.com/QTOP_CON_SLOGAN.png">
+  <meta property="og:image" content="https://qtopcoslada.com/porcion-cheesecake-1784393403.png">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="QTOP">
 
@@ -22,7 +26,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="QTOP | Bakery en Coslada">
   <meta name="twitter:description" content="Cheesecakes, cinnamon rolls y bakery artesanal. Recogida en tienda en Coslada.">
-  <meta name="twitter:image" content="https://qtopcoslada.com/QTOP_CON_SLOGAN.png">
+  <meta name="twitter:image" content="https://qtopcoslada.com/porcion-cheesecake-1784393403.png">
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +42,7 @@
     "name": "QTOP",
     "description": "Bakery y pastelería artesanal en Coslada. Cheesecakes, cinnamon rolls, cookies y productos seleccionados.",
     "url": "https://qtopcoslada.com",
-    "telephone": "TODO_TELEFONO",
+    "telephone": "+34645052784",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. del Plantío, 4, 4B",
@@ -58,9 +62,6 @@
   </script>
 
   <style>
-    /* ══════════════════════════════════════
-       VARIABLES & RESET
-    ══════════════════════════════════════ */
     :root {
       --negro:    #0e0e0e;
       --negro2:   #161616;
@@ -75,1135 +76,456 @@
       --blanco:   #fff;
       --error:    #c0392b;
       --exito:    #27ae60;
-
       --font-titulo: 'Cormorant Garamond', Georgia, serif;
       --font-texto:  'Inter', system-ui, sans-serif;
-
-      --radio:    8px;
-      --sombra:   0 4px 24px rgba(0,0,0,0.4);
-      --trans:    0.25s ease;
+      --radio: 8px;
+      --sombra: 0 4px 24px rgba(0,0,0,0.4);
+      --trans: 0.25s ease;
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font-texto);
       background: var(--negro);
       color: var(--crema);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      padding-bottom: 64px; /* espacio barra móvil */
     }
-
     h1,h2,h3,h4 { font-family: var(--font-titulo); line-height: 1.15; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
     button { font-family: var(--font-texto); cursor: pointer; }
     ul { list-style: none; }
 
-    /* ══════════════════════════════════════
-       UTILIDADES
-    ══════════════════════════════════════ */
-    .sr-only {
-      position: absolute; width:1px; height:1px;
-      padding:0; margin:-1px; overflow:hidden;
-      clip:rect(0,0,0,0); border:0;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--dorado);
-      color: var(--negro);
-      border: none;
-      padding: 0.85rem 2rem;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: background var(--trans), transform var(--trans);
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--dorado); color: var(--negro);
+      border: none; padding: .85rem 2rem;
+      font-size: .78rem; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase;
+      border-radius: 2px; transition: background var(--trans), transform var(--trans); cursor: pointer;
     }
     .btn-primary:hover { background: var(--dorado3); transform: translateY(-1px); }
+
     .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: transparent;
-      color: var(--crema);
-      border: 1px solid rgba(242,237,228,0.4);
-      padding: 0.85rem 2rem;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all var(--trans);
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: var(--crema);
+      border: 1px solid rgba(242,237,228,.4); padding: .85rem 2rem;
+      font-size: .78rem; font-weight: 500; letter-spacing: 1.8px; text-transform: uppercase;
+      border-radius: 2px; transition: all var(--trans); cursor: pointer;
     }
-    .btn-secondary:hover {
-      border-color: var(--crema);
-      background: rgba(242,237,228,0.07);
-    }
+    .btn-secondary:hover { border-color: var(--crema); background: rgba(242,237,228,.07); }
+
     .etiqueta {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--dorado);
-      border: 1px solid rgba(184,151,62,0.4);
-      padding: 0.25rem 0.7rem;
-      border-radius: 2px;
-      margin-bottom: 1rem;
+      display: inline-block; font-size: .65rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--dorado); border: 1px solid rgba(184,151,62,.4);
+      padding: .25rem .7rem; border-radius: 2px; margin-bottom: 1rem;
     }
 
-    /* ══════════════════════════════════════
-       CABECERA
-    ══════════════════════════════════════ */
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── CABECERA ── */
     #cabecera {
-      position: fixed;
-      top: 0; width: 100%;
-      z-index: 900;
-      background: rgba(14,14,14,0.96);
-      border-bottom: 1px solid rgba(184,151,62,0.15);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      position: fixed; top: 0; width: 100%; z-index: 900;
+      background: rgba(14,14,14,.96);
+      border-bottom: 1px solid rgba(184,151,62,.15);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       transition: background var(--trans);
     }
     .cab-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;
+      height: 68px; display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem;
     }
-    .cab-logo img {
-      height: 48px;
-      width: auto;
-      max-width: 160px;
-      object-fit: contain;
-      filter: invert(1) brightness(1.1);
-      transition: opacity var(--trans);
-    }
-    .cab-logo:hover img { opacity: 0.8; }
+    .cab-logo img { height: 48px; width: auto; max-width: 160px; object-fit: contain; filter: invert(1) brightness(1.1); transition: opacity var(--trans); }
+    .cab-logo:hover img { opacity: .8; }
 
     .cab-nav { display: flex; gap: 2rem; align-items: center; }
     .cab-nav a {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(242,237,228,0.7);
-      transition: color var(--trans);
-      position: relative;
-      padding-bottom: 2px;
+      font-size: .72rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(242,237,228,.7); transition: color var(--trans);
+      position: relative; padding-bottom: 2px;
     }
     .cab-nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 1px;
-      background: var(--dorado);
-      transition: width var(--trans);
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 1px; background: var(--dorado); transition: width var(--trans);
     }
     .cab-nav a:hover { color: var(--crema); }
     .cab-nav a:hover::after { width: 100%; }
 
-    .cab-acciones { display: flex; align-items: center; gap: 0.75rem; }
+    .cab-acciones { display: flex; align-items: center; gap: .75rem; }
 
     #btn-pedido-cab {
-      background: var(--dorado);
-      color: var(--negro);
-      border: none;
-      padding: 0.55rem 1.2rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: background var(--trans);
-      white-space: nowrap;
+      background: var(--dorado); color: var(--negro); border: none;
+      padding: .55rem 1.2rem; font-size: .7rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px;
+      transition: background var(--trans); white-space: nowrap;
     }
     #btn-pedido-cab:hover { background: var(--dorado3); }
 
     #btn-carrito-cab {
-      background: transparent;
-      border: 1px solid rgba(184,151,62,0.5);
-      color: var(--dorado);
-      border-radius: 2px;
-      padding: 0.55rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      transition: all var(--trans);
-      white-space: nowrap;
+      background: transparent; border: 1px solid rgba(184,151,62,.5);
+      color: var(--dorado); border-radius: 2px; padding: .55rem 1rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: 1px;
+      transition: all var(--trans); white-space: nowrap;
     }
     #btn-carrito-cab:hover { background: var(--dorado); color: var(--negro); }
     #contador-carrito-cab {
-      background: var(--dorado);
-      color: var(--negro);
-      border-radius: 50%;
-      min-width: 18px;
-      height: 18px;
-      font-size: 0.65rem;
-      font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      padding: 0 4px;
-      transition: background var(--trans);
+      background: var(--dorado); color: var(--negro); border-radius: 50%;
+      min-width: 18px; height: 18px; font-size: .65rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; padding: 0 4px;
     }
     #btn-carrito-cab:hover #contador-carrito-cab { background: var(--negro); color: var(--dorado); }
 
-    /* Hamburguesa */
     #btn-menu {
-      display: none;
-      background: none;
-      border: none;
-      flex-direction: column;
-      gap: 5px;
-      padding: 4px;
-      cursor: pointer;
+      display: none; background: none; border: none;
+      flex-direction: column; gap: 5px; padding: 4px; cursor: pointer;
     }
-    #btn-menu span {
-      display: block;
-      width: 22px; height: 2px;
-      background: var(--crema);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
+    #btn-menu span { display: block; width: 22px; height: 2px; background: var(--crema); border-radius: 2px; transition: all .3s; }
     #btn-menu.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     #btn-menu.abierto span:nth-child(2) { opacity: 0; }
     #btn-menu.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* Menú móvil */
+    /* menú móvil con transición */
     #nav-movil {
-      display: none;
-      position: fixed;
-      top: 68px; left: 0; right: 0;
-      background: rgba(14,14,14,0.98);
-      border-bottom: 1px solid rgba(184,151,62,0.15);
-      padding: 1.5rem;
-      flex-direction: column;
-      gap: 1.2rem;
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: rgba(14,14,14,.99);
+      border-bottom: 1px solid rgba(184,151,62,.15);
+      padding: 0 1.5rem; flex-direction: column; gap: 0;
       z-index: 890;
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s cubic-bezier(.4,0,.2,1), padding .35s;
+      display: flex;
     }
-    #nav-movil.visible { display: flex; }
+    #nav-movil.visible { max-height: 400px; padding: 1.2rem 1.5rem; }
     #nav-movil a {
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(242,237,228,0.8);
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: .9rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(242,237,228,.8); padding: .7rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      transition: color var(--trans);
     }
     #nav-movil a:last-child { border: none; }
+    #nav-movil a:hover { color: var(--dorado); }
 
-    /* ══════════════════════════════════════
-       HERO
-    ══════════════════════════════════════ */
+    /* ── HERO ── */
     #hero {
-      min-height: 100vh;
-      padding-top: 68px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background: var(--negro);
+      min-height: 100vh; padding-top: 68px;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden; background: var(--negro);
     }
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
-        linear-gradient(135deg, rgba(14,14,14,0.95) 0%, rgba(14,14,14,0.7) 50%, rgba(14,14,14,0.85) 100%),
-        url('cinnamon-roll-1784393403.png') center/cover no-repeat;
+        linear-gradient(105deg, rgba(14,14,14,.92) 0%, rgba(14,14,14,.6) 55%, rgba(14,14,14,.75) 100%),
+        url('porcion-cheesecake-1784393403.png') center/cover no-repeat;
     }
     .hero-bg::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 180px;
-      background: linear-gradient(transparent, var(--negro));
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 220px; background: linear-gradient(transparent, var(--negro));
     }
-    .hero-contenido {
-      position: relative;
-      z-index: 2;
-      max-width: 680px;
-    }
-    .hero-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--dorado);
-      margin-bottom: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      width: 28px; height: 1px;
-      background: var(--dorado);
-      flex-shrink: 0;
-    }
-    .hero-titulo {
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 600;
-      line-height: 1.05;
-      color: var(--crema);
-      margin-bottom: 1.6rem;
-    }
-    .hero-titulo em {
-      font-style: italic;
-      color: var(--dorado3);
-    }
-    .hero-subtitulo {
-      font-size: 1rem;
-      font-weight: 300;
-      color: rgba(242,237,228,0.65);
-      max-width: 520px;
-      line-height: 1.75;
-      margin-bottom: 2.4rem;
-    }
-    .hero-acciones {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
-    .hero-info {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(242,237,228,0.4);
-    }
-    .hero-info::before {
-      content: '';
-      width: 20px; height: 1px;
-      background: rgba(242,237,228,0.25);
-    }
+    .hero-contenido { position: relative; z-index: 2; max-width: 680px; }
 
-    /* ══════════════════════════════════════
-       STRIP DESTACADO
-    ══════════════════════════════════════ */
-    .strip-dorado {
-      background: var(--dorado);
-      padding: 0.9rem 1.5rem;
-      overflow: hidden;
+    .hero-eyebrow {
+      font-size: .7rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: .75rem;
     }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--dorado); flex-shrink: 0; }
+
+    .hero-titulo {
+      font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 600;
+      line-height: 1.05; color: var(--crema); margin-bottom: 1.6rem;
+    }
+    .hero-titulo em { font-style: italic; color: var(--dorado3); }
+
+    .hero-subtitulo {
+      font-size: 1rem; font-weight: 300; color: rgba(242,237,228,.65);
+      max-width: 520px; line-height: 1.75; margin-bottom: 2.4rem;
+    }
+    .hero-acciones { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .hero-info {
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .72rem; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(242,237,228,.4);
+    }
+    .hero-info::before { content: ''; width: 20px; height: 1px; background: rgba(242,237,228,.25); }
+
+    /* ── STRIP ── */
+    .strip-dorado { background: var(--dorado); padding: .9rem 1.5rem; overflow: hidden; }
     .strip-inner {
-      display: flex;
-      gap: 3rem;
+      display: flex; gap: 3rem;
       animation: strip-scroll 22s linear infinite;
       white-space: nowrap;
     }
+    .strip-dorado:hover .strip-inner { animation-play-state: paused; }
     .strip-inner span {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--negro);
-      flex-shrink: 0;
+      font-size: .68rem; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--negro); flex-shrink: 0;
     }
-    .strip-inner span::before { content: '✦'; margin-right: 0.5rem; }
+    .strip-inner span::before { content: '✦'; margin-right: .5rem; }
     @keyframes strip-scroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
-    /* ══════════════════════════════════════
-       SECCIÓN GENÉRICA
-    ══════════════════════════════════════ */
-    .seccion {
-      padding: 6rem 0;
-    }
-    .seccion-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-    .seccion-titulo {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 600;
-      color: var(--crema);
-      margin-bottom: 1rem;
-    }
-    .seccion-subtitulo {
-      font-size: 0.9rem;
-      color: rgba(242,237,228,0.5);
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.75;
-    }
-    .linea-dorada {
-      width: 40px; height: 1px;
-      background: var(--dorado);
-      margin: 1.2rem auto 0;
-      opacity: 0.6;
-    }
+    /* ── SECCIONES ── */
+    .seccion { padding: 6rem 0; }
+    .seccion-header { text-align: center; margin-bottom: 3.5rem; }
+    .seccion-titulo { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; color: var(--crema); margin-bottom: 1rem; }
+    .seccion-subtitulo { font-size: .9rem; color: rgba(242,237,228,.5); max-width: 480px; margin: 0 auto; line-height: 1.75; }
+    .linea-dorada { width: 40px; height: 1px; background: var(--dorado); margin: 1.2rem auto 0; opacity: .6; }
 
-    /* ══════════════════════════════════════
-       SELECCIÓN QTOP (productos estrella)
-    ══════════════════════════════════════ */
+    /* ── SELECCIÓN ESTRELLA ── */
     #seleccion { background: var(--negro2); }
-
     .grid-estrella {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
-
     .card-estrella {
-      background: var(--negro3);
-      border: 1px solid rgba(184,151,62,0.1);
-      border-radius: var(--radio);
-      overflow: hidden;
+      background: var(--negro3); border: 1px solid rgba(184,151,62,.1);
+      border-radius: var(--radio); overflow: hidden;
       transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
-      display: flex;
-      flex-direction: column;
+      display: flex; flex-direction: column;
     }
-    .card-estrella:hover {
-      border-color: rgba(184,151,62,0.35);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-    }
-    .card-estrella-img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      object-position: center;
-    }
-    .card-estrella-body {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .card-estrella-nombre {
-      font-family: var(--font-titulo);
-      font-size: 1.4rem;
-      color: var(--crema);
-      margin-bottom: 0.4rem;
-    }
-    .card-estrella-desc {
-      font-size: 0.8rem;
-      color: var(--gris);
-      line-height: 1.65;
-      flex: 1;
-      margin-bottom: 1.2rem;
-    }
-    .card-estrella-pie {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-    }
-    .card-estrella-precio {
-      font-family: var(--font-titulo);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--dorado);
-    }
+    .card-estrella:hover { border-color: rgba(184,151,62,.35); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+    .card-estrella-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; }
+    .card-estrella-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+    .card-estrella-nombre { font-family: var(--font-titulo); font-size: 1.4rem; color: var(--crema); margin-bottom: .4rem; }
+    .card-estrella-desc { font-size: .8rem; color: var(--gris); line-height: 1.65; flex: 1; margin-bottom: 1.2rem; }
+    .card-estrella-pie { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .card-estrella-precio { font-family: var(--font-titulo); font-size: 1.5rem; font-weight: 600; color: var(--dorado); }
     .btn-anadir-estrella {
-      background: transparent;
-      border: 1px solid rgba(184,151,62,0.5);
-      color: var(--dorado);
-      padding: 0.55rem 1.1rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all var(--trans);
-      white-space: nowrap;
+      background: transparent; border: 1px solid rgba(184,151,62,.5); color: var(--dorado);
+      padding: .55rem 1.1rem; font-size: .7rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px;
+      transition: all var(--trans); white-space: nowrap;
     }
     .btn-anadir-estrella:hover { background: var(--dorado); color: var(--negro); }
 
-    /* ══════════════════════════════════════
-       FILOSOFÍA
-    ══════════════════════════════════════ */
+    /* ── FILOSOFÍA ── */
     #filosofia { background: var(--negro); }
-    .filosofia-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-    .filosofia-img {
-      width: 100%;
-      aspect-ratio: 3/4;
-      object-fit: cover;
-      border-radius: var(--radio);
-      filter: brightness(0.85);
-    }
-    .filosofia-texto h2 {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      color: var(--crema);
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-    }
+    .filosofia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .filosofia-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radio); filter: brightness(.85); }
+    .filosofia-texto h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--crema); margin-bottom: 1.5rem; line-height: 1.2; }
     .filosofia-texto h2 em { font-style: italic; color: var(--dorado3); }
-    .filosofia-texto p {
-      font-size: 0.88rem;
-      color: rgba(242,237,228,0.55);
-      line-height: 1.85;
-      margin-bottom: 1rem;
-    }
+    .filosofia-texto p { font-size: .88rem; color: rgba(242,237,228,.55); line-height: 1.85; margin-bottom: 1rem; }
     .filosofia-texto p:last-of-type { margin-bottom: 1.8rem; }
-    .filosofia-detalle {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .filosofia-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
+    .filosofia-detalle { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .filosofia-item { display: flex; gap: 1rem; align-items: flex-start; }
     .filosofia-icono {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(184,151,62,0.3);
-      border-radius: 50%;
+      width: 36px; height: 36px; border: 1px solid rgba(184,151,62,.3); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--dorado);
-      font-size: 0.8rem;
-      flex-shrink: 0;
+      color: var(--dorado); font-size: .8rem; flex-shrink: 0;
     }
-    .filosofia-item-texto h4 {
-      font-family: var(--font-texto);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--crema);
-      margin-bottom: 0.2rem;
-    }
-    .filosofia-item-texto p {
-      font-size: 0.78rem;
-      color: var(--gris);
-      line-height: 1.5;
-      margin: 0;
-    }
+    .filosofia-item-texto h4 { font-family: var(--font-texto); font-size: .78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--crema); margin-bottom: .2rem; }
+    .filosofia-item-texto p { font-size: .78rem; color: var(--gris); line-height: 1.5; margin: 0; }
 
-    /* ══════════════════════════════════════
-       CATÁLOGO COMPLETO
-    ══════════════════════════════════════ */
+    /* ── CATÁLOGO ── */
     #catalogo { background: var(--negro2); }
-
-    .filtros-barra {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-      align-items: center;
-    }
+    .filtros-barra { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
     .btn-filtro {
-      background: transparent;
-      border: 1px solid rgba(184,151,62,0.2);
-      color: rgba(242,237,228,0.5);
-      padding: 0.45rem 1rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all var(--trans);
+      background: transparent; border: 1px solid rgba(184,151,62,.2);
+      color: rgba(242,237,228,.5); padding: .45rem 1rem;
+      font-size: .7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+      border-radius: 2px; transition: all var(--trans);
     }
-    .btn-filtro:hover, .btn-filtro.activo {
-      background: var(--dorado);
-      border-color: var(--dorado);
-      color: var(--negro);
-    }
-    #buscador-wrap {
-      margin-left: auto;
-      position: relative;
-    }
+    .btn-filtro:hover, .btn-filtro.activo { background: var(--dorado); border-color: var(--dorado); color: var(--negro); }
+    #buscador-wrap { margin-left: auto; position: relative; }
     #buscador {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(184,151,62,0.15);
-      border-radius: 2px;
-      color: var(--crema);
-      padding: 0.45rem 2.2rem 0.45rem 0.9rem;
-      font-size: 0.78rem;
-      font-family: var(--font-texto);
-      width: 200px;
-      outline: none;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(184,151,62,.15);
+      border-radius: 2px; color: var(--crema);
+      padding: .45rem 2.2rem .45rem .9rem; font-size: .78rem;
+      font-family: var(--font-texto); width: 200px; outline: none;
       transition: border-color var(--trans);
     }
     #buscador::placeholder { color: var(--gris2); }
-    #buscador:focus { border-color: rgba(184,151,62,0.4); }
-    #buscador-wrap i {
-      position: absolute;
-      right: 0.7rem; top: 50%;
-      transform: translateY(-50%);
-      color: var(--gris2);
-      font-size: 0.75rem;
-      pointer-events: none;
-    }
+    #buscador:focus { border-color: rgba(184,151,62,.4); }
+    #buscador-wrap i { position: absolute; right: .7rem; top: 50%; transform: translateY(-50%); color: var(--gris2); font-size: .75rem; pointer-events: none; }
 
-    .catalogo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.2rem;
-    }
-
+    .catalogo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
     .card-producto {
-      background: var(--negro3);
-      border: 1px solid rgba(184,151,62,0.08);
-      border-radius: var(--radio);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      background: var(--negro3); border: 1px solid rgba(184,151,62,.08);
+      border-radius: var(--radio); overflow: hidden; display: flex; flex-direction: column;
       transition: border-color var(--trans), transform var(--trans);
     }
-    .card-producto:hover {
-      border-color: rgba(184,151,62,0.25);
-      transform: translateY(-3px);
-    }
-    .card-producto-img-wrap {
-      position: relative;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #111;
-    }
-    .card-producto-img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
+    .card-producto:hover { border-color: rgba(184,151,62,.25); transform: translateY(-3px); }
+    .card-producto-img-wrap { position: relative; aspect-ratio: 1; overflow: hidden; background: #111; }
+    .card-producto-img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
     .card-producto:hover .card-producto-img { transform: scale(1.04); }
     .badge-agotado {
-      position: absolute;
-      top: 0.6rem; left: 0.6rem;
-      background: rgba(14,14,14,0.85);
-      color: var(--gris);
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      border-radius: 2px;
+      position: absolute; top: .6rem; left: .6rem;
+      background: rgba(14,14,14,.85); color: var(--gris);
+      font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      padding: .25rem .6rem; border-radius: 2px;
     }
-    .card-producto-body {
-      padding: 1.1rem;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .card-producto-cat {
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--dorado);
-      margin-bottom: 0.3rem;
-    }
-    .card-producto-nombre {
-      font-family: var(--font-titulo);
-      font-size: 1.15rem;
-      color: var(--crema);
-      margin-bottom: 0.3rem;
-      line-height: 1.2;
-    }
-    .card-producto-desc {
-      font-size: 0.73rem;
-      color: var(--gris2);
-      line-height: 1.55;
-      flex: 1;
-      margin-bottom: 0.9rem;
-    }
-    .card-producto-pie {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .card-producto-precio {
-      font-family: var(--font-titulo);
-      font-size: 1.25rem;
-      color: var(--dorado);
-      font-weight: 600;
-    }
+    .card-producto-body { padding: 1.1rem; display: flex; flex-direction: column; flex: 1; }
+    .card-producto-cat { font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dorado); margin-bottom: .3rem; }
+    .card-producto-nombre { font-family: var(--font-titulo); font-size: 1.15rem; color: var(--crema); margin-bottom: .3rem; line-height: 1.2; }
+    .card-producto-desc { font-size: .73rem; color: var(--gris2); line-height: 1.55; flex: 1; margin-bottom: .9rem; }
+    .card-producto-pie { display: flex; align-items: center; justify-content: space-between; }
+    .card-producto-precio { font-family: var(--font-titulo); font-size: 1.25rem; color: var(--dorado); font-weight: 600; }
     .btn-anadir-catalogo {
-      background: transparent;
-      border: 1px solid rgba(184,151,62,0.4);
-      color: var(--dorado);
-      padding: 0.4rem 0.85rem;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all var(--trans);
+      background: transparent; border: 1px solid rgba(184,151,62,.4); color: var(--dorado);
+      padding: .4rem .85rem; font-size: .65rem; font-weight: 600;
+      letter-spacing: 1.2px; text-transform: uppercase; border-radius: 2px; transition: all var(--trans);
     }
     .btn-anadir-catalogo:hover:not(:disabled) { background: var(--dorado); color: var(--negro); }
-    .btn-anadir-catalogo:disabled {
-      opacity: 0.3;
-      cursor: not-allowed;
-      border-color: var(--gris2);
-      color: var(--gris2);
-    }
-    #sin-resultados {
-      display: none;
-      text-align: center;
-      color: var(--gris);
-      font-size: 0.9rem;
-      padding: 3rem;
-      grid-column: 1/-1;
-    }
+    .btn-anadir-catalogo:disabled { opacity: .3; cursor: not-allowed; border-color: var(--gris2); color: var(--gris2); }
+    #sin-resultados { display: none; text-align: center; color: var(--gris); font-size: .9rem; padding: 3rem; grid-column: 1/-1; }
 
-    /* ══════════════════════════════════════
-       CÓMO FUNCIONA
-    ══════════════════════════════════════ */
+    /* ── CÓMO FUNCIONA ── */
     #como-funciona { background: var(--negro); }
-    .pasos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-      position: relative;
-    }
+    .pasos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; position: relative; }
     .pasos-grid::before {
-      content: '';
-      position: absolute;
+      content: ''; position: absolute;
       top: 1.5rem; left: calc(16.67% + 1.5rem); right: calc(16.67% + 1.5rem);
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(184,151,62,0.3), transparent);
+      height: 1px; background: linear-gradient(90deg, transparent, rgba(184,151,62,.3), transparent);
     }
-    .paso {
-      text-align: center;
-    }
+    .paso { text-align: center; }
     .paso-num {
-      width: 3rem; height: 3rem;
-      border: 1px solid rgba(184,151,62,0.3);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.2rem;
-      font-family: var(--font-titulo);
-      font-size: 1.3rem;
-      color: var(--dorado);
+      width: 3rem; height: 3rem; border: 1px solid rgba(184,151,62,.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem;
+      font-family: var(--font-titulo); font-size: 1.3rem; color: var(--dorado);
     }
-    .paso h3 {
-      font-size: 1.2rem;
-      color: var(--crema);
-      margin-bottom: 0.7rem;
-    }
-    .paso p {
-      font-size: 0.8rem;
-      color: var(--gris);
-      line-height: 1.7;
-    }
+    .paso h3 { font-size: 1.2rem; color: var(--crema); margin-bottom: .7rem; }
+    .paso p { font-size: .8rem; color: var(--gris); line-height: 1.7; }
 
-    /* ══════════════════════════════════════
-       VISÍTANOS
-    ══════════════════════════════════════ */
+    /* ── VISÍTANOS ── */
     #visitanos { background: var(--negro2); }
-    .visitanos-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: start;
-    }
+    .visitanos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     .visitanos-info { display: flex; flex-direction: column; gap: 1.5rem; }
-    .visitanos-dato {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
+    .visitanos-dato { display: flex; gap: 1rem; align-items: flex-start; }
     .visitanos-icono {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(184,151,62,0.2);
-      border-radius: 50%;
+      width: 36px; height: 36px; border: 1px solid rgba(184,151,62,.2); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      color: var(--dorado);
-      font-size: 0.75rem;
-      flex-shrink: 0;
+      color: var(--dorado); font-size: .75rem; flex-shrink: 0;
     }
-    .visitanos-dato-texto h4 {
-      font-family: var(--font-texto);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gris);
-      margin-bottom: 0.3rem;
-    }
-    .visitanos-dato-texto p, .visitanos-dato-texto a {
-      font-size: 0.88rem;
-      color: var(--crema);
-      line-height: 1.6;
-    }
+    .visitanos-dato-texto h4 { font-family: var(--font-texto); font-size: .7rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); margin-bottom: .3rem; }
+    .visitanos-dato-texto p, .visitanos-dato-texto a { font-size: .88rem; color: var(--crema); line-height: 1.6; }
     .visitanos-dato-texto a { transition: color var(--trans); }
     .visitanos-dato-texto a:hover { color: var(--dorado); }
-
-    .visitanos-acciones {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-    }
-    .btn-wa {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: #25D366; color: #fff;
-      border: none;
-      padding: 0.65rem 1.2rem;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      border-radius: 2px;
-      transition: background var(--trans);
-      text-decoration: none;
-    }
+    .visitanos-acciones { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: .5rem; }
+    .btn-wa { display: inline-flex; align-items: center; gap: .5rem; background: #25D366; color: #fff; border: none; padding: .65rem 1.2rem; font-size: .72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; transition: background var(--trans); text-decoration: none; }
     .btn-wa:hover { background: #1ebe52; }
-    .btn-ig {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: transparent; color: var(--crema);
-      border: 1px solid rgba(242,237,228,0.2);
-      padding: 0.65rem 1.2rem;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      border-radius: 2px;
-      transition: all var(--trans);
-      text-decoration: none;
-    }
+    .btn-ig { display: inline-flex; align-items: center; gap: .5rem; background: transparent; color: var(--crema); border: 1px solid rgba(242,237,228,.2); padding: .65rem 1.2rem; font-size: .72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; transition: all var(--trans); text-decoration: none; }
     .btn-ig:hover { border-color: var(--crema); }
+    .mapa-wrap { border-radius: var(--radio); overflow: hidden; border: 1px solid rgba(184,151,62,.1); background: var(--negro3); aspect-ratio: 4/3; }
+    .mapa-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(1) invert(1) contrast(.85); }
 
-    .mapa-wrap {
-      border-radius: var(--radio);
-      overflow: hidden;
-      border: 1px solid rgba(184,151,62,0.1);
-      background: var(--negro3);
-      display: flex; align-items: center; justify-content: center;
-      aspect-ratio: 4/3;
-    }
-    .mapa-placeholder {
-      text-align: center;
-      padding: 2rem;
-    }
-    .mapa-placeholder i { font-size: 2.5rem; color: var(--dorado); margin-bottom: 1rem; }
-    .mapa-placeholder p { font-size: 0.8rem; color: var(--gris); margin-bottom: 1rem; }
-    .mapa-placeholder a {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--dorado);
-      border-bottom: 1px solid rgba(184,151,62,0.4);
-      padding-bottom: 2px;
-      transition: color var(--trans);
-      text-decoration: none;
-    }
-    .mapa-placeholder a:hover { color: var(--dorado3); }
-
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
-    #footer {
-      background: #080808;
-      border-top: 1px solid rgba(184,151,62,0.1);
-      padding: 4rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-    .footer-logo img {
-      height: 44px;
-      width: auto;
-      max-width: 160px;
-      object-fit: contain;
-      filter: invert(1);
-      margin-bottom: 1rem;
-    }
-    .footer-logo p {
-      font-size: 0.78rem;
-      color: var(--gris2);
-      line-height: 1.65;
-      margin-bottom: 1.2rem;
-    }
-    .footer-sociales { display: flex; gap: 0.75rem; }
-    .footer-social-btn {
-      width: 34px; height: 34px;
-      border: 1px solid rgba(184,151,62,0.2);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gris);
-      font-size: 0.8rem;
-      transition: all var(--trans);
-      text-decoration: none;
-    }
+    /* ── FOOTER ── */
+    #footer { background: #080808; border-top: 1px solid rgba(184,151,62,.1); padding: 4rem 0 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-logo img { height: 44px; width: auto; max-width: 160px; object-fit: contain; filter: invert(1); margin-bottom: 1rem; }
+    .footer-logo p { font-size: .78rem; color: var(--gris2); line-height: 1.65; margin-bottom: 1.2rem; }
+    .footer-sociales { display: flex; gap: .75rem; }
+    .footer-social-btn { width: 34px; height: 34px; border: 1px solid rgba(184,151,62,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gris); font-size: .8rem; transition: all var(--trans); text-decoration: none; }
     .footer-social-btn:hover { border-color: var(--dorado); color: var(--dorado); }
-    .footer-col h4 {
-      font-family: var(--font-texto);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--crema);
-      margin-bottom: 1.2rem;
-    }
-    .footer-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
-    .footer-col a {
-      font-size: 0.78rem;
-      color: var(--gris2);
-      transition: color var(--trans);
-      text-decoration: none;
-    }
+    .footer-col h4 { font-family: var(--font-texto); font-size: .68rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--crema); margin-bottom: 1.2rem; }
+    .footer-col ul { display: flex; flex-direction: column; gap: .65rem; }
+    .footer-col a { font-size: .78rem; color: var(--gris2); transition: color var(--trans); text-decoration: none; }
     .footer-col a:hover { color: var(--crema); }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-    .footer-copy {
-      font-size: 0.72rem;
-      color: var(--gris2);
-    }
-    .footer-copy span { color: var(--dorado); opacity: 0.7; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.05); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .footer-copy { font-size: .72rem; color: var(--gris2); }
+    .footer-copy span { color: var(--dorado); opacity: .7; }
     .footer-legal { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-    .footer-legal a {
-      font-size: 0.68rem;
-      color: var(--gris2);
-      transition: color var(--trans);
-      text-decoration: none;
-    }
+    .footer-legal a { font-size: .68rem; color: var(--gris2); transition: color var(--trans); text-decoration: none; }
     .footer-legal a:hover { color: var(--crema); }
 
-    /* ══════════════════════════════════════
-       CARRITO DRAWER
-    ══════════════════════════════════════ */
-    #overlay-carrito {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.65);
-      z-index: 980;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
+    /* ── CARRITO ── */
+    #overlay-carrito { position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 980; display: none; opacity: 0; transition: opacity .25s; }
     #overlay-carrito.visible { display: block; opacity: 1; }
-
-    #carrito-panel {
-      position: fixed;
-      top: 0; right: 0;
-      width: min(420px, 95vw);
-      height: 100%;
-      background: var(--negro2);
-      border-left: 1px solid rgba(184,151,62,0.15);
-      z-index: 990;
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-      display: flex;
-      flex-direction: column;
-    }
+    #carrito-panel { position: fixed; top: 0; right: 0; width: min(420px,95vw); height: 100%; background: var(--negro2); border-left: 1px solid rgba(184,151,62,.15); z-index: 990; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
     #carrito-panel.visible { transform: translateX(0); }
-
-    .carrito-cabecera {
-      padding: 1.4rem 1.6rem;
-      border-bottom: 1px solid rgba(184,151,62,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .carrito-cabecera h2 {
-      font-size: 1.4rem;
-      color: var(--crema);
-    }
-    #btn-cerrar-carrito {
-      background: none; border: none;
-      color: var(--gris);
-      font-size: 1.4rem;
-      padding: 0.25rem;
-      transition: color var(--trans);
-      line-height: 1;
-    }
+    .carrito-cabecera { padding: 1.4rem 1.6rem; border-bottom: 1px solid rgba(184,151,62,.1); display: flex; align-items: center; justify-content: space-between; }
+    .carrito-cabecera h2 { font-size: 1.4rem; color: var(--crema); }
+    #btn-cerrar-carrito { background: none; border: none; color: var(--gris); font-size: 1.4rem; padding: .25rem; transition: color var(--trans); line-height: 1; }
     #btn-cerrar-carrito:hover { color: var(--crema); }
-
-    .carrito-cuerpo {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.2rem 1.6rem;
-    }
-    .carrito-vacio {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      gap: 1rem;
-      color: var(--gris2);
-      text-align: center;
-    }
-    .carrito-vacio i { font-size: 2.5rem; opacity: 0.3; }
-    .carrito-vacio p { font-size: 0.85rem; }
-
-    .carrito-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .carrito-item-img {
-      width: 56px; height: 56px;
-      border-radius: 4px;
-      object-fit: cover;
-      flex-shrink: 0;
-      background: #111;
-    }
+    .carrito-cuerpo { flex: 1; overflow-y: auto; padding: 1.2rem 1.6rem; }
+    .carrito-vacio { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 1rem; color: var(--gris2); text-align: center; }
+    .carrito-vacio i { font-size: 2.5rem; opacity: .3; }
+    .carrito-vacio p { font-size: .85rem; }
+    .carrito-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .carrito-item-img { width: 56px; height: 56px; border-radius: 4px; object-fit: cover; flex-shrink: 0; background: #111; }
     .carrito-item-info { flex: 1; }
-    .carrito-item-nombre {
-      font-size: 0.85rem;
-      color: var(--crema);
-      margin-bottom: 0.2rem;
-      line-height: 1.3;
-    }
-    .carrito-item-precio {
-      font-family: var(--font-titulo);
-      font-size: 1rem;
-      color: var(--dorado);
-    }
-    .carrito-item-controles {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .btn-qty {
-      width: 24px; height: 24px;
-      border: 1px solid rgba(184,151,62,0.3);
-      background: none;
-      color: var(--crema);
-      border-radius: 2px;
-      font-size: 0.8rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: all var(--trans);
-    }
+    .carrito-item-nombre { font-size: .85rem; color: var(--crema); margin-bottom: .2rem; line-height: 1.3; }
+    .carrito-item-precio { font-family: var(--font-titulo); font-size: 1rem; color: var(--dorado); }
+    .carrito-item-controles { display: flex; align-items: center; gap: .5rem; margin-top: .5rem; }
+    .btn-qty { width: 24px; height: 24px; border: 1px solid rgba(184,151,62,.3); background: none; color: var(--crema); border-radius: 2px; font-size: .8rem; display: flex; align-items: center; justify-content: center; transition: all var(--trans); }
     .btn-qty:hover { background: var(--dorado); border-color: var(--dorado); color: var(--negro); }
-    .qty-val {
-      font-size: 0.85rem;
-      color: var(--crema);
-      min-width: 20px;
-      text-align: center;
-    }
-    .btn-eliminar {
-      background: none; border: none;
-      color: var(--gris2);
-      font-size: 0.85rem;
-      padding: 4px;
-      margin-left: auto;
-      transition: color var(--trans);
-    }
+    .qty-val { font-size: .85rem; color: var(--crema); min-width: 20px; text-align: center; }
+    .btn-eliminar { background: none; border: none; color: var(--gris2); font-size: .85rem; padding: 4px; margin-left: auto; transition: color var(--trans); }
     .btn-eliminar:hover { color: var(--error); }
-
-    .carrito-pie {
-      padding: 1.4rem 1.6rem;
-      border-top: 1px solid rgba(184,151,62,0.1);
-      background: var(--negro);
-    }
-    .carrito-aviso {
-      font-size: 0.7rem;
-      color: var(--gris2);
-      margin-bottom: 1.2rem;
-      line-height: 1.55;
-      padding: 0.7rem;
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 4px;
-    }
-    .carrito-total {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1.2rem;
-    }
-    .carrito-total span:first-child {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gris);
-    }
-    .carrito-total-precio {
-      font-family: var(--font-titulo);
-      font-size: 1.8rem;
-      color: var(--crema);
-    }
-    .btn-checkout {
-      width: 100%;
-      background: var(--dorado);
-      color: var(--negro);
-      border: none;
-      padding: 1rem;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: background var(--trans);
-      margin-bottom: 0.75rem;
-    }
+    .carrito-pie { padding: 1.4rem 1.6rem; border-top: 1px solid rgba(184,151,62,.1); background: var(--negro); }
+    .carrito-aviso { font-size: .7rem; color: var(--gris2); margin-bottom: 1.2rem; line-height: 1.55; padding: .7rem; border: 1px solid rgba(255,255,255,.05); border-radius: 4px; }
+    .carrito-total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.2rem; }
+    .carrito-total span:first-child { font-size: .72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); }
+    .carrito-total-precio { font-family: var(--font-titulo); font-size: 1.8rem; color: var(--crema); }
+    .btn-checkout { width: 100%; background: var(--dorado); color: var(--negro); border: none; padding: 1rem; font-size: .78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; transition: background var(--trans); margin-bottom: .75rem; }
     .btn-checkout:hover { background: var(--dorado3); }
-    .btn-checkout-wa {
-      width: 100%;
-      background: transparent;
-      color: var(--gris);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.75rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all var(--trans);
-      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-    }
+    .btn-checkout-wa { width: 100%; background: transparent; color: var(--gris); border: 1px solid rgba(255,255,255,.08); padding: .75rem; font-size: .7rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; border-radius: 2px; transition: all var(--trans); display: flex; align-items: center; justify-content: center; gap: .5rem; }
     .btn-checkout-wa:hover { border-color: #25D366; color: #25D366; }
 
-    /* ══════════════════════════════════════
-       TOAST NOTIFICACIÓN
-    ══════════════════════════════════════ */
-    #toast {
-      position: fixed;
-      bottom: 1.5rem; left: 50%;
-      transform: translateX(-50%) translateY(120px);
-      background: var(--negro3);
-      border: 1px solid rgba(184,151,62,0.2);
-      color: var(--crema);
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      z-index: 999;
-      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-      white-space: nowrap;
-      box-shadow: var(--sombra);
-    }
+    /* ── TOAST ── */
+    #toast { position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%) translateY(120px); background: var(--negro3); border: 1px solid rgba(184,151,62,.2); color: var(--crema); padding: .75rem 1.5rem; border-radius: 4px; font-size: .78rem; font-weight: 500; z-index: 999; transition: transform .3s cubic-bezier(.4,0,.2,1); white-space: nowrap; box-shadow: var(--sombra); }
     #toast.visible { transform: translateX(-50%) translateY(0); }
-    #toast.ok { border-color: rgba(39,174,96,0.4); }
+    #toast.ok { border-color: rgba(39,174,96,.4); }
 
-    /* ══════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════ */
+    /* ── BARRA MÓVIL INFERIOR ── */
+    #barra-movil {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 64px; background: rgba(14,14,14,.97);
+      border-top: 1px solid rgba(184,151,62,.15);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      z-index: 880;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .barra-movil-btn {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: .25rem; background: none; border: none; color: rgba(242,237,228,.5);
+      font-size: .55rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      transition: color var(--trans); padding: 0; text-decoration: none; cursor: pointer;
+    }
+    .barra-movil-btn i { font-size: 1.1rem; }
+    .barra-movil-btn:hover { color: var(--dorado); }
+    .barra-movil-btn.wa { color: #25D366; }
+    .barra-movil-carrito-badge {
+      position: relative;
+    }
+    .barra-movil-carrito-badge::after {
+      content: attr(data-count);
+      position: absolute; top: -6px; right: -10px;
+      background: var(--dorado); color: var(--negro);
+      border-radius: 50%; min-width: 16px; height: 16px;
+      font-size: .55rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 3px;
+    }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .filosofia-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .filosofia-img { aspect-ratio: 16/7; }
@@ -1212,22 +534,20 @@
     }
 
     @media (max-width: 768px) {
-      .cab-nav { display: none; }
-      #btn-pedido-cab { display: none; }
+      .cab-nav, #btn-pedido-cab { display: none; }
       #btn-menu { display: flex; }
-
+      #barra-movil { display: grid; }
+      body { padding-bottom: 64px; }
       .hero-titulo { font-size: 2.4rem; }
-      .hero-subtitulo { font-size: 0.88rem; }
-
+      .hero-subtitulo { font-size: .88rem; }
       .pasos-grid { grid-template-columns: 1fr; gap: 2rem; }
       .pasos-grid::before { display: none; }
-
       .visitanos-grid { grid-template-columns: 1fr; }
-
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; align-items: flex-start; }
-
       .seccion { padding: 4rem 0; }
+      .grid-estrella { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      #toast { bottom: 5rem; }
     }
 
     @media (max-width: 480px) {
@@ -1237,29 +557,26 @@
       #buscador-wrap { margin-left: 0; width: 100%; }
       #buscador { width: 100%; }
       .footer-grid { grid-template-columns: 1fr; }
-      .footer-legal { gap: 0.75rem; }
-      .grid-estrella { grid-template-columns: 1fr; }
+      .footer-legal { gap: .75rem; }
+      .grid-estrella { grid-template-columns: repeat(2, 1fr); }
+      .card-estrella-img { aspect-ratio: 1; }
     }
 
-    /* Accesibilidad: foco visible */
-    :focus-visible {
-      outline: 2px solid var(--dorado);
-      outline-offset: 3px;
-    }
+    :focus-visible { outline: 2px solid var(--dorado); outline-offset: 3px; }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════ CABECERA ══════════════ -->
+<!-- CABECERA -->
 <header id="cabecera" role="banner">
   <div class="cab-inner">
-    <a href="#" class="cab-logo" aria-label="QTOP – Ir al inicio">
+    <a href="#" class="cab-logo" aria-label="QTOP – Inicio">
       <img src="QTOP_CON_takeaway.png" alt="QTOP Takeaway" height="48" style="width:auto;">
     </a>
-
     <nav class="cab-nav" aria-label="Navegación principal">
       <a href="#hero">Inicio</a>
       <a href="#seleccion">Bakery</a>
@@ -1267,16 +584,13 @@
       <a href="#filosofia">Nosotros</a>
       <a href="#visitanos">Visítanos</a>
     </nav>
-
     <div class="cab-acciones">
       <button id="btn-carrito-cab" aria-label="Abrir carrito" onclick="abrirCarrito()">
         <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
         <span class="sr-only">Carrito</span>
         <span id="contador-carrito-cab" aria-live="polite">0</span>
       </button>
-      <button id="btn-pedido-cab" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
-        Hacer pedido
-      </button>
+      <button id="btn-pedido-cab" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Hacer pedido</button>
       <button id="btn-menu" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
         <span></span><span></span><span></span>
       </button>
@@ -1284,121 +598,76 @@
   </div>
 </header>
 
-<!-- Menú móvil -->
-<nav id="nav-movil" aria-label="Menú móvil" role="navigation">
+<nav id="nav-movil" aria-label="Menú móvil">
   <a href="#hero" onclick="toggleMenu()">Inicio</a>
   <a href="#seleccion" onclick="toggleMenu()">Bakery</a>
   <a href="#catalogo" onclick="toggleMenu()">Menú completo</a>
   <a href="#filosofia" onclick="toggleMenu()">Nosotros</a>
   <a href="#visitanos" onclick="toggleMenu()">Visítanos</a>
-  <a href="https://wa.me/34645052784" target="_blank" rel="noopener">WhatsApp</a>
+  <a href="https://wa.me/34645052784" target="_blank" rel="noopener" onclick="toggleMenu()">WhatsApp</a>
 </nav>
 
-<!-- ══════════════ HERO ══════════════ -->
+<!-- HERO -->
 <section id="hero" aria-label="Presentación QTOP">
-  <div class="hero-bg" role="img" aria-label="Cinnamon roll artesanal QTOP"></div>
+  <div class="hero-bg" role="img" aria-label="Porción de cheesecake artesanal QTOP"></div>
   <div class="container">
     <div class="hero-contenido">
       <p class="hero-eyebrow">Bakery &amp; Pastry · Coslada</p>
-      <h1 class="hero-titulo">
-        Hay cosas que<br>no se explican.<br><em>Se prueban.</em>
-      </h1>
-      <p class="hero-subtitulo">
-        Cheesecakes, cinnamon rolls clásicos, cookies y pastelería seleccionada,
-        preparados para convertir una pausa cualquiera en tu momento QTOP.
-      </p>
+      <h1 class="hero-titulo">Hay cosas que<br>no se explican.<br><em>Se prueban.</em></h1>
+      <p class="hero-subtitulo">Cheesecakes, cinnamon rolls clásicos, cookies y pastelería seleccionada, preparados para convertir una pausa cualquiera en tu momento QTOP.</p>
       <div class="hero-acciones">
-        <button class="btn-primary" onclick="document.getElementById('seleccion').scrollIntoView({behavior:'smooth'})">
-          Ver la Bakery
-        </button>
-        <button class="btn-secondary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
-          Hacer pedido
-        </button>
+        <button class="btn-primary" onclick="document.getElementById('seleccion').scrollIntoView({behavior:'smooth'})">Ver la Bakery</button>
+        <button class="btn-secondary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Hacer pedido</button>
       </div>
       <p class="hero-info">Recogida en tienda · Coslada, Madrid</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ STRIP ══════════════ -->
+<!-- STRIP -->
 <div class="strip-dorado" aria-hidden="true">
   <div class="strip-inner">
-    <span>Cheesecake artesanal</span>
-    <span>Cinnamon Roll clásico</span>
-    <span>Cookies doble chocolate</span>
-    <span>Tarta Sacher</span>
-    <span>Recogida en tienda</span>
-    <span>Coslada, Madrid</span>
-    <span>Cheesecake artesanal</span>
-    <span>Cinnamon Roll clásico</span>
-    <span>Cookies doble chocolate</span>
-    <span>Tarta Sacher</span>
-    <span>Recogida en tienda</span>
-    <span>Coslada, Madrid</span>
+    <span>Cheesecake artesanal</span><span>Cinnamon Roll clásico</span><span>Cookies doble chocolate</span><span>Tarta Sacher</span><span>Recogida en tienda</span><span>Coslada, Madrid</span><span>Cheesecake artesanal</span><span>Cinnamon Roll clásico</span><span>Cookies doble chocolate</span><span>Tarta Sacher</span><span>Recogida en tienda</span><span>Coslada, Madrid</span>
   </div>
 </div>
 
-<!-- ══════════════ SELECCIÓN QTOP ══════════════ -->
+<!-- SELECCIÓN QTOP -->
 <section id="seleccion" class="seccion" aria-labelledby="seleccion-titulo">
   <div class="container">
-    <div class="seccion-header">
+    <div class="seccion-header reveal">
       <p class="etiqueta">Artesanal · Seleccionado</p>
       <h2 class="seccion-titulo" id="seleccion-titulo">La selección QTOP</h2>
       <p class="seccion-subtitulo">Productos elaborados con criterio. Sin atajos, sin prisa.</p>
       <div class="linea-dorada"></div>
     </div>
-    <div class="grid-estrella" id="grid-estrella">
-      <!-- Se rellena con JS -->
-    </div>
+    <div class="grid-estrella" id="grid-estrella"></div>
   </div>
 </section>
 
-<!-- ══════════════ FILOSOFÍA ══════════════ -->
+<!-- FILOSOFÍA -->
 <section id="filosofia" class="seccion" aria-labelledby="filosofia-titulo">
   <div class="container">
     <div class="filosofia-grid">
-      <div>
-        <img src="cinnamon-roll-1784393403.png"
-             alt="Cinnamon Roll artesanal QTOP"
-             class="filosofia-img"
-             loading="lazy">
+      <div class="reveal">
+        <img src="cinnamon-roll-1784393403.png" alt="Cinnamon Roll artesanal QTOP" class="filosofia-img" loading="lazy">
       </div>
-      <div class="filosofia-texto">
+      <div class="filosofia-texto reveal reveal-delay-2">
         <p class="etiqueta">Nuestra filosofía</p>
-        <h2 id="filosofia-titulo">
-          No hacemos productos para<br>llenar una vitrina.<br>
-          <em>Los hacemos para que quieras volver.</em>
-        </h2>
-        <p>
-          En QTOP cada pieza responde a una decisión deliberada. Elegimos
-          el proveedor, controlamos el proceso y cuidamos el acabado.
-          La diferencia está en los detalles que no se anuncian.
-        </p>
-        <p>
-          Somos una bakery de proximidad en Coslada. Sin grandes cadenas
-          detrás. Solo producto cuidado y ganas de hacerlo bien.
-        </p>
+        <h2 id="filosofia-titulo">No hacemos productos para<br>llenar una vitrina.<br><em>Los hacemos para que quieras volver.</em></h2>
+        <p>En QTOP cada pieza responde a una decisión deliberada. Elegimos el proveedor, controlamos el proceso y cuidamos el acabado. La diferencia está en los detalles que no se anuncian.</p>
+        <p>Somos una bakery de proximidad en Coslada. Sin grandes cadenas detrás. Solo producto cuidado y ganas de hacerlo bien.</p>
         <div class="filosofia-detalle">
           <div class="filosofia-item">
             <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-leaf"></i></div>
-            <div class="filosofia-item-texto">
-              <h4>Elaboración cuidada</h4>
-              <p>Cada producto se prepara con atención al proceso y al resultado final.</p>
-            </div>
+            <div class="filosofia-item-texto"><h4>Elaboración cuidada</h4><p>Cada producto se prepara con atención al proceso y al resultado final.</p></div>
           </div>
           <div class="filosofia-item">
             <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
-            <div class="filosofia-item-texto">
-              <h4>Selección del producto</h4>
-              <p>Solo lo que merece estar en el mostrador. Calidad por encima del volumen.</p>
-            </div>
+            <div class="filosofia-item-texto"><h4>Selección del producto</h4><p>Solo lo que merece estar en el mostrador. Calidad por encima del volumen.</p></div>
           </div>
           <div class="filosofia-item">
             <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="filosofia-item-texto">
-              <h4>Cercanía y recogida en tienda</h4>
-              <p>Haz tu pedido, pásate a recogerlo. Sin intermediarios, sin esperas largas.</p>
-            </div>
+            <div class="filosofia-item-texto"><h4>Cercanía y recogida en tienda</h4><p>Haz tu pedido, pásate a recogerlo. Sin intermediarios, sin esperas largas.</p></div>
           </div>
         </div>
       </div>
@@ -1406,55 +675,50 @@
   </div>
 </section>
 
-<!-- ══════════════ CATÁLOGO COMPLETO ══════════════ -->
+<!-- CATÁLOGO -->
 <section id="catalogo" class="seccion" aria-labelledby="catalogo-titulo">
   <div class="container">
-    <div class="seccion-header">
+    <div class="seccion-header reveal">
       <p class="etiqueta">Todo el catálogo</p>
       <h2 class="seccion-titulo" id="catalogo-titulo">Nuestro Menú</h2>
       <p class="seccion-subtitulo">Bakery artesanal, aperitivos seleccionados y bebidas.</p>
       <div class="linea-dorada"></div>
     </div>
-
-    <!-- Filtros -->
     <div class="filtros-barra" role="group" aria-label="Filtrar productos">
-      <button class="btn-filtro activo" data-cat="todos" onclick="filtrar('todos',this)">Todos</button>
-      <button class="btn-filtro" data-cat="bakery" onclick="filtrar('bakery',this)">Bakery</button>
-      <button class="btn-filtro" data-cat="snacks" onclick="filtrar('snacks',this)">Aperitivos</button>
-      <button class="btn-filtro" data-cat="bebidas" onclick="filtrar('bebidas',this)">Bebidas</button>
+      <button class="btn-filtro activo" onclick="filtrar('todos',this)">Todos</button>
+      <button class="btn-filtro" onclick="filtrar('bakery',this)">Bakery</button>
+      <button class="btn-filtro" onclick="filtrar('snacks',this)">Aperitivos</button>
+      <button class="btn-filtro" onclick="filtrar('bebidas',this)">Bebidas</button>
       <div id="buscador-wrap">
         <input type="search" id="buscador" placeholder="Buscar…" aria-label="Buscar producto" oninput="buscar(this.value)">
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
       </div>
     </div>
-
-    <div class="catalogo-grid" id="catalogo-grid" aria-live="polite">
-      <!-- Se rellena con JS -->
-    </div>
+    <div class="catalogo-grid" id="catalogo-grid" aria-live="polite"></div>
     <p id="sin-resultados" role="status">No se encontraron productos.</p>
   </div>
 </section>
 
-<!-- ══════════════ CÓMO FUNCIONA ══════════════ -->
+<!-- CÓMO FUNCIONA -->
 <section id="como-funciona" class="seccion" aria-labelledby="como-titulo">
   <div class="container">
-    <div class="seccion-header">
+    <div class="seccion-header reveal">
       <p class="etiqueta">El proceso</p>
       <h2 class="seccion-titulo" id="como-titulo">Así de sencillo</h2>
       <div class="linea-dorada"></div>
     </div>
     <div class="pasos-grid">
-      <div class="paso">
+      <div class="paso reveal reveal-delay-1">
         <div class="paso-num" aria-hidden="true">1</div>
         <h3>Elige tus productos</h3>
-        <p>Navega el menú, añade lo que quieras al carrito y revisa tu selección. Algunos productos pueden requerir encargo previo.</p>
+        <p>Navega el menú, añade lo que quieras al carrito. Algunos productos pueden requerir encargo previo.</p>
       </div>
-      <div class="paso">
+      <div class="paso reveal reveal-delay-3">
         <div class="paso-num" aria-hidden="true">2</div>
         <h3>Confirma tu pedido</h3>
-        <p>Completa el pedido en la web o escríbenos por WhatsApp para confirmar disponibilidad y acordar el momento de recogida.</p>
+        <p>Completa el pedido en la web o escríbenos por WhatsApp para confirmar disponibilidad y acordar recogida.</p>
       </div>
-      <div class="paso">
+      <div class="paso reveal reveal-delay-5">
         <div class="paso-num" aria-hidden="true">3</div>
         <h3>Recógelo en QTOP</h3>
         <p>Pásate por la tienda en Coslada en el horario acordado. Sin esperas. Tu pedido listo para llevar.</p>
@@ -1463,21 +727,20 @@
   </div>
 </section>
 
-<!-- ══════════════ VISÍTANOS ══════════════ -->
+<!-- VISÍTANOS -->
 <section id="visitanos" class="seccion" aria-labelledby="visitanos-titulo">
   <div class="container">
-    <div class="seccion-header">
+    <div class="seccion-header reveal">
       <p class="etiqueta">Dónde encontrarnos</p>
       <h2 class="seccion-titulo" id="visitanos-titulo">Visítanos</h2>
       <div class="linea-dorada"></div>
     </div>
     <div class="visitanos-grid">
-      <div class="visitanos-info">
+      <div class="visitanos-info reveal">
         <div class="visitanos-dato">
           <div class="visitanos-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
           <div class="visitanos-dato-texto">
             <h4>Dirección</h4>
-            <!-- TODO: Completar dirección exacta -->
             <p>Av. del Plantío, 4, 4B<br>28821 Coslada, Madrid</p>
           </div>
         </div>
@@ -1485,7 +748,7 @@
           <div class="visitanos-icono" aria-hidden="true"><i class="fa-regular fa-clock"></i></div>
           <div class="visitanos-dato-texto">
             <h4>Horario</h4>
-            <p style="font-size:0.82rem; line-height:2;">
+            <p style="font-size:.82rem;line-height:2;">
               Lun – Vie &nbsp;&nbsp; 9:00–15:00 · 17:00–22:00<br>
               Sábado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9:00–15:00 · 17:00–22:00<br>
               Domingo &nbsp;&nbsp;&nbsp;&nbsp; 9:00–15:00 · 17:00–21:00
@@ -1507,34 +770,25 @@
           </div>
         </div>
         <div class="visitanos-acciones">
-          <a href="https://wa.me/34645052784?text=Hola%2C%20quisiera%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn-wa">
-            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
-          </a>
-          <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener" class="btn-ig">
-            <i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram
-          </a>
-          <!-- TODO: Actualizar href con URL de Google Maps real -->
-          <a href="https://maps.app.goo.gl/SBseFugog6eZqWis6" target="_blank" rel="noopener" class="btn-ig">
-            <i class="fa-solid fa-map" aria-hidden="true"></i> Cómo llegar
-          </a>
+          <a href="https://wa.me/34645052784?text=Hola%2C%20quisiera%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn-wa"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+          <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener" class="btn-ig"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a>
+          <a href="https://maps.app.goo.gl/SBseFugog6eZqWis6" target="_blank" rel="noopener" class="btn-ig"><i class="fa-solid fa-map" aria-hidden="true"></i> Cómo llegar</a>
         </div>
       </div>
-      <div class="mapa-wrap">
-        <!-- TODO: Insertar iframe de Google Maps con la dirección real -->
-        <div class="mapa-placeholder">
-          <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
-          <p>Av. del Plantío, 4, 4B<br>28821 Coslada, Madrid</p>
-          <a href="https://maps.app.goo.gl/SBseFugog6eZqWis6" target="_blank" rel="noopener">
-            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
-            Ver en Google Maps
-          </a>
+      <div class="reveal reveal-delay-2">
+        <div class="mapa-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3035.8!2d-3.5642!3d40.4235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4231bec622bebf%3A0xaf98c19825fc3e9a!2sQtop%E2%84%A2%20Takeaway!5e0!3m2!1ses!2ses!4v1700000000000"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación QTOP Takeaway en Coslada">
+          </iframe>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ FOOTER ══════════════ -->
+<!-- FOOTER -->
 <footer id="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
@@ -1542,12 +796,8 @@
         <img src="QTOP_CON_takeaway.png" alt="QTOP" height="44" loading="lazy" style="width:auto;">
         <p>Bakery &amp; Pastry artesanal en Coslada, Madrid.<br>Cheesecakes, cinnamon rolls, cookies y selección cuidada.</p>
         <div class="footer-sociales">
-          <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram QTOP">
-            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-          </a>
-          <a href="https://wa.me/34645052784" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp QTOP">
-            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-          </a>
+          <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram QTOP"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://wa.me/34645052784" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp QTOP"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -1591,9 +841,26 @@
   </div>
 </footer>
 
-<!-- ══════════════ CARRITO ══════════════ -->
-<div id="overlay-carrito" onclick="cerrarCarrito()" aria-hidden="true"></div>
+<!-- BARRA INFERIOR MÓVIL -->
+<nav id="barra-movil" aria-label="Navegación rápida móvil">
+  <button class="barra-movil-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})" aria-label="Ver menú">
+    <i class="fa-solid fa-utensils" aria-hidden="true"></i>
+    <span>Menú</span>
+  </button>
+  <button class="barra-movil-btn" onclick="abrirCarrito()" aria-label="Abrir carrito">
+    <span class="barra-movil-carrito-badge" id="barra-carrito-badge" data-count="0">
+      <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+    </span>
+    <span>Carrito</span>
+  </button>
+  <a href="https://wa.me/34645052784?text=Hola%2C%20quisiera%20hacer%20un%20pedido" target="_blank" rel="noopener" class="barra-movil-btn wa" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    <span>WhatsApp</span>
+  </a>
+</nav>
 
+<!-- CARRITO -->
+<div id="overlay-carrito" onclick="cerrarCarrito()" aria-hidden="true"></div>
 <aside id="carrito-panel" role="dialog" aria-label="Tu carrito" aria-modal="true">
   <div class="carrito-cabecera">
     <h2>Tu carrito</h2>
@@ -1601,478 +868,123 @@
   </div>
   <div class="carrito-cuerpo" id="carrito-cuerpo"></div>
   <div class="carrito-pie" id="carrito-pie" style="display:none">
-    <p class="carrito-aviso">
-      Los productos se preparan según disponibilidad. Algunos artículos
-      pueden requerir confirmación previa por WhatsApp.
-    </p>
+    <p class="carrito-aviso">Los productos se preparan según disponibilidad. Algunos artículos pueden requerir confirmación previa por WhatsApp.</p>
     <div class="carrito-total">
       <span>Total</span>
       <span class="carrito-total-precio" id="carrito-total">0,00 €</span>
     </div>
-    <button class="btn-checkout" onclick="checkout()">
-      Confirmar pedido
-    </button>
+    <button class="btn-checkout" onclick="checkout()">Confirmar pedido</button>
     <button class="btn-checkout-wa" onclick="pedidoWhatsApp()">
-      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-      Confirmar por WhatsApp
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Confirmar por WhatsApp
     </button>
   </div>
 </aside>
 
-<!-- ══════════════ TOAST ══════════════ -->
 <div id="toast" role="status" aria-live="polite"></div>
 
-<!-- ══════════════ JAVASCRIPT ══════════════ -->
 <script>
 'use strict';
 
-/* ─── CONFIGURACIÓN CENTRALIZADA ─── */
 const CONFIG = {
   negocio: 'QTOP',
   whatsapp: '34645052784',
   instagram: 'https://www.instagram.com/Qtop_Coslada',
   telefono: '+34645052784',
-  // TODO: Completar cuando se disponga del dato real
   direccion: 'Av. del Plantío, 4, 4B, 28821 Coslada, Madrid',
   horario: 'Lun-Sáb 9:00-15:00 y 17:00-22:00 · Dom 9:00-15:00 y 17:00-21:00',
   gmaps: 'https://maps.app.goo.gl/SBseFugog6eZqWis6',
 };
 
-/* ─── CATÁLOGO DE PRODUCTOS ─── */
 const PRODUCTOS = [
-  // ── BAKERY ARTESANAL ──
-  {
-    id: 'cheesecake-entera',
-    cat: 'bakery',
-    nombre: 'Cheesecake Entera',
-    desc: 'Textura cremosa, horneado delicado y acabado tostado. Elaborada para quienes buscan una tarta de queso con carácter.',
-    precio: 30.00,
-    img: 'porcion-cheesecake-1784393403.png',
-    alt: 'Cheesecake entera QTOP',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'cheesecake-porcion',
-    cat: 'bakery',
-    nombre: 'Porción Cheesecake',
-    desc: 'La misma cheesecake de siempre, en formato individual. Cremosa, con base crujiente y ese tostado característico.',
-    precio: 3.50,
-    img: 'porcion-cheesecake-1784393403.png',
-    alt: 'Porción de cheesecake QTOP',
-    estrella: true,
-    agotado: false,
-  },
-  {
-    id: 'cinnamon-roll',
-    cat: 'bakery',
-    nombre: 'Cinnamon Roll Clásico',
-    desc: 'Masa tierna, canela aromática y un glaseado equilibrado. Un clásico preparado con el sello QTOP.',
-    precio: 2.00,
-    img: 'cinnamon-roll-1784393403.png',
-    alt: 'Cinnamon Roll clásico QTOP',
-    estrella: true,
-    agotado: false,
-  },
-  {
-    id: 'cookie-double',
-    cat: 'bakery',
-    nombre: 'Cookie Double Chocolate',
-    desc: 'Grande, blanda en el centro y con una cantidad generosa de chocolate. Sin medias tintas.',
-    precio: 1.80,
-    img: 'blob-f433227.png',
-    alt: 'Cookie double chocolate QTOP',
-    estrella: true,
-    agotado: false,
-  },
-  {
-    id: 'tarta-sacher',
-    cat: 'bakery',
-    nombre: 'Tarta Sacher',
-    desc: 'Bizcocho de chocolate intenso, ganache espejo y el equilibrio justo entre dulzor y amargor.',
-    precio: 4.00,
-    img: 'tarta-sacher-1784393403.png',
-    alt: 'Tarta Sacher QTOP',
-    estrella: true,
-    agotado: false,
-  },
-  {
-    id: 'muffin-chocolate',
-    cat: 'bakery',
-    nombre: 'Muffin Chocolate',
-    desc: 'Esponjoso, con avellanas y con más chocolate del que uno esperaría. Un buen argumento.',
-    precio: 1.80,
-    img: 'muffin-chocolate-1784393403.png',
-    alt: 'Muffin de chocolate con avellanas QTOP',
-    estrella: true,
-    agotado: false,
-  },
-  // ── SNACKS & APERITIVOS ──
-  {
-    id: 'torreznos',
-    cat: 'snacks',
-    nombre: 'Torreznos Flaper',
-    desc: 'Bolsita de torreznos crujientes. Clásico de aperitivo.',
-    precio: 1.80,
-    img: 'torreznos.webp',
-    alt: 'Torreznos Flaper',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'snack-bacalao',
-    cat: 'snacks',
-    nombre: 'Snack de Bacalao',
-    desc: 'Sánchez Montes. Receta casera en aceite de girasol.',
-    precio: 3.50,
-    img: 'snack-bacalao.jpg',
-    alt: 'Snack de bacalao Sánchez Montes',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'palomitas-caramelo',
-    cat: 'snacks',
-    nombre: 'Palomitas Caramelo',
-    desc: 'Bolsa grande de palomitas al caramelo Flaper.',
-    precio: 2.00,
-    img: 'palomitas-caramelo.webp',
-    alt: 'Palomitas de caramelo',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'palomitas-colores',
-    cat: 'snacks',
-    nombre: 'Palomitas de Colores',
-    desc: 'Palomitas multicolor, formato largo.',
-    precio: 1.80,
-    img: 'palomitas-colores.webp',
-    alt: 'Palomitas de colores',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'coctel-picante',
-    cat: 'snacks',
-    nombre: 'Cóctel Picante Chilly',
-    desc: 'Mix de aperitivos con toque picante.',
-    precio: 4.00,
-    img: 'coctel-picante.webp',
-    alt: 'Cóctel picante chilly',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'pipas',
-    cat: 'snacks',
-    nombre: 'Pipas Gigante Aguasal',
-    desc: 'Pipas de girasol gigantes con sal.',
-    precio: 1.50,
-    img: 'pipas-gigante.webp',
-    alt: 'Pipas gigante aguasal',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'cacahuete-concha',
-    cat: 'snacks',
-    nombre: 'Cacahuete Salado con Concha',
-    desc: 'Cacahuetes con cáscara, salados.',
-    precio: 1.50,
-    img: 'cacahuete-concha.jpg',
-    alt: 'Cacahuete salado con concha',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'cacahuete-repelado',
-    cat: 'snacks',
-    nombre: 'Cacahuete Repelado',
-    desc: 'Cacahuetes pelados naturales.',
-    precio: 2.00,
-    img: 'cacahuete-repelado.webp',
-    alt: 'Cacahuete repelado',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'cacahuete-tostado',
-    cat: 'snacks',
-    nombre: 'Cacahuete Salado Tostado',
-    desc: 'Tostados y salados, muy crujientes.',
-    precio: 3.00,
-    img: 'cachuete-salado-tostado.webp',
-    alt: 'Cacahuete salado tostado',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'cacahuete-garrapinado',
-    cat: 'snacks',
-    nombre: 'Cacahuete Garrapiñado',
-    desc: 'Con cobertura de azúcar caramelizada.',
-    precio: 3.00,
-    img: 'cacahuete-garrapinado.webp',
-    alt: 'Cacahuete garrapiñado',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'almendra',
-    cat: 'snacks',
-    nombre: 'Almendra Frita Marcona',
-    desc: 'Almendra marcona frita. La mejor variedad.',
-    precio: 7.00,
-    img: 'almendra-frita.webp',
-    alt: 'Almendra frita marcona',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'anacardo',
-    cat: 'snacks',
-    nombre: 'Anacardo Grande Frito',
-    desc: 'Anacardos grandes fritos.',
-    precio: 5.00,
-    img: 'anacardo-frito.webp',
-    alt: 'Anacardo grande frito',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'pistacho',
-    cat: 'snacks',
-    nombre: 'Pistacho Nacional Tostado',
-    desc: 'Pistacho español tostado. Premium.',
-    precio: 6.50,
-    img: 'pistacho.webp',
-    alt: 'Pistacho nacional tostado',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'uvas-pasas',
-    cat: 'snacks',
-    nombre: 'Uvas Pasas Sultanas',
-    desc: 'Pasas sultanas naturales.',
-    precio: 2.00,
-    img: 'uvas-pasas.webp',
-    alt: 'Uvas pasas sultanas',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'patatas-santa-ana',
-    cat: 'snacks',
-    nombre: 'Patatas Fritas Santa Ana 220g',
-    desc: 'Churrería Santa Ana. Un clásico irresistible.',
-    precio: 2.50,
-    img: 'patatas-santa-ana.jpg',
-    alt: 'Patatas fritas Santa Ana',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'cortezas-cerdo',
-    cat: 'snacks',
-    nombre: 'Cortezas de Cerdo Flaper 500g',
-    desc: 'Bolsa grande de cortezas crujientes Flaper.',
-    precio: 8.50,
-    img: 'cortezas-cerdo.jpg',
-    alt: 'Cortezas de cerdo Flaper',
-    estrella: false,
-    agotado: false,
-  },
-  // ── BEBIDAS ──
-  {
-    id: 'coca-cola',
-    cat: 'bebidas',
-    nombre: 'Coca-Cola',
-    desc: 'Lata 33cl.',
-    precio: 1.80,
-    img: 'a-can-of-coca-cola-drink-isolated-free-png.png',
-    alt: 'Coca-Cola lata',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'coca-cola-zero',
-    cat: 'bebidas',
-    nombre: 'Coca-Cola Zero',
-    desc: 'Lata 33cl.',
-    precio: 1.80,
-    img: 'coca-cola-zero.jpg',
-    alt: 'Coca-Cola Zero lata',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'fanta',
-    cat: 'bebidas',
-    nombre: 'Fanta Naranja',
-    desc: 'Lata 33cl.',
-    precio: 1.80,
-    img: 'fanta_naranja_2025_2.png',
-    alt: 'Fanta Naranja lata',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'sprite',
-    cat: 'bebidas',
-    nombre: 'Sprite',
-    desc: 'Lata 33cl.',
-    precio: 1.80,
-    img: 'sprite-lata-24x33cl.jpg',
-    alt: 'Sprite lata',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'aquarius',
-    cat: 'bebidas',
-    nombre: 'Aquarius Limón',
-    desc: 'Lata 33cl.',
-    precio: 1.80,
-    img: '2349737412.png',
-    alt: 'Aquarius Limón lata',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'cafe-cappuccino',
-    cat: 'bebidas',
-    nombre: 'Café Cappuccino Mocay',
-    desc: 'Café Arábica 100% de Colombia. Formato para llevar.',
-    precio: 1.80,
-    img: 'mocay-cappuccino-v2.jpg',
-    alt: 'Café Cappuccino Mocay',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'agua',
-    cat: 'bebidas',
-    nombre: 'Agua Mineral Cuevas 500ml',
-    desc: 'Agua mineral natural de la montaña asturiana.',
-    precio: 0.90,
-    img: 'agua-cuevas.jpg',
-    alt: 'Agua Mineral Cuevas',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'rockstar',
-    cat: 'bebidas',
-    nombre: 'Rockstar Energy Original',
-    desc: 'Energy drink. Lata 500ml.',
-    precio: 1.00,
-    img: 'rockstar-1784391998.jpg',
-    alt: 'Rockstar Energy Original',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'gatorade',
-    cat: 'bebidas',
-    nombre: 'Gatorade Cool Blue',
-    desc: 'Bebida isotónica. Botella 500ml.',
-    precio: 2.00,
-    img: 'gatorade-1784392176.jpg',
-    alt: 'Gatorade Cool Blue',
-    estrella: false,
-    agotado: false,
-  },
-  {
-    id: 'lipton',
-    cat: 'bebidas',
-    nombre: 'Lipton Ice Tea Mango Maracuyá',
-    desc: 'Té frío. Botella 500ml.',
-    precio: 1.50,
-    img: 'lipton-1784393101.jpg',
-    alt: 'Lipton Ice Tea Mango Maracuyá',
-    estrella: false,
-    agotado: false,
-  },
+  // BAKERY
+  { id:'cheesecake-entera', cat:'bakery', nombre:'Cheesecake Entera', desc:'Textura cremosa, horneado delicado y acabado tostado. Para compartir, o no.', precio:30.00, img:'cheesecake-entera-v2.png', alt:'Cheesecake entera QTOP', estrella:true, agotado:false },
+  { id:'cheesecake-porcion', cat:'bakery', nombre:'Porción Cheesecake', desc:'La misma cheesecake de siempre, en formato individual. Cremosa, con base crujiente y ese tostado característico.', precio:3.50, img:'porcion-cheesecake-1784393403.png', alt:'Porción de cheesecake QTOP', estrella:true, agotado:false },
+  { id:'cinnamon-roll', cat:'bakery', nombre:'Cinnamon Roll Clásico', desc:'Masa tierna, canela aromática y un glaseado equilibrado. Un clásico preparado con el sello QTOP.', precio:2.00, img:'cinnamon-roll-1784393403.png', alt:'Cinnamon Roll clásico QTOP', estrella:true, agotado:false },
+  { id:'cookie-double', cat:'bakery', nombre:'Cookie Double Chocolate', desc:'Grande, blanda en el centro y con una cantidad generosa de chocolate. Sin medias tintas.', precio:1.80, img:'blob-f433227.png', alt:'Cookie double chocolate QTOP', estrella:true, agotado:false },
+  { id:'tarta-sacher', cat:'bakery', nombre:'Tarta Sacher', desc:'Bizcocho de chocolate intenso, ganache espejo y el equilibrio justo entre dulzor y amargor.', precio:4.00, img:'tarta-sacher-1784393403.png', alt:'Tarta Sacher QTOP', estrella:true, agotado:false },
+  { id:'muffin-chocolate', cat:'bakery', nombre:'Muffin Chocolate', desc:'Esponjoso, con avellanas y con más chocolate del que uno esperaría. Un buen argumento.', precio:1.80, img:'muffin-chocolate-1784393403.png', alt:'Muffin de chocolate con avellanas QTOP', estrella:true, agotado:false },
+  // SNACKS
+  { id:'torreznos', cat:'snacks', nombre:'Torreznos Flaper', desc:'Bolsita de torreznos crujientes.', precio:1.80, img:'torreznos.webp', alt:'Torreznos Flaper', estrella:false, agotado:false },
+  { id:'snack-bacalao', cat:'snacks', nombre:'Snack de Bacalao', desc:'Sánchez Montes. Receta casera en aceite de girasol.', precio:3.50, img:'snack-bacalao.jpg', alt:'Snack de bacalao', estrella:false, agotado:false },
+  { id:'palomitas-caramelo', cat:'snacks', nombre:'Palomitas Caramelo', desc:'Bolsa grande de palomitas al caramelo Flaper.', precio:2.00, img:'palomitas-caramelo.webp', alt:'Palomitas de caramelo', estrella:false, agotado:false },
+  { id:'palomitas-colores', cat:'snacks', nombre:'Palomitas de Colores', desc:'Palomitas multicolor, formato largo.', precio:1.80, img:'palomitas-colores.webp', alt:'Palomitas de colores', estrella:false, agotado:false },
+  { id:'coctel-picante', cat:'snacks', nombre:'Cóctel Picante Chilly', desc:'Mix de aperitivos con toque picante.', precio:4.00, img:'coctel-picante.webp', alt:'Cóctel picante chilly', estrella:false, agotado:false },
+  { id:'pipas', cat:'snacks', nombre:'Pipas Gigante Aguasal', desc:'Pipas de girasol gigantes con sal.', precio:1.50, img:'pipas-gigante.webp', alt:'Pipas gigante aguasal', estrella:false, agotado:false },
+  { id:'cacahuete-concha', cat:'snacks', nombre:'Cacahuete Salado Concha', desc:'Cacahuetes con cáscara, salados.', precio:1.50, img:'cacahuete-concha.jpg', alt:'Cacahuete salado con concha', estrella:false, agotado:false },
+  { id:'cacahuete-repelado', cat:'snacks', nombre:'Cacahuete Repelado', desc:'Cacahuetes pelados naturales.', precio:2.00, img:'cacahuete-repelado.webp', alt:'Cacahuete repelado', estrella:false, agotado:false },
+  { id:'cacahuete-tostado', cat:'snacks', nombre:'Cacahuete Salado Tostado', desc:'Tostados y salados, muy crujientes.', precio:3.00, img:'cachuete-salado-tostado.webp', alt:'Cacahuete salado tostado', estrella:false, agotado:false },
+  { id:'cacahuete-garrapinado', cat:'snacks', nombre:'Cacahuete Garrapiñado', desc:'Con cobertura de azúcar caramelizada.', precio:3.00, img:'cacahuete-garrapinado.webp', alt:'Cacahuete garrapiñado', estrella:false, agotado:false },
+  { id:'almendra', cat:'snacks', nombre:'Almendra Frita Marcona', desc:'Almendra marcona frita. La mejor variedad.', precio:7.00, img:'almendra-frita.webp', alt:'Almendra frita marcona', estrella:false, agotado:false },
+  { id:'anacardo', cat:'snacks', nombre:'Anacardo Grande Frito', desc:'Anacardos grandes fritos.', precio:5.00, img:'anacardo-frito.webp', alt:'Anacardo grande frito', estrella:false, agotado:false },
+  { id:'pistacho', cat:'snacks', nombre:'Pistacho Nacional Tostado', desc:'Pistacho español tostado. Premium.', precio:6.50, img:'pistacho.webp', alt:'Pistacho nacional tostado', estrella:false, agotado:false },
+  { id:'uvas-pasas', cat:'snacks', nombre:'Uvas Pasas Sultanas', desc:'Pasas sultanas naturales.', precio:2.00, img:'uvas-pasas.webp', alt:'Uvas pasas sultanas', estrella:false, agotado:false },
+  { id:'patatas-santa-ana', cat:'snacks', nombre:'Patatas Fritas Santa Ana 220g', desc:'Churrería Santa Ana. Un clásico.', precio:2.50, img:'patatas-santa-ana.jpg', alt:'Patatas fritas Santa Ana', estrella:false, agotado:false },
+  { id:'cortezas-cerdo', cat:'snacks', nombre:'Cortezas de Cerdo Flaper 500g', desc:'Bolsa grande de cortezas crujientes Flaper.', precio:8.50, img:'cortezas-cerdo.jpg', alt:'Cortezas de cerdo Flaper', estrella:false, agotado:false },
+  // BEBIDAS
+  { id:'coca-cola', cat:'bebidas', nombre:'Coca-Cola', desc:'Lata 33cl.', precio:1.80, img:'coca-cola-premium.jpg', alt:'Coca-Cola lata', estrella:false, agotado:false },
+  { id:'coca-cola-zero', cat:'bebidas', nombre:'Coca-Cola Zero', desc:'Lata 33cl.', precio:1.80, img:'coca-cola-zero.jpg', alt:'Coca-Cola Zero lata', estrella:false, agotado:false },
+  { id:'fanta', cat:'bebidas', nombre:'Fanta Naranja', desc:'Lata 33cl.', precio:1.80, img:'fanta-premium.png', alt:'Fanta Naranja lata', estrella:false, agotado:false },
+  { id:'sprite', cat:'bebidas', nombre:'Sprite', desc:'Lata 33cl.', precio:1.80, img:'sprite-lata-24x33cl.jpg', alt:'Sprite lata', estrella:false, agotado:false },
+  { id:'aquarius', cat:'bebidas', nombre:'Aquarius Limón', desc:'Lata 33cl.', precio:1.80, img:'aquarius-premium.png', alt:'Aquarius Limón lata', estrella:false, agotado:false },
+  { id:'cafe-cappuccino', cat:'bebidas', nombre:'Café Cappuccino Mocay', desc:'Café Arábica 100% de Colombia. Para llevar.', precio:1.80, img:'cappuccino-premium.jpg', alt:'Café Cappuccino Mocay', estrella:false, agotado:false },
+  { id:'agua', cat:'bebidas', nombre:'Agua Mineral Cuevas 500ml', desc:'Agua mineral natural de la montaña asturiana.', precio:0.90, img:'agua-cuevas.jpg', alt:'Agua Mineral Cuevas', estrella:false, agotado:false },
+  { id:'rockstar', cat:'bebidas', nombre:'Rockstar Energy Original', desc:'Energy drink. Lata 500ml.', precio:1.00, img:'rockstar-premium.jpg', alt:'Rockstar Energy Original', estrella:false, agotado:false },
+  { id:'gatorade', cat:'bebidas', nombre:'Gatorade Cool Blue', desc:'Bebida isotónica. Botella 500ml.', precio:2.00, img:'gatorade-premium.png', alt:'Gatorade Cool Blue', estrella:false, agotado:false },
+  { id:'lipton', cat:'bebidas', nombre:'Lipton Ice Tea Mango Maracuyá', desc:'Té frío. Botella 500ml.', precio:1.50, img:'lipton-1784393101.jpg', alt:'Lipton Ice Tea Mango Maracuyá', estrella:false, agotado:false },
+  { id:'mahou-5', cat:'bebidas', nombre:'Mahou 5 Estrellas', desc:'Cerveza especial de Madrid. Lata 33cl.', precio:1.10, img:'mahou-cinco-estrellas.png', alt:'Mahou 5 Estrellas', estrella:false, agotado:false },
+  { id:'mahou-clasica', cat:'bebidas', nombre:'Mahou Clásica', desc:'La clásica de Mahou. Cerveza de Madrid. Lata 33cl.', precio:1.00, img:'mahou-clasica.png', alt:'Mahou Clásica', estrella:false, agotado:false },
 ];
 
-/* ─── ESTADO CARRITO ─── */
+/* ── CARRITO ── */
 let carrito = JSON.parse(localStorage.getItem('qtop_carrito') || '[]');
+function guardarCarrito() { localStorage.setItem('qtop_carrito', JSON.stringify(carrito)); }
 
-function guardarCarrito() {
-  localStorage.setItem('qtop_carrito', JSON.stringify(carrito));
-}
-
-/* ─── RENDERIZAR PRODUCTOS ESTRELLA ─── */
 function renderEstrella() {
   const grid = document.getElementById('grid-estrella');
   const estrellas = PRODUCTOS.filter(p => p.estrella);
-  grid.innerHTML = estrellas.map(p => `
-    <article class="card-estrella" aria-label="${p.nombre}">
+  grid.innerHTML = estrellas.map((p, i) => `
+    <article class="card-estrella reveal reveal-delay-${Math.min(i+1,5)}" aria-label="${p.nombre}">
       <img src="${p.img}" alt="${p.alt}" class="card-estrella-img" loading="lazy">
       <div class="card-estrella-body">
         <h3 class="card-estrella-nombre">${p.nombre}</h3>
         <p class="card-estrella-desc">${p.desc}</p>
         <div class="card-estrella-pie">
-          <span class="card-estrella-precio">${formatPrecio(p.precio)}</span>
-          <button class="btn-anadir-estrella"
-                  onclick="anadirAlCarrito('${p.id}')"
-                  ${p.agotado ? 'disabled' : ''}
-                  aria-label="Añadir ${p.nombre} al carrito">
-            ${p.agotado ? 'Agotado' : 'Añadir'}
-          </button>
+          <span class="card-estrella-precio">${fmt(p.precio)}</span>
+          <button class="btn-anadir-estrella" onclick="addCart('${p.id}')" ${p.agotado?'disabled':''} aria-label="Añadir ${p.nombre}">${p.agotado?'Agotado':'Añadir'}</button>
         </div>
       </div>
-    </article>
-  `).join('');
+    </article>`).join('');
+  initReveal();
 }
 
-/* ─── RENDERIZAR CATÁLOGO ─── */
-let catActiva = 'todos';
-let textoBusqueda = '';
-
+let catActiva='todos', busqActiva='';
 function renderCatalogo() {
   const grid = document.getElementById('catalogo-grid');
   const sinRes = document.getElementById('sin-resultados');
-
+  const cats = { bakery:'Bakery', snacks:'Aperitivos', bebidas:'Bebidas' };
   const filtrados = PRODUCTOS.filter(p => {
-    const coincideCat = catActiva === 'todos' || p.cat === catActiva;
-    const coincideBusq = p.nombre.toLowerCase().includes(textoBusqueda.toLowerCase())
-                      || p.desc.toLowerCase().includes(textoBusqueda.toLowerCase());
-    return coincideCat && coincideBusq;
+    const cat = catActiva==='todos' || p.cat===catActiva;
+    const busq = p.nombre.toLowerCase().includes(busqActiva.toLowerCase()) || p.desc.toLowerCase().includes(busqActiva.toLowerCase());
+    return cat && busq;
   });
-
-  if (filtrados.length === 0) {
-    grid.innerHTML = '';
-    sinRes.style.display = 'block';
-    return;
-  }
-  sinRes.style.display = 'none';
-
-  const cats = { bakery: 'Bakery', snacks: 'Aperitivos', bebidas: 'Bebidas' };
+  if (!filtrados.length) { grid.innerHTML=''; sinRes.style.display='block'; return; }
+  sinRes.style.display='none';
   grid.innerHTML = filtrados.map(p => `
     <article class="card-producto" aria-label="${p.nombre}">
       <div class="card-producto-img-wrap">
         <img src="${p.img}" alt="${p.alt}" class="card-producto-img" loading="lazy">
-        ${p.agotado ? '<span class="badge-agotado">Agotado</span>' : ''}
+        ${p.agotado?'<span class="badge-agotado">Agotado</span>':''}
       </div>
       <div class="card-producto-body">
-        <p class="card-producto-cat">${cats[p.cat] || p.cat}</p>
+        <p class="card-producto-cat">${cats[p.cat]||p.cat}</p>
         <h3 class="card-producto-nombre">${p.nombre}</h3>
         <p class="card-producto-desc">${p.desc}</p>
         <div class="card-producto-pie">
-          <span class="card-producto-precio">${formatPrecio(p.precio)}</span>
-          <button class="btn-anadir-catalogo"
-                  onclick="anadirAlCarrito('${p.id}')"
-                  ${p.agotado ? 'disabled' : ''}
-                  aria-label="Añadir ${p.nombre}">
-            ${p.agotado ? 'Agotado' : 'Añadir'}
-          </button>
+          <span class="card-producto-precio">${fmt(p.precio)}</span>
+          <button class="btn-anadir-catalogo" onclick="addCart('${p.id}')" ${p.agotado?'disabled':''} aria-label="Añadir ${p.nombre}">${p.agotado?'Agotado':'Añadir'}</button>
         </div>
       </div>
-    </article>
-  `).join('');
+    </article>`).join('');
 }
 
 function filtrar(cat, btn) {
@@ -2081,177 +993,112 @@ function filtrar(cat, btn) {
   btn.classList.add('activo');
   renderCatalogo();
 }
+function buscar(v) { busqActiva=v; renderCatalogo(); }
 
-function buscar(valor) {
-  textoBusqueda = valor;
-  renderCatalogo();
+function addCart(id) {
+  const prod = PRODUCTOS.find(p=>p.id===id);
+  if (!prod||prod.agotado) return;
+  const ex = carrito.find(i=>i.id===id);
+  if (ex) ex.qty++; else carrito.push({id,qty:1});
+  guardarCarrito(); updateCounter();
+  toast(`${prod.nombre} añadido`);
 }
 
-/* ─── CARRITO ─── */
-function anadirAlCarrito(id) {
-  const prod = PRODUCTOS.find(p => p.id === id);
-  if (!prod || prod.agotado) return;
-
-  const existente = carrito.find(i => i.id === id);
-  if (existente) {
-    existente.qty++;
-  } else {
-    carrito.push({ id, qty: 1 });
-  }
-  guardarCarrito();
-  actualizarContador();
-  mostrarToast(`${prod.nombre} añadido`);
-}
-
-function cambiarQty(id, delta) {
-  const item = carrito.find(i => i.id === id);
+function changeQty(id, d) {
+  const item = carrito.find(i=>i.id===id);
   if (!item) return;
-  item.qty = Math.max(1, item.qty + delta);
-  guardarCarrito();
-  actualizarContador();
-  renderCarrito();
+  item.qty = Math.max(1, item.qty+d);
+  guardarCarrito(); updateCounter(); renderCarrito();
 }
+function removeItem(id) { carrito=carrito.filter(i=>i.id!==id); guardarCarrito(); updateCounter(); renderCarrito(); }
 
-function eliminarItem(id) {
-  carrito = carrito.filter(i => i.id !== id);
-  guardarCarrito();
-  actualizarContador();
-  renderCarrito();
-}
-
-function actualizarContador() {
-  const total = carrito.reduce((s, i) => s + i.qty, 0);
-  document.getElementById('contador-carrito-cab').textContent = total;
+function updateCounter() {
+  const n = carrito.reduce((s,i)=>s+i.qty,0);
+  document.getElementById('contador-carrito-cab').textContent = n;
+  const badge = document.getElementById('barra-carrito-badge');
+  if (badge) badge.setAttribute('data-count', n);
 }
 
 function renderCarrito() {
   const cuerpo = document.getElementById('carrito-cuerpo');
   const pie = document.getElementById('carrito-pie');
-
-  if (carrito.length === 0) {
-    cuerpo.innerHTML = `
-      <div class="carrito-vacio">
-        <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
-        <p>Tu carrito está vacío.<br>Añade algo de la bakery.</p>
-      </div>`;
-    pie.style.display = 'none';
-    return;
+  if (!carrito.length) {
+    cuerpo.innerHTML=`<div class="carrito-vacio"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><p>Tu carrito está vacío.<br>Añade algo de la bakery.</p></div>`;
+    pie.style.display='none'; return;
   }
-
-  pie.style.display = 'block';
-  let totalNum = 0;
-
-  cuerpo.innerHTML = carrito.map(item => {
-    const prod = PRODUCTOS.find(p => p.id === item.id);
-    if (!prod) return '';
-    const sub = prod.precio * item.qty;
-    totalNum += sub;
-    return `
-      <div class="carrito-item">
-        <img src="${prod.img}" alt="${prod.alt}" class="carrito-item-img">
-        <div class="carrito-item-info">
-          <p class="carrito-item-nombre">${prod.nombre}</p>
-          <p class="carrito-item-precio">${formatPrecio(sub)}</p>
-          <div class="carrito-item-controles">
-            <button class="btn-qty" onclick="cambiarQty('${item.id}',-1)" aria-label="Reducir cantidad">−</button>
-            <span class="qty-val">${item.qty}</span>
-            <button class="btn-qty" onclick="cambiarQty('${item.id}',1)" aria-label="Aumentar cantidad">+</button>
-            <button class="btn-eliminar" onclick="eliminarItem('${item.id}')" aria-label="Eliminar ${prod.nombre}">
-              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </button>
-          </div>
+  pie.style.display='block';
+  let total=0;
+  cuerpo.innerHTML = carrito.map(item=>{
+    const p=PRODUCTOS.find(pr=>pr.id===item.id); if(!p) return '';
+    const sub=p.precio*item.qty; total+=sub;
+    return `<div class="carrito-item">
+      <img src="${p.img}" alt="${p.alt}" class="carrito-item-img">
+      <div class="carrito-item-info">
+        <p class="carrito-item-nombre">${p.nombre}</p>
+        <p class="carrito-item-precio">${fmt(sub)}</p>
+        <div class="carrito-item-controles">
+          <button class="btn-qty" onclick="changeQty('${item.id}',-1)" aria-label="Reducir">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="btn-qty" onclick="changeQty('${item.id}',1)" aria-label="Aumentar">+</button>
+          <button class="btn-eliminar" onclick="removeItem('${item.id}')" aria-label="Eliminar"><i class="fa-solid fa-xmark"></i></button>
         </div>
-      </div>`;
+      </div>
+    </div>`;
   }).join('');
-
-  document.getElementById('carrito-total').textContent = formatPrecio(totalNum);
+  document.getElementById('carrito-total').textContent = fmt(total);
 }
 
-function abrirCarrito() {
-  renderCarrito();
-  document.getElementById('overlay-carrito').classList.add('visible');
-  document.getElementById('carrito-panel').classList.add('visible');
-  document.body.style.overflow = 'hidden';
-}
+function abrirCarrito() { renderCarrito(); document.getElementById('overlay-carrito').classList.add('visible'); document.getElementById('carrito-panel').classList.add('visible'); document.body.style.overflow='hidden'; }
+function cerrarCarrito() { document.getElementById('overlay-carrito').classList.remove('visible'); document.getElementById('carrito-panel').classList.remove('visible'); document.body.style.overflow=''; }
 
-function cerrarCarrito() {
-  document.getElementById('overlay-carrito').classList.remove('visible');
-  document.getElementById('carrito-panel').classList.remove('visible');
-  document.body.style.overflow = '';
-}
-
-function checkout() {
-  // TODO: Integrar pasarela de pago con tarjeta.
-  // Actualmente redirige al flujo de WhatsApp como alternativa.
-  // Para activar pago con tarjeta, integrar Stripe o similar
-  // con la clave pública correspondiente.
-  mostrarToast('Redirigiendo a confirmación…');
-  setTimeout(pedidoWhatsApp, 800);
-}
-
+function checkout() { toast('Redirigiendo…'); setTimeout(pedidoWhatsApp,800); }
 function pedidoWhatsApp() {
-  if (carrito.length === 0) return;
-  const lineas = carrito.map(item => {
-    const p = PRODUCTOS.find(pr => pr.id === item.id);
-    return `• ${p.nombre} ×${item.qty} – ${formatPrecio(p.precio * item.qty)}`;
-  }).join('%0A');
-  const total = carrito.reduce((s, i) => {
-    const p = PRODUCTOS.find(pr => pr.id === i.id);
-    return s + p.precio * i.qty;
-  }, 0);
-  const msg = `Hola QTOP, quiero hacer el siguiente pedido:%0A%0A${lineas}%0A%0ATotal: ${formatPrecio(total)}%0A%0AGracias.`;
-  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`, '_blank');
+  if (!carrito.length) return;
+  const lineas = carrito.map(i=>{ const p=PRODUCTOS.find(pr=>pr.id===i.id); return `• ${p.nombre} ×${i.qty} – ${fmt(p.precio*i.qty)}`; }).join('%0A');
+  const total = carrito.reduce((s,i)=>{ const p=PRODUCTOS.find(pr=>pr.id===i.id); return s+p.precio*i.qty; },0);
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=Hola QTOP, quiero hacer el siguiente pedido:%0A%0A${lineas}%0A%0ATotal: ${fmt(total)}%0A%0AGracias.`,'_blank');
 }
 
-/* ─── UTILS ─── */
-function formatPrecio(n) {
-  return n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
-}
+function fmt(n) { return n.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'; }
 
-let toastTimer;
-function mostrarToast(msg, tipo='ok') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = `visible ${tipo}`;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.className = '', 2400);
+let toastT;
+function toast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='visible ok';
+  clearTimeout(toastT); toastT=setTimeout(()=>t.className='',2400);
 }
 
 function toggleMenu() {
-  const btn = document.getElementById('btn-menu');
-  const nav = document.getElementById('nav-movil');
-  const abierto = nav.classList.toggle('visible');
-  btn.classList.toggle('abierto', abierto);
-  btn.setAttribute('aria-expanded', abierto);
+  const btn=document.getElementById('btn-menu'), nav=document.getElementById('nav-movil');
+  const open=nav.classList.toggle('visible');
+  btn.classList.toggle('abierto',open);
+  btn.setAttribute('aria-expanded',open);
 }
 
-/* ─── INIT ─── */
-document.addEventListener('DOMContentLoaded', () => {
-  // Año dinámico
-  document.getElementById('anio-footer').textContent = new Date().getFullYear();
+/* ── SCROLL ANIMATIONS ── */
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
 
-  // Renderizar secciones
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('anio-footer').textContent = new Date().getFullYear();
   renderEstrella();
   renderCatalogo();
-  actualizarContador();
+  updateCounter();
+  initReveal();
 
-  // Cerrar menú móvil al redimensionar
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      document.getElementById('nav-movil').classList.remove('visible');
-      document.getElementById('btn-menu').classList.remove('abierto');
-    }
+    if (window.innerWidth > 768) { document.getElementById('nav-movil').classList.remove('visible'); document.getElementById('btn-menu').classList.remove('abierto'); }
   });
 
-  // Scroll: ajustar cabecera
   window.addEventListener('scroll', () => {
     const cab = document.getElementById('cabecera');
-    if (window.scrollY > 60) {
-      cab.style.background = 'rgba(8,8,8,0.98)';
-    } else {
-      cab.style.background = 'rgba(14,14,14,0.96)';
-    }
-  }, { passive: true });
+    cab.style.background = window.scrollY>60 ? 'rgba(8,8,8,.98)' : 'rgba(14,14,14,.96)';
+  }, { passive:true });
 });
 </script>
 </body>
