@@ -1126,21 +1126,18 @@ async function procesarPago() {
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando…';
 
   // Calcular total
-  const totalCents = carrito.reduce((s, item) => {
+  const totalEur = carrito.reduce((s, item) => {
     const p = PRODUCTOS.find(pr => pr.id === item.id);
-    return s + Math.round(p.precio * 100) * item.qty;
+    return s + p.precio * item.qty;
   }, 0);
-  const totalEur = totalCents / 100;
 
-  // Guardar pedido para recuperar tras el pago
-  localStorage.setItem('qtop_pedido_pendiente', JSON.stringify({
-    nombre, email, telefono: tel,
-    items: carrito,
-    total: totalEur,
-    fecha: new Date().toISOString()
-  }));
+  // Construir detalle del pedido
+  const detalle = carrito.map(item => {
+    const p = PRODUCTOS.find(pr => pr.id === item.id);
+    return `${p.nombre} x${item.qty}`;
+  }).join(', ');
 
-  // Construir mensaje WhatsApp con detalle del pedido
+  // Enviar WhatsApp con el pedido
   const lineasWA = carrito.map(item => {
     const p = PRODUCTOS.find(pr => pr.id === item.id);
     return `• ${p.nombre} x${item.qty} — ${fmt(p.precio * item.qty)}`;
@@ -1148,45 +1145,28 @@ async function procesarPago() {
 
   const msgWA = `🛒 NUEVO PEDIDO QTOP%0A%0ACliente: ${encodeURIComponent(nombre)}%0AEmail: ${encodeURIComponent(email)}${tel ? '%0ATel: ' + encodeURIComponent(tel) : ''}%0A%0AProductos:%0A${lineasWA}%0A%0A💳 TOTAL: ${fmt(totalEur)}%0A%0A⚠️ El cliente va a pagar con tarjeta. Confirma disponibilidad.`;
 
+  // Guardar pedido
+  localStorage.setItem('qtop_pedido_pendiente', JSON.stringify({
+    nombre, email, telefono: tel,
+    items: carrito, total: totalEur,
+    fecha: new Date().toISOString()
+  }));
+
+  // Limpiar carrito
+  carrito = [];
+  guardarCarrito();
+  updateCounter();
+  cerrarCheckout();
+
   // Abrir WhatsApp con el pedido
   window.open('https://wa.me/34645052784?text=' + msgWA, '_blank');
 
-  // Redirigir a Stripe Payment Link con importe dinámico
-  // Usamos el payment link base de Stripe con el amount como parámetro
-  // El cliente paga en la página de Stripe y recibe recibo por email
-  const successUrl = encodeURIComponent(window.location.origin + window.location.pathname + '?pago=ok');
-  const cancelUrl  = encodeURIComponent(window.location.origin + window.location.pathname + '?pago=cancelado');
-
-  // Stripe Checkout link con prefill de email
-  const checkoutUrl = `https://buy.stripe.com/test_placeholder?prefilled_email=${encodeURIComponent(email)}&client_reference_id=${encodeURIComponent(nombre)}`;
-
-  // Por ahora abrimos el payment link real generado desde Stripe dashboard
-  // TODO: reemplazar con el Payment Link real de Stripe una vez creado
-  // Mientras tanto mostramos confirmación y enviamos por WhatsApp
+  // Redirigir a Stripe Payment Link con el total como importe sugerido
+  // y el email del cliente pre-rellenado
   setTimeout(() => {
-    cerrarCheckout();
-    carrito = [];
-    guardarCarrito();
-    updateCounter();
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-lock"></i> Pagar con tarjeta';
-
-    // Mostrar confirmación
-    document.body.insertAdjacentHTML('beforeend', `
-      <div id="modal-exito" style="position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;">
-        <div style="background:#161616;border:1px solid rgba(184,151,62,.3);border-radius:12px;padding:2.5rem;text-align:center;max-width:400px;width:100%;">
-          <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:#f2ede4;margin-bottom:.8rem;">¡Pedido recibido!</h2>
-          <p style="font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem;">
-            Hola <strong style="color:#f2ede4;">${nombre}</strong>, hemos recibido tu pedido.<br>
-            Nos pondremos en contacto contigo para confirmar disponibilidad y el método de pago.<br><br>
-            <strong style="color:#b8973e;">Total: ${fmt(totalEur)}</strong>
-          </p>
-          <button onclick="document.getElementById('modal-exito').remove();" style="background:#b8973e;color:#0e0e0e;border:none;padding:.85rem 2rem;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;cursor:pointer;">Ver el menú</button>
-        </div>
-      </div>
-    `);
-  }, 500);
+    const stripeUrl = 'https://buy.stripe.com/00w3cy6LUeNy2Um3G64gg00?prefilled_email=${encodeURIComponent(email)}&client_reference_id=${encodeURIComponent(nombre)}&locale=es';
+    window.location.href = stripeUrl;
+  }, 1500);
 }
 
 function checkout() { abrirCheckout(); }
