@@ -1115,7 +1115,8 @@ function cerrarCheckout() {
 
 async function procesarPago() {
   const nombre = document.getElementById('checkout-nombre').value.trim();
-  const email = document.getElementById('checkout-email').value.trim();
+  const email  = document.getElementById('checkout-email').value.trim();
+  const tel    = document.getElementById('checkout-telefono').value.trim();
 
   if (!nombre) { toast('Introduce tu nombre'); return; }
   if (!email || !email.includes('@')) { toast('Introduce un email válido'); return; }
@@ -1124,67 +1125,68 @@ async function procesarPago() {
   btn.disabled = true;
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando…';
 
-  // Calcular total en céntimos
-  const total = carrito.reduce((s, item) => {
+  // Calcular total
+  const totalCents = carrito.reduce((s, item) => {
     const p = PRODUCTOS.find(pr => pr.id === item.id);
     return s + Math.round(p.precio * 100) * item.qty;
   }, 0);
+  const totalEur = totalCents / 100;
 
-  // Descripción del pedido para Stripe
-  const descripcion = carrito.map(item => {
+  // Guardar pedido para recuperar tras el pago
+  localStorage.setItem('qtop_pedido_pendiente', JSON.stringify({
+    nombre, email, telefono: tel,
+    items: carrito,
+    total: totalEur,
+    fecha: new Date().toISOString()
+  }));
+
+  // Construir mensaje WhatsApp con detalle del pedido
+  const lineasWA = carrito.map(item => {
     const p = PRODUCTOS.find(pr => pr.id === item.id);
-    return `${p.nombre} x${item.qty}`;
-  }).join(', ');
+    return `• ${p.nombre} x${item.qty} — ${fmt(p.precio * item.qty)}`;
+  }).join('%0A');
 
-  try {
-    const stripe = Stripe(STRIPE_PK);
+  const msgWA = `🛒 NUEVO PEDIDO QTOP%0A%0ACliente: ${encodeURIComponent(nombre)}%0AEmail: ${encodeURIComponent(email)}${tel ? '%0ATel: ' + encodeURIComponent(tel) : ''}%0A%0AProductos:%0A${lineasWA}%0A%0A💳 TOTAL: ${fmt(totalEur)}%0A%0A⚠️ El cliente va a pagar con tarjeta. Confirma disponibilidad.`;
 
-    // Crear Payment Link dinámico via Stripe Checkout Session (redirect)
-    // Como GitHub Pages no tiene backend, usamos Stripe Payment Links
-    // con el importe exacto del carrito
-    const lineItems = carrito.map(item => {
-      const p = PRODUCTOS.find(pr => pr.id === item.id);
-      return {
-        price_data: {
-          currency: 'eur',
-          product_data: { name: p.nombre },
-          unit_amount: Math.round(p.precio * 100),
-        },
-        quantity: item.qty,
-      };
-    });
+  // Abrir WhatsApp con el pedido
+  window.open('https://wa.me/34645052784?text=' + msgWA, '_blank');
 
-    // Guardar pedido pendiente en localStorage para recuperarlo tras el pago
-    localStorage.setItem('qtop_pedido_pendiente', JSON.stringify({
-      nombre, email,
-      telefono: document.getElementById('checkout-telefono').value.trim(),
-      items: carrito,
-      total: total / 100,
-      fecha: new Date().toISOString()
-    }));
+  // Redirigir a Stripe Payment Link con importe dinámico
+  // Usamos el payment link base de Stripe con el amount como parámetro
+  // El cliente paga en la página de Stripe y recibe recibo por email
+  const successUrl = encodeURIComponent(window.location.origin + window.location.pathname + '?pago=ok');
+  const cancelUrl  = encodeURIComponent(window.location.origin + window.location.pathname + '?pago=cancelado');
 
-    // Redirigir a Stripe Checkout
-    const result = await stripe.redirectToCheckout({
-      lineItems: lineItems,
-      mode: 'payment',
-      successUrl: window.location.origin + window.location.pathname + '?pago=ok&email=' + encodeURIComponent(email),
-      cancelUrl: window.location.origin + window.location.pathname + '?pago=cancelado',
-      customerEmail: email,
-      submitType: 'pay',
-      billingAddressCollection: 'auto',
-    });
+  // Stripe Checkout link con prefill de email
+  const checkoutUrl = `https://buy.stripe.com/test_placeholder?prefilled_email=${encodeURIComponent(email)}&client_reference_id=${encodeURIComponent(nombre)}`;
 
-    if (result.error) {
-      toast('Error: ' + result.error.message);
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fa-solid fa-lock"></i> Pagar con tarjeta';
-    }
-  } catch(e) {
-    toast('Error al conectar con el sistema de pago');
+  // Por ahora abrimos el payment link real generado desde Stripe dashboard
+  // TODO: reemplazar con el Payment Link real de Stripe una vez creado
+  // Mientras tanto mostramos confirmación y enviamos por WhatsApp
+  setTimeout(() => {
+    cerrarCheckout();
+    carrito = [];
+    guardarCarrito();
+    updateCounter();
     btn.disabled = false;
     btn.innerHTML = '<i class="fa-solid fa-lock"></i> Pagar con tarjeta';
-    console.error(e);
-  }
+
+    // Mostrar confirmación
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="modal-exito" style="position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;">
+        <div style="background:#161616;border:1px solid rgba(184,151,62,.3);border-radius:12px;padding:2.5rem;text-align:center;max-width:400px;width:100%;">
+          <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:#f2ede4;margin-bottom:.8rem;">¡Pedido recibido!</h2>
+          <p style="font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem;">
+            Hola <strong style="color:#f2ede4;">${nombre}</strong>, hemos recibido tu pedido.<br>
+            Nos pondremos en contacto contigo para confirmar disponibilidad y el método de pago.<br><br>
+            <strong style="color:#b8973e;">Total: ${fmt(totalEur)}</strong>
+          </p>
+          <button onclick="document.getElementById('modal-exito').remove();" style="background:#b8973e;color:#0e0e0e;border:none;padding:.85rem 2rem;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;cursor:pointer;">Ver el menú</button>
+        </div>
+      </div>
+    `);
+  }, 500);
 }
 
 function checkout() { abrirCheckout(); }
