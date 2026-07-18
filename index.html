@@ -1161,12 +1161,37 @@ async function procesarPago() {
   // Abrir WhatsApp con el pedido
   window.open('https://wa.me/34645052784?text=' + msgWA, '_blank');
 
-  // Redirigir a Stripe Payment Link con el total como importe sugerido
-  // y el email del cliente pre-rellenado
+  // Mostrar pantalla intermedia: reseña → luego Stripe
   setTimeout(() => {
-    const stripeUrl = 'https://buy.stripe.com/00w3cy6LUeNy2Um3G64gg00?prefilled_email=${encodeURIComponent(email)}&client_reference_id=${encodeURIComponent(nombre)}&locale=es';
-    window.location.href = stripeUrl;
-  }, 1500);
+    const stripeUrl = `https://buy.stripe.com/00w3cy6LUeNy2Um3G64gg00?prefilled_email=${encodeURIComponent(email)}&client_reference_id=${encodeURIComponent(nombre)}&locale=es`;
+
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="modal-review" style="position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
+        <div style="background:#161616;border:1px solid rgba(184,151,62,.25);border-radius:12px;padding:2rem;text-align:center;max-width:400px;width:100%;">
+          <div style="font-size:2.5rem;margin-bottom:.8rem;">⭐⭐⭐⭐⭐</div>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#f2ede4;margin-bottom:.6rem;">¡Gracias ${nombre}!</h2>
+          <p style="font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem;">
+            Tu pedido está confirmado. Ahora te llevaremos a completar el pago.<br><br>
+            <strong style="color:#b8973e;">¿Te gustó QTOP?</strong><br>
+            Déjanos una reseña en Google — ¡nos ayuda muchísimo!
+          </p>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJv-siy-wxQw0Rmi38JZjBmK8"
+             target="_blank"
+             style="display:block;background:#4285F4;color:#fff;text-decoration:none;padding:.85rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem;"
+             onclick="setTimeout(() => { window.location.href = '${stripeUrl}'; }, 2000);">
+            ⭐ Dejar reseña en Google
+          </a>
+          <button onclick="window.location.href='${stripeUrl}'"
+             style="display:block;width:100%;background:#b8973e;color:#0e0e0e;border:none;padding:.85rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">
+            💳 Ir a pagar ahora
+          </button>
+          <p style="font-size:.65rem;color:#555;margin-top:1rem;">
+            Si dejas la reseña, te llevaremos automáticamente al pago en 2 segundos.
+          </p>
+        </div>
+      </div>
+    `);
+  }, 800);
 }
 
 function checkout() { abrirCheckout(); }
