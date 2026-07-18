@@ -47,7 +47,12 @@
       "postalCode": "28821",
       "addressCountry": "ES"
     },
-    "openingHoursSpecification": [],
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"15:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"17:00","closes":"22:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"09:00","closes":"15:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"17:00","closes":"21:00"}
+    ],
     "sameAs": ["https://www.instagram.com/Qtop_Coslada"]
   }
   </script>
@@ -1480,8 +1485,11 @@
           <div class="visitanos-icono" aria-hidden="true"><i class="fa-regular fa-clock"></i></div>
           <div class="visitanos-dato-texto">
             <h4>Horario</h4>
-            <!-- TODO: Completar horario -->
-            <p><small style="color:var(--gris2);font-size:0.72rem;">TODO: Indicar horario de apertura</small></p>
+            <p style="font-size:0.82rem; line-height:2;">
+              Lun – Vie &nbsp;&nbsp; 9:00–15:00 · 17:00–22:00<br>
+              Sábado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9:00–15:00 · 17:00–22:00<br>
+              Domingo &nbsp;&nbsp;&nbsp;&nbsp; 9:00–15:00 · 17:00–21:00
+            </p>
           </div>
         </div>
         <div class="visitanos-dato">
@@ -1626,7 +1634,7 @@ const CONFIG = {
   telefono: '+34645052784',
   // TODO: Completar cuando se disponga del dato real
   direccion: 'Av. del Plantío, 4, 4B, 28821 Coslada, Madrid',
-  horario: 'TODO – Completar horario',
+  horario: 'Lun-Sáb 9:00-15:00 y 17:00-22:00 · Dom 9:00-15:00 y 17:00-21:00',
   gmaps: 'https://maps.app.goo.gl/SBseFugog6eZqWis6',
 };
 
