@@ -3,895 +3,2242 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QTOP Takeaway – Coslada, Madrid</title>
-  <meta name="description" content="QTOP Takeaway en Coslada. Cheesecakes, cookies, snacks y bebidas artesanales. ¡Hay cosas que no se explican… se prueban!">
+  <title>QTOP | Cheesecake, Cinnamon Rolls y Bakery en Coslada</title>
+  <meta name="description" content="Descubre QTOP en Coslada: cheesecake, cinnamon rolls clásicos, cookies, tartas y bakery seleccionada. Consulta el menú, haz tu pedido y recógelo en tienda.">
+  <meta name="keywords" content="bakery coslada, cheesecake coslada, cinnamon roll madrid, pastelería artesanal coslada, QTOP">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://qtopcoslada.com/">
 
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="QTOP | Cheesecake, Cinnamon Rolls y Bakery en Coslada">
+  <meta property="og:description" content="Cheesecakes, cinnamon rolls clásicos, cookies y pastelería seleccionada. Recogida en tienda en Coslada.">
+  <meta property="og:url" content="https://qtopcoslada.com/">
+  <meta property="og:image" content="https://qtopcoslada.com/QTOP_CON_SLOGAN.png">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="QTOP">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="QTOP | Bakery en Coslada">
+  <meta name="twitter:description" content="Cheesecakes, cinnamon rolls y bakery artesanal. Recogida en tienda en Coslada.">
+  <meta name="twitter:image" content="https://qtopcoslada.com/QTOP_CON_SLOGAN.png">
+
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AZDOsVpSfBxSMz_cxCKjBdnf4c83u7DoTuhqB8IB144zdfWVJ5p6BfcHIr8uimwOqlFVuDyUPdYZt5Nh&currency=EUR"></script>
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "QTOP",
+    "description": "Bakery y pastelería artesanal en Coslada. Cheesecakes, cinnamon rolls, cookies y productos seleccionados.",
+    "url": "https://qtopcoslada.com",
+    "telephone": "TODO_TELEFONO",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "TODO_DIRECCION",
+      "addressLocality": "Coslada",
+      "addressRegion": "Madrid",
+      "postalCode": "TODO_CP",
+      "addressCountry": "ES"
+    },
+    "openingHoursSpecification": [],
+    "sameAs": ["https://www.instagram.com/Qtop_Coslada"]
+  }
+  </script>
 
   <style>
+    /* ══════════════════════════════════════
+       VARIABLES & RESET
+    ══════════════════════════════════════ */
     :root {
-      --negro:   #131313;
-      --negro2:  #1a1a1a;
-      --negro3:  #222;
-      --dorado:  #c9a84c;
-      --dorado2: #a8843a;
-      --dorado3: #e8c96a;
-      --crema:   #f5f0e8;
-      --gris:    #999;
-      --blanco:  #fff;
+      --negro:    #0e0e0e;
+      --negro2:   #161616;
+      --negro3:   #1e1e1e;
+      --crema:    #f2ede4;
+      --crema2:   #e8e0d0;
+      --dorado:   #b8973e;
+      --dorado2:  #9a7c30;
+      --dorado3:  #d4ad55;
+      --gris:     #888;
+      --gris2:    #555;
+      --blanco:   #fff;
+      --error:    #c0392b;
+      --exito:    #27ae60;
+
+      --font-titulo: 'Cormorant Garamond', Georgia, serif;
+      --font-texto:  'Inter', system-ui, sans-serif;
+
+      --radio:    8px;
+      --sombra:   0 4px 24px rgba(0,0,0,0.4);
+      --trans:    0.25s ease;
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-texto);
       background: var(--negro);
       color: var(--crema);
-      line-height: 1.6;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+    h1,h2,h3,h4 { font-family: var(--font-titulo); line-height: 1.15; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: var(--font-texto); cursor: pointer; }
+    ul { list-style: none; }
 
-    /* ── HEADER ── */
-    header {
-      position: fixed;
-      top: 0; width: 100%;
-      background: rgba(19,19,19,0.97);
-      border-bottom: 1px solid rgba(201,168,76,0.25);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
+    /* ══════════════════════════════════════
+       UTILIDADES
+    ══════════════════════════════════════ */
+    .sr-only {
+      position: absolute; width:1px; height:1px;
+      padding:0; margin:-1px; overflow:hidden;
+      clip:rect(0,0,0,0); border:0;
     }
-
-    .nav-container {
-      max-width: 1240px;
+    .container {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0.8rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: 0 1.5rem;
     }
-
-    .logo-img { height: 60px; filter: invert(1); }
-
-    nav ul { display: flex; gap: 2.4rem; list-style: none; }
-    nav a {
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--dorado);
+      color: var(--negro);
+      border: none;
+      padding: 0.85rem 2rem;
       font-size: 0.78rem;
       font-weight: 600;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--crema);
-      text-decoration: none;
-      transition: color 0.25s;
+      border-radius: 2px;
+      transition: background var(--trans), transform var(--trans);
+      cursor: pointer;
     }
-    nav a:hover { color: var(--dorado); }
-
-    .cart-btn {
+    .btn-primary:hover { background: var(--dorado3); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       background: transparent;
-      border: 1px solid var(--dorado);
-      border-radius: 50px;
-      padding: 9px 20px;
+      color: var(--crema);
+      border: 1px solid rgba(242,237,228,0.4);
+      padding: 0.85rem 2rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all var(--trans);
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      border-color: var(--crema);
+      background: rgba(242,237,228,0.07);
+    }
+    .etiqueta {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dorado);
+      border: 1px solid rgba(184,151,62,0.4);
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    /* ══════════════════════════════════════
+       CABECERA
+    ══════════════════════════════════════ */
+    #cabecera {
+      position: fixed;
+      top: 0; width: 100%;
+      z-index: 900;
+      background: rgba(14,14,14,0.96);
+      border-bottom: 1px solid rgba(184,151,62,0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background var(--trans);
+    }
+    .cab-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 68px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: var(--dorado);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.2s;
+      justify-content: space-between;
+      gap: 1rem;
     }
-    .cart-btn:hover { background: var(--dorado); color: var(--negro); }
+    .cab-logo img {
+      height: 48px;
+      filter: invert(1) brightness(1.1);
+      transition: opacity var(--trans);
+    }
+    .cab-logo:hover img { opacity: 0.8; }
 
-    .cart-badge {
+    .cab-nav { display: flex; gap: 2rem; align-items: center; }
+    .cab-nav a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(242,237,228,0.7);
+      transition: color var(--trans);
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .cab-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--dorado);
+      transition: width var(--trans);
+    }
+    .cab-nav a:hover { color: var(--crema); }
+    .cab-nav a:hover::after { width: 100%; }
+
+    .cab-acciones { display: flex; align-items: center; gap: 0.75rem; }
+
+    #btn-pedido-cab {
+      background: var(--dorado);
+      color: var(--negro);
+      border: none;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background var(--trans);
+      white-space: nowrap;
+    }
+    #btn-pedido-cab:hover { background: var(--dorado3); }
+
+    #btn-carrito-cab {
+      background: transparent;
+      border: 1px solid rgba(184,151,62,0.5);
+      color: var(--dorado);
+      border-radius: 2px;
+      padding: 0.55rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all var(--trans);
+      white-space: nowrap;
+    }
+    #btn-carrito-cab:hover { background: var(--dorado); color: var(--negro); }
+    #contador-carrito-cab {
       background: var(--dorado);
       color: var(--negro);
       border-radius: 50%;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 5px;
-      font-size: 0.72rem;
+      min-width: 18px;
+      height: 18px;
+      font-size: 0.65rem;
       font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
+      padding: 0 4px;
+      transition: background var(--trans);
     }
-    .cart-btn:hover .cart-badge { background: var(--negro); color: var(--dorado); }
+    #btn-carrito-cab:hover #contador-carrito-cab { background: var(--negro); color: var(--dorado); }
 
-    /* ── HERO ── */
-    .hero {
+    /* Hamburguesa */
+    #btn-menu {
+      display: none;
+      background: none;
+      border: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+      cursor: pointer;
+    }
+    #btn-menu span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--crema);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    #btn-menu.abierto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #btn-menu.abierto span:nth-child(2) { opacity: 0; }
+    #btn-menu.abierto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Menú móvil */
+    #nav-movil {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(14,14,14,0.98);
+      border-bottom: 1px solid rgba(184,151,62,0.15);
+      padding: 1.5rem;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 890;
+    }
+    #nav-movil.visible { display: flex; }
+    #nav-movil a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(242,237,228,0.8);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    #nav-movil a:last-child { border: none; }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    #hero {
       min-height: 100vh;
-      background:
-        radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.07) 0%, transparent 65%),
-        linear-gradient(160deg, #1a1a1a 0%, #131313 100%);
+      padding-top: 68px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0 1.5rem;
-      margin-top: 77px;
       position: relative;
       overflow: hidden;
+      background: var(--negro);
     }
-
-    .hero::before {
-      content: '';
+    .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1800&q=60') center/cover;
-      opacity: 0.04;
+      background:
+        linear-gradient(135deg, rgba(14,14,14,0.95) 0%, rgba(14,14,14,0.7) 50%, rgba(14,14,14,0.85) 100%),
+        url('cinnamon-roll-1784393403.png') center/cover no-repeat;
     }
-
-    .hero-content { max-width: 860px; position: relative; z-index:1; }
-
-    .hero-logo {
-      max-width: 380px;
-      height: auto;
-      margin-bottom: 2.2rem;
-      filter: invert(1);
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 180px;
+      background: linear-gradient(transparent, var(--negro));
     }
-
-    .hero-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.55rem;
-      font-style: italic;
-      color: var(--dorado);
-      margin-bottom: 2.6rem;
-      letter-spacing: 0.3px;
+    .hero-contenido {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
     }
-
-    .hero-divider {
-      width: 60px;
-      height: 1px;
-      background: var(--dorado);
-      margin: 0 auto 2.6rem;
-      opacity: 0.6;
-    }
-
-    .btn-main {
-      padding: 14px 48px;
-      border-radius: 50px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      background: transparent;
-      color: var(--dorado);
-      border: 1px solid var(--dorado);
-      cursor: pointer;
-      transition: all 0.28s;
-    }
-    .btn-main:hover {
-      background: var(--dorado);
-      color: var(--negro);
-    }
-
-    /* ── STRIP ── */
-    .strip {
-      background: var(--dorado);
-      padding: 1.1rem 2rem;
-      text-align: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--negro);
-    }
-
-    /* ── SECTIONS ── */
-    .section {
-      padding: 6rem 2rem;
-      max-width: 1240px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-label {
-      font-size: 0.72rem;
-      font-weight: 700;
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--dorado);
-      margin-bottom: 1rem;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
-
-    .section-title {
-      font-size: 3rem;
-      color: var(--crema);
-      line-height: 1.1;
-    }
-
-    .section-line {
-      width: 50px;
-      height: 1px;
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px; height: 1px;
       background: var(--dorado);
-      margin: 1.4rem auto 0;
-      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .hero-titulo {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--crema);
+      margin-bottom: 1.6rem;
+    }
+    .hero-titulo em {
+      font-style: italic;
+      color: var(--dorado3);
+    }
+    .hero-subtitulo {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(242,237,228,0.65);
+      max-width: 520px;
+      line-height: 1.75;
+      margin-bottom: 2.4rem;
+    }
+    .hero-acciones {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .hero-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(242,237,228,0.4);
+    }
+    .hero-info::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: rgba(242,237,228,0.25);
     }
 
-    /* ── MENU GRID ── */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.6rem;
-    }
-
-    .menu-card {
-      background: var(--negro2);
-      border: 1px solid rgba(201,168,76,0.12);
-      border-radius: 12px;
-      padding: 2rem 1.8rem;
-      text-align: center;
-      transition: border-color 0.3s, transform 0.3s;
-      position: relative;
+    /* ══════════════════════════════════════
+       STRIP DESTACADO
+    ══════════════════════════════════════ */
+    .strip-dorado {
+      background: var(--dorado);
+      padding: 0.9rem 1.5rem;
       overflow: hidden;
     }
-    .menu-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06), transparent 70%);
-      pointer-events: none;
+    .strip-inner {
+      display: flex;
+      gap: 3rem;
+      animation: strip-scroll 22s linear infinite;
+      white-space: nowrap;
     }
-    .menu-card:hover {
-      border-color: rgba(201,168,76,0.45);
-      transform: translateY(-4px);
+    .strip-inner span {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--negro);
+      flex-shrink: 0;
+    }
+    .strip-inner span::before { content: '✦'; margin-right: 0.5rem; }
+    @keyframes strip-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
-    .card-img {
-      width: 140px;
-      height: 140px;
-      object-fit: contain;
-      margin-bottom: 1.2rem;
+    /* ══════════════════════════════════════
+       SECCIÓN GENÉRICA
+    ══════════════════════════════════════ */
+    .seccion {
+      padding: 6rem 0;
     }
-
-    .product-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem;
+    .seccion-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .seccion-titulo {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
       color: var(--crema);
-      margin-bottom: 0.4rem;
-    }
-
-    .product-desc {
-      font-size: 0.78rem;
-      color: var(--gris);
       margin-bottom: 1rem;
-      line-height: 1.5;
     }
-
-    .product-price {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--dorado);
-      margin-bottom: 1.2rem;
-      font-family: 'Cormorant Garamond', serif;
+    .seccion-subtitulo {
+      font-size: 0.9rem;
+      color: rgba(242,237,228,0.5);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.75;
     }
-
-    .btn-add {
-      background: transparent;
-      color: var(--dorado);
-      border: 1px solid var(--dorado);
-      padding: 10px 28px;
-      border-radius: 50px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.22s;
-    }
-    .btn-add:hover { background: var(--dorado); color: var(--negro); }
-
-    /* ── CATEGORY TITLE ── */
-    .cat-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--dorado);
-      margin: 4rem 0 2rem;
-      text-align: center;
-      position: relative;
-    }
-    .cat-title::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 1px;
+    .linea-dorada {
+      width: 40px; height: 1px;
       background: var(--dorado);
-      margin: 0.8rem auto 0;
-      opacity: 0.4;
+      margin: 1.2rem auto 0;
+      opacity: 0.6;
     }
 
-    /* ── CONTACT ── */
-    .contact-section {
-      background: var(--negro2);
-      border-top: 1px solid rgba(201,168,76,0.15);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-      text-align: center;
-      padding: 7rem 2rem;
+    /* ══════════════════════════════════════
+       SELECCIÓN QTOP (productos estrella)
+    ══════════════════════════════════════ */
+    #seleccion { background: var(--negro2); }
+
+    .grid-estrella {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
-    .contact-section h2 {
-      font-size: 3.2rem;
-      color: var(--crema);
-      margin-bottom: 1.5rem;
-    }
-
-    .contact-section p {
-      font-size: 1.05rem;
-      color: var(--gris);
-      max-width: 580px;
-      margin: 0 auto 3rem;
-    }
-
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      background: #25D366;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      padding: 16px 52px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-whatsapp:hover { background: #1ebe52; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--negro);
-      border-top: 1px solid rgba(201,168,76,0.1);
-      text-align: center;
-      padding: 2.5rem 2rem;
-      font-size: 0.75rem;
-      color: #555;
-      letter-spacing: 1px;
-    }
-    footer span { color: var(--dorado); opacity: 0.6; }
-
-    /* ── CART DRAWER ── */
-    .cart-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.7);
-      z-index: 1999;
-      display: none;
-    }
-    .cart-overlay.open { display: block; }
-
-    .cart-drawer {
-      position: fixed;
-      top: 0; right: 0;
-      width: min(440px, 94vw);
-      height: 100%;
-      background: var(--negro2);
-      border-left: 1px solid rgba(201,168,76,0.2);
-      z-index: 2000;
-      transform: translateX(100%);
-      transition: transform 0.28s ease;
+    .card-estrella {
+      background: var(--negro3);
+      border: 1px solid rgba(184,151,62,0.1);
+      border-radius: var(--radio);
+      overflow: hidden;
+      transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
       display: flex;
       flex-direction: column;
     }
-    .cart-drawer.open { transform: translateX(0); }
-
-    .cart-header {
-      padding: 1.4rem 1.8rem;
-      border-bottom: 1px solid rgba(201,168,76,0.15);
+    .card-estrella:hover {
+      border-color: rgba(184,151,62,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .card-estrella-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      object-position: center;
+    }
+    .card-estrella-body {
+      padding: 1.5rem;
       display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-estrella-nombre {
+      font-family: var(--font-titulo);
+      font-size: 1.4rem;
+      color: var(--crema);
+      margin-bottom: 0.4rem;
+    }
+    .card-estrella-desc {
+      font-size: 0.8rem;
+      color: var(--gris);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.2rem;
+    }
+    .card-estrella-pie {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
+      gap: 0.5rem;
+    }
+    .card-estrella-precio {
+      font-family: var(--font-titulo);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dorado);
+    }
+    .btn-anadir-estrella {
+      background: transparent;
+      border: 1px solid rgba(184,151,62,0.5);
+      color: var(--dorado);
+      padding: 0.55rem 1.1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all var(--trans);
+      white-space: nowrap;
+    }
+    .btn-anadir-estrella:hover { background: var(--dorado); color: var(--negro); }
+
+    /* ══════════════════════════════════════
+       FILOSOFÍA
+    ══════════════════════════════════════ */
+    #filosofia { background: var(--negro); }
+    .filosofia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
       align-items: center;
     }
-    .cart-header h2 { color: var(--dorado); font-size: 1.6rem; }
-
-    .cart-body { flex: 1; overflow-y: auto; padding: 1.2rem 1.8rem; }
-
-    .cart-item {
+    .filosofia-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: var(--radio);
+      filter: brightness(0.85);
+    }
+    .filosofia-texto h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--crema);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    .filosofia-texto h2 em { font-style: italic; color: var(--dorado3); }
+    .filosofia-texto p {
+      font-size: 0.88rem;
+      color: rgba(242,237,228,0.55);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .filosofia-texto p:last-of-type { margin-bottom: 1.8rem; }
+    .filosofia-detalle {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .filosofia-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .filosofia-icono {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(184,151,62,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dorado);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    .filosofia-item-texto h4 {
+      font-family: var(--font-texto);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--crema);
+      margin-bottom: 0.2rem;
+    }
+    .filosofia-item-texto p {
+      font-size: 0.78rem;
+      color: var(--gris);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════
+       CATÁLOGO COMPLETO
+    ══════════════════════════════════════ */
+    #catalogo { background: var(--negro2); }
+
+    .filtros-barra {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
       align-items: center;
-      padding: 1.1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-    .cart-item strong { color: var(--crema); font-size: 0.9rem; }
-    .cart-item small { color: var(--gris); }
-
-    .cart-footer {
-      padding: 1.6rem 1.8rem;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      background: var(--negro);
+    .btn-filtro {
+      background: transparent;
+      border: 1px solid rgba(184,151,62,0.2);
+      color: rgba(242,237,228,0.5);
+      padding: 0.45rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all var(--trans);
+    }
+    .btn-filtro:hover, .btn-filtro.activo {
+      background: var(--dorado);
+      border-color: var(--dorado);
+      color: var(--negro);
+    }
+    #buscador-wrap {
+      margin-left: auto;
+      position: relative;
+    }
+    #buscador {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(184,151,62,0.15);
+      border-radius: 2px;
+      color: var(--crema);
+      padding: 0.45rem 2.2rem 0.45rem 0.9rem;
+      font-size: 0.78rem;
+      font-family: var(--font-texto);
+      width: 200px;
+      outline: none;
+      transition: border-color var(--trans);
+    }
+    #buscador::placeholder { color: var(--gris2); }
+    #buscador:focus { border-color: rgba(184,151,62,0.4); }
+    #buscador-wrap i {
+      position: absolute;
+      right: 0.7rem; top: 50%;
+      transform: translateY(-50%);
+      color: var(--gris2);
+      font-size: 0.75rem;
+      pointer-events: none;
     }
 
-    .total-row {
+    .catalogo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card-producto {
+      background: var(--negro3);
+      border: 1px solid rgba(184,151,62,0.08);
+      border-radius: var(--radio);
+      overflow: hidden;
       display: flex;
+      flex-direction: column;
+      transition: border-color var(--trans), transform var(--trans);
+    }
+    .card-producto:hover {
+      border-color: rgba(184,151,62,0.25);
+      transform: translateY(-3px);
+    }
+    .card-producto-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #111;
+    }
+    .card-producto-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .card-producto:hover .card-producto-img { transform: scale(1.04); }
+    .badge-agotado {
+      position: absolute;
+      top: 0.6rem; left: 0.6rem;
+      background: rgba(14,14,14,0.85);
+      color: var(--gris);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+    }
+    .card-producto-body {
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-producto-cat {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dorado);
+      margin-bottom: 0.3rem;
+    }
+    .card-producto-nombre {
+      font-family: var(--font-titulo);
+      font-size: 1.15rem;
+      color: var(--crema);
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+    .card-producto-desc {
+      font-size: 0.73rem;
+      color: var(--gris2);
+      line-height: 1.55;
+      flex: 1;
+      margin-bottom: 0.9rem;
+    }
+    .card-producto-pie {
+      display: flex;
+      align-items: center;
       justify-content: space-between;
+    }
+    .card-producto-precio {
+      font-family: var(--font-titulo);
+      font-size: 1.25rem;
+      color: var(--dorado);
+      font-weight: 600;
+    }
+    .btn-anadir-catalogo {
+      background: transparent;
+      border: 1px solid rgba(184,151,62,0.4);
+      color: var(--dorado);
+      padding: 0.4rem 0.85rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all var(--trans);
+    }
+    .btn-anadir-catalogo:hover:not(:disabled) { background: var(--dorado); color: var(--negro); }
+    .btn-anadir-catalogo:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      border-color: var(--gris2);
+      color: var(--gris2);
+    }
+    #sin-resultados {
+      display: none;
+      text-align: center;
+      color: var(--gris);
+      font-size: 0.9rem;
+      padding: 3rem;
+      grid-column: 1/-1;
+    }
+
+    /* ══════════════════════════════════════
+       CÓMO FUNCIONA
+    ══════════════════════════════════════ */
+    #como-funciona { background: var(--negro); }
+    .pasos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      position: relative;
+    }
+    .pasos-grid::before {
+      content: '';
+      position: absolute;
+      top: 1.5rem; left: calc(16.67% + 1.5rem); right: calc(16.67% + 1.5rem);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,151,62,0.3), transparent);
+    }
+    .paso {
+      text-align: center;
+    }
+    .paso-num {
+      width: 3rem; height: 3rem;
+      border: 1px solid rgba(184,151,62,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-family: var(--font-titulo);
       font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 1.4rem;
+      color: var(--dorado);
+    }
+    .paso h3 {
+      font-size: 1.2rem;
+      color: var(--crema);
+      margin-bottom: 0.7rem;
+    }
+    .paso p {
+      font-size: 0.8rem;
+      color: var(--gris);
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════
+       VISÍTANOS
+    ══════════════════════════════════════ */
+    #visitanos { background: var(--negro2); }
+    .visitanos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .visitanos-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .visitanos-dato {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .visitanos-icono {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(184,151,62,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dorado);
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+    .visitanos-dato-texto h4 {
+      font-family: var(--font-texto);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 0.3rem;
+    }
+    .visitanos-dato-texto p, .visitanos-dato-texto a {
+      font-size: 0.88rem;
+      color: var(--crema);
+      line-height: 1.6;
+    }
+    .visitanos-dato-texto a { transition: color var(--trans); }
+    .visitanos-dato-texto a:hover { color: var(--dorado); }
+
+    .visitanos-acciones {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #25D366; color: #fff;
+      border: none;
+      padding: 0.65rem 1.2rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      border-radius: 2px;
+      transition: background var(--trans);
+      text-decoration: none;
+    }
+    .btn-wa:hover { background: #1ebe52; }
+    .btn-ig {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--crema);
+      border: 1px solid rgba(242,237,228,0.2);
+      padding: 0.65rem 1.2rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      border-radius: 2px;
+      transition: all var(--trans);
+      text-decoration: none;
+    }
+    .btn-ig:hover { border-color: var(--crema); }
+
+    .mapa-wrap {
+      border-radius: var(--radio);
+      overflow: hidden;
+      border: 1px solid rgba(184,151,62,0.1);
+      background: var(--negro3);
+      display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 4/3;
+    }
+    .mapa-placeholder {
+      text-align: center;
+      padding: 2rem;
+    }
+    .mapa-placeholder i { font-size: 2.5rem; color: var(--dorado); margin-bottom: 1rem; }
+    .mapa-placeholder p { font-size: 0.8rem; color: var(--gris); margin-bottom: 1rem; }
+    .mapa-placeholder a {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--dorado);
+      border-bottom: 1px solid rgba(184,151,62,0.4);
+      padding-bottom: 2px;
+      transition: color var(--trans);
+      text-decoration: none;
+    }
+    .mapa-placeholder a:hover { color: var(--dorado3); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    #footer {
+      background: #080808;
+      border-top: 1px solid rgba(184,151,62,0.1);
+      padding: 4rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-logo img {
+      height: 44px;
+      filter: invert(1);
+      margin-bottom: 1rem;
+    }
+    .footer-logo p {
+      font-size: 0.78rem;
+      color: var(--gris2);
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+    .footer-sociales { display: flex; gap: 0.75rem; }
+    .footer-social-btn {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(184,151,62,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gris);
+      font-size: 0.8rem;
+      transition: all var(--trans);
+      text-decoration: none;
+    }
+    .footer-social-btn:hover { border-color: var(--dorado); color: var(--dorado); }
+    .footer-col h4 {
+      font-family: var(--font-texto);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--crema);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-col a {
+      font-size: 0.78rem;
+      color: var(--gris2);
+      transition: color var(--trans);
+      text-decoration: none;
+    }
+    .footer-col a:hover { color: var(--crema); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--gris2);
+    }
+    .footer-copy span { color: var(--dorado); opacity: 0.7; }
+    .footer-legal { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .footer-legal a {
+      font-size: 0.68rem;
+      color: var(--gris2);
+      transition: color var(--trans);
+      text-decoration: none;
+    }
+    .footer-legal a:hover { color: var(--crema); }
+
+    /* ══════════════════════════════════════
+       CARRITO DRAWER
+    ══════════════════════════════════════ */
+    #overlay-carrito {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 980;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    #overlay-carrito.visible { display: block; opacity: 1; }
+
+    #carrito-panel {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(420px, 95vw);
+      height: 100%;
+      background: var(--negro2);
+      border-left: 1px solid rgba(184,151,62,0.15);
+      z-index: 990;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      flex-direction: column;
+    }
+    #carrito-panel.visible { transform: translateX(0); }
+
+    .carrito-cabecera {
+      padding: 1.4rem 1.6rem;
+      border-bottom: 1px solid rgba(184,151,62,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .carrito-cabecera h2 {
+      font-size: 1.4rem;
       color: var(--crema);
     }
-    .total-row span:last-child { color: var(--dorado); }
-
-    #paypal-button-container { min-height: 50px; margin: 1.2rem 0; }
-
-    .wa-icon-btn {
-      background: #25D366;
-      color: white;
-      border: none;
-      width: 100%;
-      padding: 14px;
-      border-radius: 50px;
-      font-size: 1.3rem;
-      cursor: pointer;
-      margin-top: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    #btn-cerrar-carrito {
+      background: none; border: none;
+      color: var(--gris);
+      font-size: 1.4rem;
+      padding: 0.25rem;
+      transition: color var(--trans);
+      line-height: 1;
     }
-    .wa-icon-btn:hover { background: #1ebe52; }
+    #btn-cerrar-carrito:hover { color: var(--crema); }
 
-    /* ── RESPONSIVE ── */
+    .carrito-cuerpo {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.2rem 1.6rem;
+    }
+    .carrito-vacio {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 1rem;
+      color: var(--gris2);
+      text-align: center;
+    }
+    .carrito-vacio i { font-size: 2.5rem; opacity: 0.3; }
+    .carrito-vacio p { font-size: 0.85rem; }
+
+    .carrito-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .carrito-item-img {
+      width: 56px; height: 56px;
+      border-radius: 4px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #111;
+    }
+    .carrito-item-info { flex: 1; }
+    .carrito-item-nombre {
+      font-size: 0.85rem;
+      color: var(--crema);
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+    .carrito-item-precio {
+      font-family: var(--font-titulo);
+      font-size: 1rem;
+      color: var(--dorado);
+    }
+    .carrito-item-controles {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .btn-qty {
+      width: 24px; height: 24px;
+      border: 1px solid rgba(184,151,62,0.3);
+      background: none;
+      color: var(--crema);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--trans);
+    }
+    .btn-qty:hover { background: var(--dorado); border-color: var(--dorado); color: var(--negro); }
+    .qty-val {
+      font-size: 0.85rem;
+      color: var(--crema);
+      min-width: 20px;
+      text-align: center;
+    }
+    .btn-eliminar {
+      background: none; border: none;
+      color: var(--gris2);
+      font-size: 0.85rem;
+      padding: 4px;
+      margin-left: auto;
+      transition: color var(--trans);
+    }
+    .btn-eliminar:hover { color: var(--error); }
+
+    .carrito-pie {
+      padding: 1.4rem 1.6rem;
+      border-top: 1px solid rgba(184,151,62,0.1);
+      background: var(--negro);
+    }
+    .carrito-aviso {
+      font-size: 0.7rem;
+      color: var(--gris2);
+      margin-bottom: 1.2rem;
+      line-height: 1.55;
+      padding: 0.7rem;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 4px;
+    }
+    .carrito-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.2rem;
+    }
+    .carrito-total span:first-child {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+    .carrito-total-precio {
+      font-family: var(--font-titulo);
+      font-size: 1.8rem;
+      color: var(--crema);
+    }
+    .btn-checkout {
+      width: 100%;
+      background: var(--dorado);
+      color: var(--negro);
+      border: none;
+      padding: 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background var(--trans);
+      margin-bottom: 0.75rem;
+    }
+    .btn-checkout:hover { background: var(--dorado3); }
+    .btn-checkout-wa {
+      width: 100%;
+      background: transparent;
+      color: var(--gris);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all var(--trans);
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    }
+    .btn-checkout-wa:hover { border-color: #25D366; color: #25D366; }
+
+    /* ══════════════════════════════════════
+       TOAST NOTIFICACIÓN
+    ══════════════════════════════════════ */
+    #toast {
+      position: fixed;
+      bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: var(--negro3);
+      border: 1px solid rgba(184,151,62,0.2);
+      color: var(--crema);
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      z-index: 999;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      white-space: nowrap;
+      box-shadow: var(--sombra);
+    }
+    #toast.visible { transform: translateX(-50%) translateY(0); }
+    #toast.ok { border-color: rgba(39,174,96,0.4); }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .filosofia-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .filosofia-img { aspect-ratio: 16/7; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .visitanos-grid { gap: 2rem; }
+    }
+
     @media (max-width: 768px) {
-      nav ul { display: none; }
-      .cart-btn span:not(.cart-badge) { display: none; }
-      .hero-logo { max-width: 260px; }
-      .section-title { font-size: 2.2rem; }
+      .cab-nav { display: none; }
+      #btn-pedido-cab { display: none; }
+      #btn-menu { display: flex; }
+
+      .hero-titulo { font-size: 2.4rem; }
+      .hero-subtitulo { font-size: 0.88rem; }
+
+      .pasos-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .pasos-grid::before { display: none; }
+
+      .visitanos-grid { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+      .seccion { padding: 4rem 0; }
+    }
+
+    @media (max-width: 480px) {
+      .cab-inner { padding: 0 1rem; }
+      .hero-acciones { flex-direction: column; align-items: flex-start; }
+      .filtros-barra { flex-wrap: wrap; }
+      #buscador-wrap { margin-left: 0; width: 100%; }
+      #buscador { width: 100%; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-legal { gap: 0.75rem; }
+      .grid-estrella { grid-template-columns: 1fr; }
+    }
+
+    /* Accesibilidad: foco visible */
+    :focus-visible {
+      outline: 2px solid var(--dorado);
+      outline-offset: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="nav-container">
-    <img src="QTOP_CON_takeaway.png" alt="QTOP Takeaway" class="logo-img">
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#menu">Menú</a></li>
-        <li><a href="#contacto">Pedidos</a></li>
-      </ul>
+<!-- ══════════════ CABECERA ══════════════ -->
+<header id="cabecera" role="banner">
+  <div class="cab-inner">
+    <a href="#" class="cab-logo" aria-label="QTOP – Ir al inicio">
+      <img src="QTOP_CON_takeaway.png" alt="QTOP Takeaway" width="160" height="48">
+    </a>
+
+    <nav class="cab-nav" aria-label="Navegación principal">
+      <a href="#hero">Inicio</a>
+      <a href="#seleccion">Bakery</a>
+      <a href="#catalogo">Menú</a>
+      <a href="#filosofia">Nosotros</a>
+      <a href="#visitanos">Visítanos</a>
     </nav>
-    <button class="cart-btn" id="openCartBtn">
-      <i class="fa-solid fa-bag-shopping"></i>
-      <span>Carrito</span>
-      <span class="cart-badge" id="cartCount">0</span>
-    </button>
+
+    <div class="cab-acciones">
+      <button id="btn-carrito-cab" aria-label="Abrir carrito" onclick="abrirCarrito()">
+        <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+        <span class="sr-only">Carrito</span>
+        <span id="contador-carrito-cab" aria-live="polite">0</span>
+      </button>
+      <button id="btn-pedido-cab" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+        Hacer pedido
+      </button>
+      <button id="btn-menu" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
-<!-- HERO -->
-<section id="inicio" class="hero">
-  <div class="hero-content">
-    <img src="QTOP_CON_SLOGAN.png" alt="QTOP – ¡Hay cosas que no se explican… se prueban!" class="hero-logo">
-    <div class="hero-divider"></div>
-    <p class="hero-tagline">Cheesecakes · Cookies · Snacks · Bebidas</p>
-    <button class="btn-main" id="verMenuBtn">Ver Menú</button>
+<!-- Menú móvil -->
+<nav id="nav-movil" aria-label="Menú móvil" role="navigation">
+  <a href="#hero" onclick="toggleMenu()">Inicio</a>
+  <a href="#seleccion" onclick="toggleMenu()">Bakery</a>
+  <a href="#catalogo" onclick="toggleMenu()">Menú completo</a>
+  <a href="#filosofia" onclick="toggleMenu()">Nosotros</a>
+  <a href="#visitanos" onclick="toggleMenu()">Visítanos</a>
+  <a href="https://wa.me/34645052784" target="_blank" rel="noopener">WhatsApp</a>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero" aria-label="Presentación QTOP">
+  <div class="hero-bg" role="img" aria-label="Cinnamon roll artesanal QTOP"></div>
+  <div class="container">
+    <div class="hero-contenido">
+      <p class="hero-eyebrow">Bakery &amp; Pastry · Coslada</p>
+      <h1 class="hero-titulo">
+        Hay cosas que<br>no se explican.<br><em>Se prueban.</em>
+      </h1>
+      <p class="hero-subtitulo">
+        Cheesecakes, cinnamon rolls clásicos, cookies y pastelería seleccionada,
+        preparados para convertir una pausa cualquiera en tu momento QTOP.
+      </p>
+      <div class="hero-acciones">
+        <button class="btn-primary" onclick="document.getElementById('seleccion').scrollIntoView({behavior:'smooth'})">
+          Ver la Bakery
+        </button>
+        <button class="btn-secondary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">
+          Hacer pedido
+        </button>
+      </div>
+      <p class="hero-info">Recogida en tienda · Coslada, Madrid</p>
+    </div>
   </div>
 </section>
 
-<!-- STRIP -->
-<div class="strip">📍 Coslada, Madrid &nbsp;·&nbsp; Pedidos por WhatsApp &nbsp;·&nbsp; Takeaway</div>
-
-<!-- MENÚ -->
-<section id="menu" class="section">
-  <div class="section-header">
-    <p class="section-label">Lo que más gusta</p>
-    <h2 class="section-title">Nuestro Menú</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <!-- DULCES -->
-  <h3 class="cat-title">Tartas &amp; Dulces</h3>
-  <div class="menu-grid">
-
-    <div class="menu-card">
-      <img src="Tarta-de-queso-sin-fondo.png" class="card-img" alt="Cheesecake Clásica Entera">
-      <h3 class="product-name">Cheesecake Entera</h3>
-      <p class="product-desc">Tarta de queso clásica artesanal. Para compartir.</p>
-      <div class="product-price">30 €</div>
-      <button class="btn-add" data-name="Cheesecake Clásica Entera" data-price="30.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="porcion-cheesecake-1784393403.png" class="card-img" alt="Porción Cheesecake">
-      <h3 class="product-name">Porción Cheesecake</h3>
-      <p class="product-desc">Tarta de queso clásica, porción individual.</p>
-      <div class="product-price">3.50 €</div>
-      <button class="btn-add" data-name="Porción Cheesecake Clásica" data-price="3.50">Añadir</button>
-    </div>
-    </div>
-    </div>
-
-    <div class="menu-card">
-      <img src="blob-f433227.png" class="card-img" alt="Cookie Double Chocolate">
-      <h3 class="product-name">Cookie Double Chocolate</h3>
-      <p class="product-desc">Grandes, blandas y con mucho chocolate.</p>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Cookie Double Chocolate" data-price="1.80">Añadir</button>
-    </div>
-    <div class="menu-card">
-      <img src="cinnamon-roll-1784393403.png" class="card-img" alt="Cinnamon Roll">
-      <h3 class="product-name">Cinnamon Roll</h3>
-      <p class="product-desc">Rollo de canela artesanal, tierno y aromático.</p>
-      <div class="product-price">2.00 €</div>
-      <button class="btn-add" data-name="Cinnamon Roll" data-price="2.00">Añadir</button>
-    </div>
-
-
-    <div class="menu-card">
-      <img src="tarta-sacher-1784393403.png" class="card-img" alt="Tarta Sacher">
-      <h3 class="product-name">Tarta Sacher</h3>
-      <p class="product-desc">Bizcocho de chocolate con ganache. Un clásico vienés.</p>
-      <div class="product-price">4.00 €</div>
-      <button class="btn-add" data-name="Tarta Sacher" data-price="4.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="muffin-chocolate-1784393403.png" class="card-img" alt="Muffin Chocolate">
-      <h3 class="product-name">Muffin Chocolate</h3>
-      <p class="product-desc">Muffin esponjoso de chocolate con avellanas.</p>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Muffin Chocolate" data-price="1.80">Añadir</button>
-    </div>
-
-
-  </div>
-
-
-  <!-- SNACKS -->
-  <h3 class="cat-title">Snacks &amp; Aperitivos</h3>
-  <div class="menu-grid">
-
-    <div class="menu-card">
-      <img src="torreznos.webp" class="card-img" alt="Torreznos">
-      <h3 class="product-name">Torreznos</h3>
-      <p class="product-desc">Bolsita crujiente de torreznos Flaper.</p>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Torreznos" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="snack-bacalao.jpg" class="card-img" alt="Snack de Bacalao">
-      <h3 class="product-name">Snack de Bacalao</h3>
-      <p class="product-desc">Sánchez Montes. Receta casera en aceite de girasol.</p>
-      <div class="product-price">3.50 €</div>
-      <button class="btn-add" data-name="Snack de Bacalao" data-price="3.50">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="palomitas-caramelo.webp" class="card-img" alt="Palomitas Caramelo">
-      <h3 class="product-name">Palomitas Caramelo</h3>
-      <p class="product-desc">Bolsa grande de palomitas al caramelo Flaper.</p>
-      <div class="product-price">2.00 €</div>
-      <button class="btn-add" data-name="Palomitas Caramelo" data-price="2.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="palomitas-colores.webp" class="card-img" alt="Palomitas de Colores">
-      <h3 class="product-name">Palomitas de Colores</h3>
-      <p class="product-desc">Palomitas multicolor dulces y divertidas.</p>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Palomitas de Colores" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="coctel-picante.webp" class="card-img" alt="Cóctel Picante Chilly">
-      <h3 class="product-name">Cóctel Picante Chilly</h3>
-      <p class="product-desc">Mix de aperitivos con toque picante.</p>
-      <div class="product-price">4.00 €</div>
-      <button class="btn-add" data-name="Cóctel Picante Chilly" data-price="4.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="pipas-gigante.webp" class="card-img" alt="Pipas Gigante Aguasal">
-      <h3 class="product-name">Pipas Gigante Aguasal</h3>
-      <p class="product-desc">Pipas de girasol gigantes con sal.</p>
-      <div class="product-price">1.50 €</div>
-      <button class="btn-add" data-name="Pipas Gigante Aguasal" data-price="1.50">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="cacahuete-concha.jpg" class="card-img" alt="Cacahuete Salado con Concha">
-      <h3 class="product-name">Cacahuete Salado Concha</h3>
-      <p class="product-desc">Cacahuetes con cáscara, salados.</p>
-      <div class="product-price">1.50 €</div>
-      <button class="btn-add" data-name="Cacahuete Salado Concha" data-price="1.50">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="cacahuete-repelado.webp" class="card-img" alt="Cacahuete Repelado">
-      <h3 class="product-name">Cacahuete Repelado</h3>
-      <p class="product-desc">Cacahuetes pelados naturales.</p>
-      <div class="product-price">2.00 €</div>
-      <button class="btn-add" data-name="Cacahuete Repelado" data-price="2.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="cachuete-salado-tostado.webp" class="card-img" alt="Cacahuete Salado Tostado">
-      <h3 class="product-name">Cacahuete Salado Tostado</h3>
-      <p class="product-desc">Tostados y salados, muy crujientes.</p>
-      <div class="product-price">3.00 €</div>
-      <button class="btn-add" data-name="Cacahuete Salado Tostado" data-price="3.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="cacahuete-garrapinado.webp" class="card-img" alt="Cacahuete Garrapiñado">
-      <h3 class="product-name">Cacahuete Garrapiñado</h3>
-      <p class="product-desc">Con cobertura de azúcar caramelizada.</p>
-      <div class="product-price">3.00 €</div>
-      <button class="btn-add" data-name="Cacahuete Garrapiñado" data-price="3.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="almendra-frita.webp" class="card-img" alt="Almendra Frita Marcona">
-      <h3 class="product-name">Almendra Frita Marcona</h3>
-      <p class="product-desc">Almendra marcona frita, la mejor variedad.</p>
-      <div class="product-price">7.00 €</div>
-      <button class="btn-add" data-name="Almendra Frita Marcona" data-price="7.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="anacardo-frito.webp" class="card-img" alt="Anacardo Grande Frito">
-      <h3 class="product-name">Anacardo Grande Frito</h3>
-      <p class="product-desc">Anacardos grandes fritos, irresistibles.</p>
-      <div class="product-price">5.00 €</div>
-      <button class="btn-add" data-name="Anacardo Grande Frito" data-price="5.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="pistacho.webp" class="card-img" alt="Pistacho Nacional Tostado">
-      <h3 class="product-name">Pistacho Nacional Tostado</h3>
-      <p class="product-desc">Pistacho español tostado, premium.</p>
-      <div class="product-price">6.50 €</div>
-      <button class="btn-add" data-name="Pistacho Nacional Tostado" data-price="6.50">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="uvas-pasas.webp" class="card-img" alt="Uvas Pasas Sultanas">
-      <h3 class="product-name">Uvas Pasas Sultanas</h3>
-      <p class="product-desc">Pasas sultanas naturales, dulces y jugosas.</p>
-      <div class="product-price">2.00 €</div>
-      <button class="btn-add" data-name="Uvas Pasas Sultanas" data-price="2.00">Añadir</button>
-    </div>
-
-  </div>
-
-    <div class="menu-card">
-      <img src="patatas-santa-ana.jpg" class="card-img" alt="Patatas Santa Ana">
-      <h3 class="product-name">Patatas Fritas Santa Ana 220g</h3>
-      <p class="product-desc">Churrería Santa Ana. Clásico irresistible.</p>
-      <div class="product-price">2.50 €</div>
-      <button class="btn-add" data-name="Patatas Fritas Santa Ana 220g" data-price="2.50">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="cortezas-cerdo.jpg" class="card-img" alt="Cortezas de Cerdo Flaper">
-      <h3 class="product-name">Cortezas de Cerdo Flaper 500g</h3>
-      <p class="product-desc">Bolsa grande de cortezas crujientes Flaper.</p>
-      <div class="product-price">8.50 €</div>
-      <button class="btn-add" data-name="Cortezas de Cerdo Flaper 500g" data-price="8.50">Añadir</button>
-    </div>
-
-
-  <!-- BEBIDAS -->
-  <h3 class="cat-title">Bebidas</h3>
-  <div class="menu-grid">
-
-    <div class="menu-card">
-      <img src="a-can-of-coca-cola-drink-isolated-free-png.png" class="card-img" alt="Coca-Cola">
-      <h3 class="product-name">Coca-Cola</h3>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Coca-Cola lata" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="coca-cola-zero.jpg" class="card-img" alt="Coca-Cola Zero">
-      <h3 class="product-name">Coca-Cola Zero</h3>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Coca-Cola Zero lata" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="fanta_naranja_2025_2.png" class="card-img" alt="Fanta Naranja">
-      <h3 class="product-name">Fanta Naranja</h3>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Fanta Naranja lata" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="sprite-lata-24x33cl.jpg" class="card-img" alt="Sprite">
-      <h3 class="product-name">Sprite</h3>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Sprite lata" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="2349737412.png" class="card-img" alt="Aquarius Limón">
-      <h3 class="product-name">Aquarius Limón</h3>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Aquarius Limón lata" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="mocay-cappuccino-v2.jpg" class="card-img" alt="Café Cappuccino Mocay">
-      <h3 class="product-name">Café Cappuccino Mocay</h3>
-      <div class="product-price">1.80 €</div>
-      <button class="btn-add" data-name="Café Cappuccino Mocay" data-price="1.80">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="agua-cuevas.jpg" class="card-img" alt="Agua Mineral Cuevas">
-      <h3 class="product-name">Agua Mineral Cuevas 500ml</h3>
-      <div class="product-price">0.90 €</div>
-      <button class="btn-add" data-name="Agua Mineral Cuevas 500ml" data-price="0.90">Añadir</button>
-    </div>
-
-
-    <div class="menu-card">
-      <img src="rockstar-1784391998.jpg" class="card-img" alt="Rockstar Energy">
-      <h3 class="product-name">Rockstar Energy Original</h3>
-      <div class="product-price">1.00 €</div>
-      <button class="btn-add" data-name="Rockstar Energy Original" data-price="1.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="gatorade-1784392176.jpg" class="card-img" alt="Gatorade Cool Blue">
-      <h3 class="product-name">Gatorade Cool Blue</h3>
-      <div class="product-price">2.00 €</div>
-      <button class="btn-add" data-name="Gatorade Cool Blue" data-price="2.00">Añadir</button>
-    </div>
-
-    <div class="menu-card">
-      <img src="lipton-1784393101.jpg" class="card-img" alt="Lipton Mango Maracuyá">
-      <h3 class="product-name">Lipton Ice Tea Mango Maracuyá</h3>
-      <div class="product-price">1.50 €</div>
-      <button class="btn-add" data-name="Lipton Ice Tea Mango Maracuyá" data-price="1.50">Añadir</button>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- CONTACTO -->
-<section id="contacto" class="contact-section">
-  <h2>Haz tu Pedido</h2>
-  <p>Escríbenos por WhatsApp y preparamos tu pedido con cariño. Recogida en tienda en Coslada, Madrid.</p>
-  <a href="https://wa.me/34645052784?text=Hola%21%20Quisiera%20hacer%20un%20pedido..." class="btn-whatsapp" target="_blank">
-    <i class="fab fa-whatsapp fa-lg"></i> WhatsApp
-  </a>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>© 2025 <span>QTOP Takeaway</span> · Coslada, Madrid · Todos los derechos reservados</p>
-</footer>
-
-<!-- CART DRAWER -->
-<div class="cart-overlay" id="cartOverlay"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <h2>Tu Carrito</h2>
-    <button id="closeCartBtn" style="font-size:2rem; border:none; background:none; cursor:pointer; color:var(--gris);">×</button>
-  </div>
-  <div class="cart-body" id="cartBody"></div>
-  <div class="cart-footer" id="cartFooter" style="display:none;">
-    <div class="total-row">
-      <span>Total:</span>
-      <span id="cartTotal">0.00 €</span>
-    </div>
-    <div id="paypal-button-container"></div>
-    <button class="wa-icon-btn" onclick="window.open('https://wa.me/34645052784?text=Hola!%20Quiero%20confirmar%20mi%20pedido', '_blank')">
-      <i class="fab fa-whatsapp"></i>
-    </button>
+<!-- ══════════════ STRIP ══════════════ -->
+<div class="strip-dorado" aria-hidden="true">
+  <div class="strip-inner">
+    <span>Cheesecake artesanal</span>
+    <span>Cinnamon Roll clásico</span>
+    <span>Cookies doble chocolate</span>
+    <span>Tarta Sacher</span>
+    <span>Recogida en tienda</span>
+    <span>Coslada, Madrid</span>
+    <span>Cheesecake artesanal</span>
+    <span>Cinnamon Roll clásico</span>
+    <span>Cookies doble chocolate</span>
+    <span>Tarta Sacher</span>
+    <span>Recogida en tienda</span>
+    <span>Coslada, Madrid</span>
   </div>
 </div>
 
+<!-- ══════════════ SELECCIÓN QTOP ══════════════ -->
+<section id="seleccion" class="seccion" aria-labelledby="seleccion-titulo">
+  <div class="container">
+    <div class="seccion-header">
+      <p class="etiqueta">Artesanal · Seleccionado</p>
+      <h2 class="seccion-titulo" id="seleccion-titulo">La selección QTOP</h2>
+      <p class="seccion-subtitulo">Productos elaborados con criterio. Sin atajos, sin prisa.</p>
+      <div class="linea-dorada"></div>
+    </div>
+    <div class="grid-estrella" id="grid-estrella">
+      <!-- Se rellena con JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FILOSOFÍA ══════════════ -->
+<section id="filosofia" class="seccion" aria-labelledby="filosofia-titulo">
+  <div class="container">
+    <div class="filosofia-grid">
+      <div>
+        <img src="cinnamon-roll-1784393403.png"
+             alt="Cinnamon Roll artesanal QTOP"
+             class="filosofia-img"
+             loading="lazy">
+      </div>
+      <div class="filosofia-texto">
+        <p class="etiqueta">Nuestra filosofía</p>
+        <h2 id="filosofia-titulo">
+          No hacemos productos para<br>llenar una vitrina.<br>
+          <em>Los hacemos para que quieras volver.</em>
+        </h2>
+        <p>
+          En QTOP cada pieza responde a una decisión deliberada. Elegimos
+          el proveedor, controlamos el proceso y cuidamos el acabado.
+          La diferencia está en los detalles que no se anuncian.
+        </p>
+        <p>
+          Somos una bakery de proximidad en Coslada. Sin grandes cadenas
+          detrás. Solo producto cuidado y ganas de hacerlo bien.
+        </p>
+        <div class="filosofia-detalle">
+          <div class="filosofia-item">
+            <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-leaf"></i></div>
+            <div class="filosofia-item-texto">
+              <h4>Elaboración cuidada</h4>
+              <p>Cada producto se prepara con atención al proceso y al resultado final.</p>
+            </div>
+          </div>
+          <div class="filosofia-item">
+            <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
+            <div class="filosofia-item-texto">
+              <h4>Selección del producto</h4>
+              <p>Solo lo que merece estar en el mostrador. Calidad por encima del volumen.</p>
+            </div>
+          </div>
+          <div class="filosofia-item">
+            <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="filosofia-item-texto">
+              <h4>Cercanía y recogida en tienda</h4>
+              <p>Haz tu pedido, pásate a recogerlo. Sin intermediarios, sin esperas largas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CATÁLOGO COMPLETO ══════════════ -->
+<section id="catalogo" class="seccion" aria-labelledby="catalogo-titulo">
+  <div class="container">
+    <div class="seccion-header">
+      <p class="etiqueta">Todo el catálogo</p>
+      <h2 class="seccion-titulo" id="catalogo-titulo">Nuestro Menú</h2>
+      <p class="seccion-subtitulo">Bakery artesanal, aperitivos seleccionados y bebidas.</p>
+      <div class="linea-dorada"></div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filtros-barra" role="group" aria-label="Filtrar productos">
+      <button class="btn-filtro activo" data-cat="todos" onclick="filtrar('todos',this)">Todos</button>
+      <button class="btn-filtro" data-cat="bakery" onclick="filtrar('bakery',this)">Bakery</button>
+      <button class="btn-filtro" data-cat="snacks" onclick="filtrar('snacks',this)">Aperitivos</button>
+      <button class="btn-filtro" data-cat="bebidas" onclick="filtrar('bebidas',this)">Bebidas</button>
+      <div id="buscador-wrap">
+        <input type="search" id="buscador" placeholder="Buscar…" aria-label="Buscar producto" oninput="buscar(this.value)">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div class="catalogo-grid" id="catalogo-grid" aria-live="polite">
+      <!-- Se rellena con JS -->
+    </div>
+    <p id="sin-resultados" role="status">No se encontraron productos.</p>
+  </div>
+</section>
+
+<!-- ══════════════ CÓMO FUNCIONA ══════════════ -->
+<section id="como-funciona" class="seccion" aria-labelledby="como-titulo">
+  <div class="container">
+    <div class="seccion-header">
+      <p class="etiqueta">El proceso</p>
+      <h2 class="seccion-titulo" id="como-titulo">Así de sencillo</h2>
+      <div class="linea-dorada"></div>
+    </div>
+    <div class="pasos-grid">
+      <div class="paso">
+        <div class="paso-num" aria-hidden="true">1</div>
+        <h3>Elige tus productos</h3>
+        <p>Navega el menú, añade lo que quieras al carrito y revisa tu selección. Algunos productos pueden requerir encargo previo.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num" aria-hidden="true">2</div>
+        <h3>Confirma tu pedido</h3>
+        <p>Completa el pedido en la web o escríbenos por WhatsApp para confirmar disponibilidad y acordar el momento de recogida.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num" aria-hidden="true">3</div>
+        <h3>Recógelo en QTOP</h3>
+        <p>Pásate por la tienda en Coslada en el horario acordado. Sin esperas. Tu pedido listo para llevar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VISÍTANOS ══════════════ -->
+<section id="visitanos" class="seccion" aria-labelledby="visitanos-titulo">
+  <div class="container">
+    <div class="seccion-header">
+      <p class="etiqueta">Dónde encontrarnos</p>
+      <h2 class="seccion-titulo" id="visitanos-titulo">Visítanos</h2>
+      <div class="linea-dorada"></div>
+    </div>
+    <div class="visitanos-grid">
+      <div class="visitanos-info">
+        <div class="visitanos-dato">
+          <div class="visitanos-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="visitanos-dato-texto">
+            <h4>Dirección</h4>
+            <!-- TODO: Completar dirección exacta -->
+            <p>Coslada, Madrid<br><small style="color:var(--gris2);font-size:0.72rem;">TODO: Completar dirección completa</small></p>
+          </div>
+        </div>
+        <div class="visitanos-dato">
+          <div class="visitanos-icono" aria-hidden="true"><i class="fa-regular fa-clock"></i></div>
+          <div class="visitanos-dato-texto">
+            <h4>Horario</h4>
+            <!-- TODO: Completar horario -->
+            <p><small style="color:var(--gris2);font-size:0.72rem;">TODO: Indicar horario de apertura</small></p>
+          </div>
+        </div>
+        <div class="visitanos-dato">
+          <div class="visitanos-icono" aria-hidden="true"><i class="fa-solid fa-phone"></i></div>
+          <div class="visitanos-dato-texto">
+            <h4>Teléfono / WhatsApp</h4>
+            <a href="tel:+34645052784">+34 645 052 784</a>
+          </div>
+        </div>
+        <div class="visitanos-dato">
+          <div class="visitanos-icono" aria-hidden="true"><i class="fa-brands fa-instagram"></i></div>
+          <div class="visitanos-dato-texto">
+            <h4>Instagram</h4>
+            <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener">@Qtop_Coslada</a>
+          </div>
+        </div>
+        <div class="visitanos-acciones">
+          <a href="https://wa.me/34645052784?text=Hola%2C%20quisiera%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn-wa">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
+          </a>
+          <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener" class="btn-ig">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram
+          </a>
+          <!-- TODO: Actualizar href con URL de Google Maps real -->
+          <a href="https://maps.google.com/?q=Coslada+Madrid" target="_blank" rel="noopener" class="btn-ig">
+            <i class="fa-solid fa-map" aria-hidden="true"></i> Cómo llegar
+          </a>
+        </div>
+      </div>
+      <div class="mapa-wrap">
+        <!-- TODO: Insertar iframe de Google Maps con la dirección real -->
+        <div class="mapa-placeholder">
+          <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+          <p>Coslada, Madrid</p>
+          <a href="https://maps.google.com/?q=Coslada+Madrid" target="_blank" rel="noopener">
+            <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            Ver en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer id="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-logo">
+        <img src="QTOP_CON_takeaway.png" alt="QTOP" width="140" height="44" loading="lazy">
+        <p>Bakery &amp; Pastry artesanal en Coslada, Madrid.<br>Cheesecakes, cinnamon rolls, cookies y selección cuidada.</p>
+        <div class="footer-sociales">
+          <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram QTOP">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://wa.me/34645052784" target="_blank" rel="noopener" class="footer-social-btn" aria-label="WhatsApp QTOP">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Menú</h4>
+        <ul>
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#seleccion">Bakery</a></li>
+          <li><a href="#catalogo">Menú completo</a></li>
+          <li><a href="#filosofia">Nosotros</a></li>
+          <li><a href="#visitanos">Visítanos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+34645052784">+34 645 052 784</a></li>
+          <li><a href="https://wa.me/34645052784" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener">@Qtop_Coslada</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#aviso-legal">Aviso legal</a></li>
+          <li><a href="#privacidad">Privacidad</a></li>
+          <li><a href="#cookies">Cookies</a></li>
+          <li><a href="#condiciones">Condiciones</a></li>
+          <li><a href="#alergenos">Alérgenos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© <span id="anio-footer"></span> <span>QTOP</span>. Coslada, Madrid. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#aviso-legal">Aviso legal</a>
+        <a href="#privacidad">Privacidad</a>
+        <a href="#cookies">Cookies</a>
+        <a href="#condiciones">Condiciones de compra</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ CARRITO ══════════════ -->
+<div id="overlay-carrito" onclick="cerrarCarrito()" aria-hidden="true"></div>
+
+<aside id="carrito-panel" role="dialog" aria-label="Tu carrito" aria-modal="true">
+  <div class="carrito-cabecera">
+    <h2>Tu carrito</h2>
+    <button id="btn-cerrar-carrito" onclick="cerrarCarrito()" aria-label="Cerrar carrito">×</button>
+  </div>
+  <div class="carrito-cuerpo" id="carrito-cuerpo"></div>
+  <div class="carrito-pie" id="carrito-pie" style="display:none">
+    <p class="carrito-aviso">
+      Los productos se preparan según disponibilidad. Algunos artículos
+      pueden requerir confirmación previa por WhatsApp.
+    </p>
+    <div class="carrito-total">
+      <span>Total</span>
+      <span class="carrito-total-precio" id="carrito-total">0,00 €</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">
+      Confirmar pedido
+    </button>
+    <button class="btn-checkout-wa" onclick="pedidoWhatsApp()">
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+      Confirmar por WhatsApp
+    </button>
+  </div>
+</aside>
+
+<!-- ══════════════ TOAST ══════════════ -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- ══════════════ JAVASCRIPT ══════════════ -->
 <script>
-let cart = JSON.parse(localStorage.getItem('qtopCart')) || [];
+'use strict';
 
-const cartCountEl  = document.getElementById('cartCount');
-const cartBodyEl   = document.getElementById('cartBody');
-const cartFooterEl = document.getElementById('cartFooter');
-const cartTotalEl  = document.getElementById('cartTotal');
-const overlayEl    = document.getElementById('cartOverlay');
-const drawerEl     = document.getElementById('cartDrawer');
+/* ─── CONFIGURACIÓN CENTRALIZADA ─── */
+const CONFIG = {
+  negocio: 'QTOP',
+  whatsapp: '34645052784',
+  instagram: 'https://www.instagram.com/Qtop_Coslada',
+  telefono: '+34645052784',
+  // TODO: Completar cuando se disponga del dato real
+  direccion: 'TODO – Completar dirección, Coslada, Madrid',
+  horario: 'TODO – Completar horario',
+  gmaps: 'https://maps.google.com/?q=QTOP+Coslada+Madrid',
+};
 
-function saveCart() { localStorage.setItem('qtopCart', JSON.stringify(cart)); renderCart(); }
+/* ─── CATÁLOGO DE PRODUCTOS ─── */
+const PRODUCTOS = [
+  // ── BAKERY ARTESANAL ──
+  {
+    id: 'cheesecake-entera',
+    cat: 'bakery',
+    nombre: 'Cheesecake Entera',
+    desc: 'Textura cremosa, horneado delicado y acabado tostado. Elaborada para quienes buscan una tarta de queso con carácter.',
+    precio: 30.00,
+    img: 'porcion-cheesecake-1784393403.png',
+    alt: 'Cheesecake entera QTOP',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'cheesecake-porcion',
+    cat: 'bakery',
+    nombre: 'Porción Cheesecake',
+    desc: 'La misma cheesecake de siempre, en formato individual. Cremosa, con base crujiente y ese tostado característico.',
+    precio: 3.50,
+    img: 'porcion-cheesecake-1784393403.png',
+    alt: 'Porción de cheesecake QTOP',
+    estrella: true,
+    agotado: false,
+  },
+  {
+    id: 'cinnamon-roll',
+    cat: 'bakery',
+    nombre: 'Cinnamon Roll Clásico',
+    desc: 'Masa tierna, canela aromática y un glaseado equilibrado. Un clásico preparado con el sello QTOP.',
+    precio: 2.00,
+    img: 'cinnamon-roll-1784393403.png',
+    alt: 'Cinnamon Roll clásico QTOP',
+    estrella: true,
+    agotado: false,
+  },
+  {
+    id: 'cookie-double',
+    cat: 'bakery',
+    nombre: 'Cookie Double Chocolate',
+    desc: 'Grande, blanda en el centro y con una cantidad generosa de chocolate. Sin medias tintas.',
+    precio: 1.80,
+    img: 'blob-f433227.png',
+    alt: 'Cookie double chocolate QTOP',
+    estrella: true,
+    agotado: false,
+  },
+  {
+    id: 'tarta-sacher',
+    cat: 'bakery',
+    nombre: 'Tarta Sacher',
+    desc: 'Bizcocho de chocolate intenso, ganache espejo y el equilibrio justo entre dulzor y amargor.',
+    precio: 4.00,
+    img: 'tarta-sacher-1784393403.png',
+    alt: 'Tarta Sacher QTOP',
+    estrella: true,
+    agotado: false,
+  },
+  {
+    id: 'muffin-chocolate',
+    cat: 'bakery',
+    nombre: 'Muffin Chocolate',
+    desc: 'Esponjoso, con avellanas y con más chocolate del que uno esperaría. Un buen argumento.',
+    precio: 1.80,
+    img: 'muffin-chocolate-1784393403.png',
+    alt: 'Muffin de chocolate con avellanas QTOP',
+    estrella: true,
+    agotado: false,
+  },
+  // ── SNACKS & APERITIVOS ──
+  {
+    id: 'torreznos',
+    cat: 'snacks',
+    nombre: 'Torreznos Flaper',
+    desc: 'Bolsita de torreznos crujientes. Clásico de aperitivo.',
+    precio: 1.80,
+    img: 'torreznos.webp',
+    alt: 'Torreznos Flaper',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'snack-bacalao',
+    cat: 'snacks',
+    nombre: 'Snack de Bacalao',
+    desc: 'Sánchez Montes. Receta casera en aceite de girasol.',
+    precio: 3.50,
+    img: 'snack-bacalao.jpg',
+    alt: 'Snack de bacalao Sánchez Montes',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'palomitas-caramelo',
+    cat: 'snacks',
+    nombre: 'Palomitas Caramelo',
+    desc: 'Bolsa grande de palomitas al caramelo Flaper.',
+    precio: 2.00,
+    img: 'palomitas-caramelo.webp',
+    alt: 'Palomitas de caramelo',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'palomitas-colores',
+    cat: 'snacks',
+    nombre: 'Palomitas de Colores',
+    desc: 'Palomitas multicolor, formato largo.',
+    precio: 1.80,
+    img: 'palomitas-colores.webp',
+    alt: 'Palomitas de colores',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'coctel-picante',
+    cat: 'snacks',
+    nombre: 'Cóctel Picante Chilly',
+    desc: 'Mix de aperitivos con toque picante.',
+    precio: 4.00,
+    img: 'coctel-picante.webp',
+    alt: 'Cóctel picante chilly',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'pipas',
+    cat: 'snacks',
+    nombre: 'Pipas Gigante Aguasal',
+    desc: 'Pipas de girasol gigantes con sal.',
+    precio: 1.50,
+    img: 'pipas-gigante.webp',
+    alt: 'Pipas gigante aguasal',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'cacahuete-concha',
+    cat: 'snacks',
+    nombre: 'Cacahuete Salado con Concha',
+    desc: 'Cacahuetes con cáscara, salados.',
+    precio: 1.50,
+    img: 'cacahuete-concha.jpg',
+    alt: 'Cacahuete salado con concha',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'cacahuete-repelado',
+    cat: 'snacks',
+    nombre: 'Cacahuete Repelado',
+    desc: 'Cacahuetes pelados naturales.',
+    precio: 2.00,
+    img: 'cacahuete-repelado.webp',
+    alt: 'Cacahuete repelado',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'cacahuete-tostado',
+    cat: 'snacks',
+    nombre: 'Cacahuete Salado Tostado',
+    desc: 'Tostados y salados, muy crujientes.',
+    precio: 3.00,
+    img: 'cachuete-salado-tostado.webp',
+    alt: 'Cacahuete salado tostado',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'cacahuete-garrapinado',
+    cat: 'snacks',
+    nombre: 'Cacahuete Garrapiñado',
+    desc: 'Con cobertura de azúcar caramelizada.',
+    precio: 3.00,
+    img: 'cacahuete-garrapinado.webp',
+    alt: 'Cacahuete garrapiñado',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'almendra',
+    cat: 'snacks',
+    nombre: 'Almendra Frita Marcona',
+    desc: 'Almendra marcona frita. La mejor variedad.',
+    precio: 7.00,
+    img: 'almendra-frita.webp',
+    alt: 'Almendra frita marcona',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'anacardo',
+    cat: 'snacks',
+    nombre: 'Anacardo Grande Frito',
+    desc: 'Anacardos grandes fritos.',
+    precio: 5.00,
+    img: 'anacardo-frito.webp',
+    alt: 'Anacardo grande frito',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'pistacho',
+    cat: 'snacks',
+    nombre: 'Pistacho Nacional Tostado',
+    desc: 'Pistacho español tostado. Premium.',
+    precio: 6.50,
+    img: 'pistacho.webp',
+    alt: 'Pistacho nacional tostado',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'uvas-pasas',
+    cat: 'snacks',
+    nombre: 'Uvas Pasas Sultanas',
+    desc: 'Pasas sultanas naturales.',
+    precio: 2.00,
+    img: 'uvas-pasas.webp',
+    alt: 'Uvas pasas sultanas',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'patatas-santa-ana',
+    cat: 'snacks',
+    nombre: 'Patatas Fritas Santa Ana 220g',
+    desc: 'Churrería Santa Ana. Un clásico irresistible.',
+    precio: 2.50,
+    img: 'patatas-santa-ana.jpg',
+    alt: 'Patatas fritas Santa Ana',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'cortezas-cerdo',
+    cat: 'snacks',
+    nombre: 'Cortezas de Cerdo Flaper 500g',
+    desc: 'Bolsa grande de cortezas crujientes Flaper.',
+    precio: 8.50,
+    img: 'cortezas-cerdo.jpg',
+    alt: 'Cortezas de cerdo Flaper',
+    estrella: false,
+    agotado: false,
+  },
+  // ── BEBIDAS ──
+  {
+    id: 'coca-cola',
+    cat: 'bebidas',
+    nombre: 'Coca-Cola',
+    desc: 'Lata 33cl.',
+    precio: 1.80,
+    img: 'a-can-of-coca-cola-drink-isolated-free-png.png',
+    alt: 'Coca-Cola lata',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'coca-cola-zero',
+    cat: 'bebidas',
+    nombre: 'Coca-Cola Zero',
+    desc: 'Lata 33cl.',
+    precio: 1.80,
+    img: 'coca-cola-zero.jpg',
+    alt: 'Coca-Cola Zero lata',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'fanta',
+    cat: 'bebidas',
+    nombre: 'Fanta Naranja',
+    desc: 'Lata 33cl.',
+    precio: 1.80,
+    img: 'fanta_naranja_2025_2.png',
+    alt: 'Fanta Naranja lata',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'sprite',
+    cat: 'bebidas',
+    nombre: 'Sprite',
+    desc: 'Lata 33cl.',
+    precio: 1.80,
+    img: 'sprite-lata-24x33cl.jpg',
+    alt: 'Sprite lata',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'aquarius',
+    cat: 'bebidas',
+    nombre: 'Aquarius Limón',
+    desc: 'Lata 33cl.',
+    precio: 1.80,
+    img: '2349737412.png',
+    alt: 'Aquarius Limón lata',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'cafe-cappuccino',
+    cat: 'bebidas',
+    nombre: 'Café Cappuccino Mocay',
+    desc: 'Café Arábica 100% de Colombia. Formato para llevar.',
+    precio: 1.80,
+    img: 'mocay-cappuccino-v2.jpg',
+    alt: 'Café Cappuccino Mocay',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'agua',
+    cat: 'bebidas',
+    nombre: 'Agua Mineral Cuevas 500ml',
+    desc: 'Agua mineral natural de la montaña asturiana.',
+    precio: 0.90,
+    img: 'agua-cuevas.jpg',
+    alt: 'Agua Mineral Cuevas',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'rockstar',
+    cat: 'bebidas',
+    nombre: 'Rockstar Energy Original',
+    desc: 'Energy drink. Lata 500ml.',
+    precio: 1.00,
+    img: 'rockstar-1784391998.jpg',
+    alt: 'Rockstar Energy Original',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'gatorade',
+    cat: 'bebidas',
+    nombre: 'Gatorade Cool Blue',
+    desc: 'Bebida isotónica. Botella 500ml.',
+    precio: 2.00,
+    img: 'gatorade-1784392176.jpg',
+    alt: 'Gatorade Cool Blue',
+    estrella: false,
+    agotado: false,
+  },
+  {
+    id: 'lipton',
+    cat: 'bebidas',
+    nombre: 'Lipton Ice Tea Mango Maracuyá',
+    desc: 'Té frío. Botella 500ml.',
+    precio: 1.50,
+    img: 'lipton-1784393101.jpg',
+    alt: 'Lipton Ice Tea Mango Maracuyá',
+    estrella: false,
+    agotado: false,
+  },
+];
 
-function renderCart() {
-  let total = 0;
-  cartCountEl.textContent = cart.reduce((a, i) => a + (i.qty||1), 0);
+/* ─── ESTADO CARRITO ─── */
+let carrito = JSON.parse(localStorage.getItem('qtop_carrito') || '[]');
 
-  if (cart.length === 0) {
-    cartBodyEl.innerHTML = '<p style="text-align:center;padding:4rem 1rem;color:#555;font-size:0.9rem;">Tu carrito está vacío</p>';
-    cartFooterEl.style.display = 'none';
+function guardarCarrito() {
+  localStorage.setItem('qtop_carrito', JSON.stringify(carrito));
+}
+
+/* ─── RENDERIZAR PRODUCTOS ESTRELLA ─── */
+function renderEstrella() {
+  const grid = document.getElementById('grid-estrella');
+  const estrellas = PRODUCTOS.filter(p => p.estrella);
+  grid.innerHTML = estrellas.map(p => `
+    <article class="card-estrella" aria-label="${p.nombre}">
+      <img src="${p.img}" alt="${p.alt}" class="card-estrella-img" loading="lazy">
+      <div class="card-estrella-body">
+        <h3 class="card-estrella-nombre">${p.nombre}</h3>
+        <p class="card-estrella-desc">${p.desc}</p>
+        <div class="card-estrella-pie">
+          <span class="card-estrella-precio">${formatPrecio(p.precio)}</span>
+          <button class="btn-anadir-estrella"
+                  onclick="anadirAlCarrito('${p.id}')"
+                  ${p.agotado ? 'disabled' : ''}
+                  aria-label="Añadir ${p.nombre} al carrito">
+            ${p.agotado ? 'Agotado' : 'Añadir'}
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+/* ─── RENDERIZAR CATÁLOGO ─── */
+let catActiva = 'todos';
+let textoBusqueda = '';
+
+function renderCatalogo() {
+  const grid = document.getElementById('catalogo-grid');
+  const sinRes = document.getElementById('sin-resultados');
+
+  const filtrados = PRODUCTOS.filter(p => {
+    const coincideCat = catActiva === 'todos' || p.cat === catActiva;
+    const coincideBusq = p.nombre.toLowerCase().includes(textoBusqueda.toLowerCase())
+                      || p.desc.toLowerCase().includes(textoBusqueda.toLowerCase());
+    return coincideCat && coincideBusq;
+  });
+
+  if (filtrados.length === 0) {
+    grid.innerHTML = '';
+    sinRes.style.display = 'block';
+    return;
+  }
+  sinRes.style.display = 'none';
+
+  const cats = { bakery: 'Bakery', snacks: 'Aperitivos', bebidas: 'Bebidas' };
+  grid.innerHTML = filtrados.map(p => `
+    <article class="card-producto" aria-label="${p.nombre}">
+      <div class="card-producto-img-wrap">
+        <img src="${p.img}" alt="${p.alt}" class="card-producto-img" loading="lazy">
+        ${p.agotado ? '<span class="badge-agotado">Agotado</span>' : ''}
+      </div>
+      <div class="card-producto-body">
+        <p class="card-producto-cat">${cats[p.cat] || p.cat}</p>
+        <h3 class="card-producto-nombre">${p.nombre}</h3>
+        <p class="card-producto-desc">${p.desc}</p>
+        <div class="card-producto-pie">
+          <span class="card-producto-precio">${formatPrecio(p.precio)}</span>
+          <button class="btn-anadir-catalogo"
+                  onclick="anadirAlCarrito('${p.id}')"
+                  ${p.agotado ? 'disabled' : ''}
+                  aria-label="Añadir ${p.nombre}">
+            ${p.agotado ? 'Agotado' : 'Añadir'}
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function filtrar(cat, btn) {
+  catActiva = cat;
+  document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+  btn.classList.add('activo');
+  renderCatalogo();
+}
+
+function buscar(valor) {
+  textoBusqueda = valor;
+  renderCatalogo();
+}
+
+/* ─── CARRITO ─── */
+function anadirAlCarrito(id) {
+  const prod = PRODUCTOS.find(p => p.id === id);
+  if (!prod || prod.agotado) return;
+
+  const existente = carrito.find(i => i.id === id);
+  if (existente) {
+    existente.qty++;
+  } else {
+    carrito.push({ id, qty: 1 });
+  }
+  guardarCarrito();
+  actualizarContador();
+  mostrarToast(`${prod.nombre} añadido`);
+}
+
+function cambiarQty(id, delta) {
+  const item = carrito.find(i => i.id === id);
+  if (!item) return;
+  item.qty = Math.max(1, item.qty + delta);
+  guardarCarrito();
+  actualizarContador();
+  renderCarrito();
+}
+
+function eliminarItem(id) {
+  carrito = carrito.filter(i => i.id !== id);
+  guardarCarrito();
+  actualizarContador();
+  renderCarrito();
+}
+
+function actualizarContador() {
+  const total = carrito.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('contador-carrito-cab').textContent = total;
+}
+
+function renderCarrito() {
+  const cuerpo = document.getElementById('carrito-cuerpo');
+  const pie = document.getElementById('carrito-pie');
+
+  if (carrito.length === 0) {
+    cuerpo.innerHTML = `
+      <div class="carrito-vacio">
+        <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+        <p>Tu carrito está vacío.<br>Añade algo de la bakery.</p>
+      </div>`;
+    pie.style.display = 'none';
     return;
   }
 
-  cartFooterEl.style.display = 'block';
-  let html = '';
-  cart.forEach((item, idx) => {
-    const qty = item.qty || 1;
-    total += item.price * qty;
-    html += `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          <small>${item.price.toFixed(2)} € × ${qty}</small>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <button onclick="changeQty(${idx},-1)" style="background:var(--negro3);color:var(--crema);border:1px solid #333;width:28px;height:28px;border-radius:50%;cursor:pointer;">−</button>
-          <span style="color:var(--crema)">${qty}</span>
-          <button onclick="changeQty(${idx},1)"  style="background:var(--negro3);color:var(--crema);border:1px solid #333;width:28px;height:28px;border-radius:50%;cursor:pointer;">+</button>
-          <button onclick="removeItem(${idx})" style="color:#c0392b;font-weight:bold;border:none;background:none;cursor:pointer;font-size:1.2rem;">×</button>
+  pie.style.display = 'block';
+  let totalNum = 0;
+
+  cuerpo.innerHTML = carrito.map(item => {
+    const prod = PRODUCTOS.find(p => p.id === item.id);
+    if (!prod) return '';
+    const sub = prod.precio * item.qty;
+    totalNum += sub;
+    return `
+      <div class="carrito-item">
+        <img src="${prod.img}" alt="${prod.alt}" class="carrito-item-img">
+        <div class="carrito-item-info">
+          <p class="carrito-item-nombre">${prod.nombre}</p>
+          <p class="carrito-item-precio">${formatPrecio(sub)}</p>
+          <div class="carrito-item-controles">
+            <button class="btn-qty" onclick="cambiarQty('${item.id}',-1)" aria-label="Reducir cantidad">−</button>
+            <span class="qty-val">${item.qty}</span>
+            <button class="btn-qty" onclick="cambiarQty('${item.id}',1)" aria-label="Aumentar cantidad">+</button>
+            <button class="btn-eliminar" onclick="eliminarItem('${item.id}')" aria-label="Eliminar ${prod.nombre}">
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>`;
-  });
+  }).join('');
 
-  cartBodyEl.innerHTML = html;
-  cartTotalEl.textContent = total.toFixed(2) + ' €';
-
-  document.getElementById('paypal-button-container').innerHTML = '';
-  paypal.Buttons({
-    style: { shape:'rect', color:'gold', layout:'vertical', label:'paypal' },
-    createOrder(data, actions) {
-      return actions.order.create({ purchase_units:[{ amount:{ value: total.toFixed(2), currency_code:'EUR' } }] });
-    },
-    onApprove(data, actions) {
-      return actions.order.capture().then(() => {
-        alert('¡Pago realizado con éxito! Nos pondremos en contacto contigo.');
-        cart = []; saveCart(); closeDrawer();
-      });
-    },
-    onError(err) { console.error(err); alert('Error en el pago. Prueba de nuevo.'); }
-  }).render('#paypal-button-container');
+  document.getElementById('carrito-total').textContent = formatPrecio(totalNum);
 }
 
-window.changeQty = (i, d) => { cart[i].qty = Math.max(1,(cart[i].qty||1)+d); saveCart(); };
-window.removeItem = (i) => { cart.splice(i,1); saveCart(); };
+function abrirCarrito() {
+  renderCarrito();
+  document.getElementById('overlay-carrito').classList.add('visible');
+  document.getElementById('carrito-panel').classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
 
-function openDrawer()  { overlayEl.classList.add('open'); drawerEl.classList.add('open'); renderCart(); }
-function closeDrawer() { overlayEl.classList.remove('open'); drawerEl.classList.remove('open'); }
+function cerrarCarrito() {
+  document.getElementById('overlay-carrito').classList.remove('visible');
+  document.getElementById('carrito-panel').classList.remove('visible');
+  document.body.style.overflow = '';
+}
 
-document.getElementById('openCartBtn').onclick = openDrawer;
-document.getElementById('closeCartBtn').onclick = closeDrawer;
-overlayEl.onclick = closeDrawer;
+function checkout() {
+  // TODO: Integrar pasarela de pago con tarjeta.
+  // Actualmente redirige al flujo de WhatsApp como alternativa.
+  // Para activar pago con tarjeta, integrar Stripe o similar
+  // con la clave pública correspondiente.
+  mostrarToast('Redirigiendo a confirmación…');
+  setTimeout(pedidoWhatsApp, 800);
+}
 
-document.querySelectorAll('.btn-add').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const name = btn.dataset.name, price = parseFloat(btn.dataset.price);
-    let found = cart.find(i => i.name === name);
-    if (found) found.qty = (found.qty||1)+1;
-    else cart.push({ name, price, qty:1 });
-    saveCart();
+function pedidoWhatsApp() {
+  if (carrito.length === 0) return;
+  const lineas = carrito.map(item => {
+    const p = PRODUCTOS.find(pr => pr.id === item.id);
+    return `• ${p.nombre} ×${item.qty} – ${formatPrecio(p.precio * item.qty)}`;
+  }).join('%0A');
+  const total = carrito.reduce((s, i) => {
+    const p = PRODUCTOS.find(pr => pr.id === i.id);
+    return s + p.precio * i.qty;
+  }, 0);
+  const msg = `Hola QTOP, quiero hacer el siguiente pedido:%0A%0A${lineas}%0A%0ATotal: ${formatPrecio(total)}%0A%0AGracias.`;
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`, '_blank');
+}
 
-    btn.textContent = '✓ Añadido';
-    btn.style.background = 'var(--dorado)';
-    btn.style.color = 'var(--negro)';
-    setTimeout(() => { btn.textContent = 'Añadir'; btn.style.background = ''; btn.style.color = ''; }, 1200);
+/* ─── UTILS ─── */
+function formatPrecio(n) {
+  return n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+}
+
+let toastTimer;
+function mostrarToast(msg, tipo='ok') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `visible ${tipo}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.className = '', 2400);
+}
+
+function toggleMenu() {
+  const btn = document.getElementById('btn-menu');
+  const nav = document.getElementById('nav-movil');
+  const abierto = nav.classList.toggle('visible');
+  btn.classList.toggle('abierto', abierto);
+  btn.setAttribute('aria-expanded', abierto);
+}
+
+/* ─── INIT ─── */
+document.addEventListener('DOMContentLoaded', () => {
+  // Año dinámico
+  document.getElementById('anio-footer').textContent = new Date().getFullYear();
+
+  // Renderizar secciones
+  renderEstrella();
+  renderCatalogo();
+  actualizarContador();
+
+  // Cerrar menú móvil al redimensionar
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      document.getElementById('nav-movil').classList.remove('visible');
+      document.getElementById('btn-menu').classList.remove('abierto');
+    }
   });
-});
 
-document.getElementById('verMenuBtn').addEventListener('click', () => {
-  document.getElementById('menu').scrollIntoView({ behavior:'smooth' });
+  // Scroll: ajustar cabecera
+  window.addEventListener('scroll', () => {
+    const cab = document.getElementById('cabecera');
+    if (window.scrollY > 60) {
+      cab.style.background = 'rgba(8,8,8,0.98)';
+    } else {
+      cab.style.background = 'rgba(14,14,14,0.96)';
+    }
+  }, { passive: true });
 });
-
-renderCart();
 </script>
 </body>
 </html>
