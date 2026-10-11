@@ -568,7 +568,111 @@
       *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
       .reveal { opacity: 1; transform: none; }
     }
-  </style>
+  
+/* ═══════════════════════════════════════════════
+   🎃 HALLOWEEN THEME — Quitar después del 1 Nov
+   Para desactivar: borrar este bloque completo
+   ═══════════════════════════════════════════════ */
+:root {
+  --dorado:  #e05e00;
+  --dorado2: #b84a00;
+  --dorado3: #ff7a1a;
+}
+
+/* Telarañas decorativas en esquinas */
+#cabecera::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 120px; height: 120px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg stroke='%23e05e00' stroke-width='0.6' fill='none' opacity='0.25'%3E%3Cline x1='0' y1='0' x2='120' y2='120'/%3E%3Cline x1='0' y1='0' x2='60' y2='120'/%3E%3Cline x1='0' y1='0' x2='0' y2='120'/%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='0' cy='0' r='60'/%3E%3Ccircle cx='0' cy='0' r='90'/%3E%3Cline x1='0' y1='30' x2='60' y2='120'/%3E%3Cline x1='30' y1='0' x2='120' y2='60'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#cabecera::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 120px; height: 120px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg stroke='%23e05e00' stroke-width='0.6' fill='none' opacity='0.25' transform='scale(-1,1) translate(-120,0)'%3E%3Cline x1='0' y1='0' x2='120' y2='120'/%3E%3Cline x1='0' y1='0' x2='60' y2='120'/%3E%3Cline x1='0' y1='0' x2='0' y2='120'/%3E%3Ccircle cx='0' cy='0' r='30'/%3E%3Ccircle cx='0' cy='0' r='60'/%3E%3Ccircle cx='0' cy='0' r='90'/%3E%3Cline x1='0' y1='30' x2='60' y2='120'/%3E%3Cline x1='30' y1='0' x2='120' y2='60'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#cabecera { position: relative; }
+
+/* Banner Halloween sobre el hero */
+#hero::before {
+  content: '🎃  Halloween Edition  ·  Edición Especial  🕷';
+  display: block;
+  width: 100%;
+  background: #e05e00;
+  color: #0e0e0e;
+  text-align: center;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: .45rem 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Partículas flotantes: murciélagos sutiles en hero */
+.hero-eyebrow::after {
+  content: '🦇';
+  margin-left: .5rem;
+  font-size: .9rem;
+  opacity: .55;
+  animation: batFloat 3s ease-in-out infinite;
+}
+
+@keyframes batFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50%       { transform: translateY(-4px) rotate(5deg); }
+}
+
+/* Título hero con toque de color naranja */
+.hero-titulo em { color: #ff7a1a; }
+
+/* Strip dorado → naranja Halloween */
+.strip-dorado { background: #e05e00; }
+
+/* Líneas doradas → naranja */
+.linea-dorada { background: #e05e00; }
+
+/* Sección de productos: borde superior sutil */
+#menu-section {
+  border-top: 1px solid rgba(224,94,0,.2);
+}
+
+/* Tarjetas de producto: borde naranja suave al hover */
+.prod-card:hover {
+  border-color: rgba(224,94,0,.4) !important;
+  box-shadow: 0 4px 24px rgba(224,94,0,.08);
+}
+
+/* Precio en naranja Halloween */
+.prod-precio { color: #e05e00 !important; }
+
+/* Footer decorativo */
+footer::before {
+  content: '— 🎃 Feliz Halloween 🎃 —';
+  display: block;
+  text-align: center;
+  color: rgba(224,94,0,.35);
+  font-size: .7rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+/* ═══════════════════════════════════════════════
+   FIN HALLOWEEN THEME
+   ═══════════════════════════════════════════════ */
+</style>
 </head>
 <body>
 
