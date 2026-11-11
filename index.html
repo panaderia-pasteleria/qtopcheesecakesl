@@ -471,6 +471,23 @@
       #may-flotante { bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); }
     }
 
+    /* mayoristas: pago con tarjeta, desglose con IVA y avisos */
+    .may-totales strong { font-size: 1.05rem; color: var(--crema); }
+    .may-totales-total { margin-top: .2rem; padding-top: .5rem; border-top: 1px solid rgba(184,151,62,.2); }
+    .may-totales-total strong { font-size: 1.5rem; color: var(--dorado); }
+    .may-pagar { display: block; width: 100%; background: var(--dorado); color: var(--negro); border: none; padding: .9rem 1rem; font-family: inherit; font-size: .76rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: background var(--trans), opacity var(--trans); }
+    .may-pagar:hover { background: var(--dorado3); }
+    .may-pagar.desactivado { opacity: .35; cursor: not-allowed; }
+    .may-pagar.desactivado:hover { background: var(--dorado); }
+    .may-pagar[aria-busy="true"] { opacity: .7; cursor: progress; }
+    .may-seguro { font-size: .66rem; color: var(--gris); text-align: center; margin: .5rem 0 0; line-height: 1.5; }
+    .may-o { text-align: center; font-size: .68rem; color: var(--gris); margin: .8rem 0; letter-spacing: 1.5px; text-transform: uppercase; }
+    .may-error { color: #ff8a80; margin: .7rem 0 0; }
+    .may-banner { max-width: 860px; margin: 0 auto 1.5rem; padding: 1rem 1.2rem; border-radius: var(--radio); font-size: .85rem; line-height: 1.6; text-align: center; }
+    .may-banner[hidden] { display: none; }
+    .may-banner-ok { background: rgba(39,174,96,.12); border: 1px solid rgba(39,174,96,.45); color: var(--crema); }
+    .may-banner-aviso { background: rgba(184,151,62,.1); border: 1px solid rgba(184,151,62,.4); color: var(--crema); }
+
     /* ── CÓMO FUNCIONA ── */
     #como-funciona { background: var(--negro); }
     .pasos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; position: relative; }
@@ -891,6 +908,7 @@ footer::before {
       <p class="seccion-subtitulo">Precios para negocios: bares, tiendas, pastelerías y restaurantes. Arma tu pedido y envíalo por WhatsApp; lo recoges en el local.</p>
       <div class="linea-dorada"></div>
     </div>
+    <div id="may-banner-pago" class="may-banner" role="status" hidden></div>
     <div class="may-reglas reveal">
       <div class="may-regla"><span>Pedido m&iacute;nimo</span><strong>2 cajas</strong></div>
       <div class="may-regla"><span>Entrega</span><strong>Solo recogida en el local</strong></div>
@@ -900,7 +918,7 @@ footer::before {
       <button type="button" id="may-abrir-seccion" class="may-abrir">Ver mi pedido mayorista <span class="may-n">0</span></button>
     </div>
     <div class="may-grid">
-      <article class="may-card reveal" data-ref="17039" data-nombre="Patatas Fritas 2 kg" data-formato="Caja de 4 bolsas de 500 g" data-precio="12.00" data-unidad="caja">
+      <article class="may-card reveal" data-ref="17039" data-nombre="Patatas Fritas 2 kg" data-formato="Caja de 4 bolsas de 500 g" data-precio="12.00" data-unidad="caja" data-iva="10">
         <span class="may-ref">REF 17039</span>
         <h3 class="may-nombre">Patatas Fritas 2 kg</h3>
         <p class="may-formato">Caja de 4 bolsas de 500 g</p>
@@ -910,7 +928,7 @@ footer::before {
           <button type="button" class="may-btn" data-may-add>A&ntilde;adir al pedido</button>
         </div>
       </article>
-      <article class="may-card reveal" data-ref="16971" data-nombre="Patatas Fritas Artesanas Sin Sal 4 kg" data-formato="Caja de 4 kg" data-precio="22.15" data-unidad="caja">
+      <article class="may-card reveal" data-ref="16971" data-nombre="Patatas Fritas Artesanas Sin Sal 4 kg" data-formato="Caja de 4 kg" data-precio="22.15" data-unidad="caja" data-iva="10">
         <span class="may-ref">REF 16971</span>
         <h3 class="may-nombre">Patatas Fritas Artesanas Sin Sal 4 kg</h3>
         <p class="may-formato">Caja de 4 kg</p>
@@ -920,7 +938,7 @@ footer::before {
           <button type="button" class="may-btn" data-may-add>A&ntilde;adir al pedido</button>
         </div>
       </article>
-      <article class="may-card reveal" data-ref="17709" data-nombre="Cacahuete Saladillo USA" data-formato="Bote de 2 kg" data-precio="7.90" data-unidad="bote">
+      <article class="may-card reveal" data-ref="17709" data-nombre="Cacahuete Saladillo USA" data-formato="Bote de 2 kg" data-precio="7.90" data-unidad="bote" data-iva="10">
         <span class="may-ref">REF 17709</span>
         <h3 class="may-nombre">Cacahuete Saladillo USA</h3>
         <p class="may-formato">Bote de 2 kg</p>
@@ -930,7 +948,7 @@ footer::before {
           <button type="button" class="may-btn" data-may-add>A&ntilde;adir al pedido</button>
         </div>
       </article>
-      <article class="may-card reveal" data-ref="13411" data-nombre="Nueces Peladas Mitades 80%" data-formato="Venta por kilo" data-precio="11.25" data-unidad="kilo">
+      <article class="may-card reveal" data-ref="13411" data-nombre="Nueces Peladas Mitades 80%" data-formato="Venta por kilo" data-precio="11.25" data-unidad="kilo" data-iva="10">
         <span class="may-ref">REF 13411</span>
         <h3 class="may-nombre">Nueces Peladas Mitades 80%</h3>
         <p class="may-formato">Venta por kilo</p>
@@ -941,7 +959,7 @@ footer::before {
         </div>
       </article>
     </div>
-    <p class="may-nota">Todos los precios son sin IVA.</p>
+    <p class="may-nota">Todos los precios son sin IVA. El IVA (10 %) se suma al pagar.</p>
   </div>
 </section>
 
@@ -1560,14 +1578,21 @@ document.addEventListener('DOMContentLoaded', () => {
     <ul id="may-lineas" class="may-lineas"></ul>
   </div>
   <div id="may-pie" class="may-panel-pie" hidden>
-    <div class="may-totales"><span>Total sin IVA</span><strong id="may-subtotal">0,00 &euro;</strong></div>
-    <p class="may-condiciones">IVA no incluido. Solo recogida en el local, listo entre 3 y 7 d&iacute;as. El importe definitivo lo confirmamos por WhatsApp.</p>
+    <div class="may-totales"><span>Subtotal sin IVA</span><strong id="may-subtotal">0,00 &euro;</strong></div>
+    <div class="may-totales"><span id="may-iva-etiqueta">IVA</span><strong id="may-iva">0,00 &euro;</strong></div>
+    <div class="may-totales may-totales-total"><span>Total con IVA</span><strong id="may-total">0,00 &euro;</strong></div>
+    <p class="may-condiciones">Solo recogida en el local, listo entre 3 y 7 d&iacute;as.</p>
     <p id="may-aviso" class="may-aviso" hidden></p>
     <label for="may-nombre">Tu nombre o el de tu negocio</label>
     <input id="may-nombre" type="text" autocomplete="organization" maxlength="80" placeholder="Ej.: Bar Los Arcos - Juan P&eacute;rez">
     <label for="may-notas">Notas (opcional)</label>
     <textarea id="may-notas" rows="2" maxlength="300" placeholder="Ej.: paso a recogerlo el jueves por la tarde"></textarea>
+    <button type="button" id="may-pagar" class="may-pagar desactivado" aria-disabled="true">Pagar con tarjeta</button>
+    <p class="may-seguro">Pago seguro con Stripe. No guardamos los datos de tu tarjeta.</p>
+    <p id="may-error-pago" class="may-aviso may-error" role="alert" hidden></p>
+    <p class="may-o">o</p>
     <a id="may-enviar" class="may-enviar desactivado" href="#" target="_blank" rel="noopener" aria-disabled="true"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enviar pedido por WhatsApp</a>
+    <p class="may-seguro">Por WhatsApp acordamos el pago contigo.</p>
     <button type="button" id="may-vaciar" class="may-vaciar">Vaciar pedido</button>
   </div>
 </aside>
@@ -1577,13 +1602,17 @@ document.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
   var WA_NUMERO = "34645052784";
+  var API_PAGO = "https://qtop-pagos.juandanielrocha.workers.dev/checkout-mayorista";
+  var URL_STRIPE = "https://checkout.stripe.com/";
   var MIN_UNIDADES = 2;
   var MAX_POR_PRODUCTO = 99;
   var CLAVE = "qtop_may_pedido_v1";
+  var MSG_GENERICO = "No se pudo iniciar el pago. Inténtalo de nuevo o envía el pedido por WhatsApp.";
 
   var catalogo = {};
   var orden = [];
   var pedido = {};
+  var enCurso = false;
 
   function $(id) { return document.getElementById(id); }
 
@@ -1591,16 +1620,21 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" }).format(n);
   }
 
+  function eurCent(c) { return eur(c / 100); }
+
   function leerCatalogo() {
     var cards = document.querySelectorAll(".may-card[data-ref]");
     for (var i = 0; i < cards.length; i++) {
       var c = cards[i];
       var ref = c.getAttribute("data-ref");
+      var precio = parseFloat(c.getAttribute("data-precio"));
       catalogo[ref] = {
         ref: ref,
         nombre: c.getAttribute("data-nombre"),
         formato: c.getAttribute("data-formato"),
-        precio: parseFloat(c.getAttribute("data-precio")),
+        precio: precio,
+        centimos: Math.round(precio * 100),
+        iva: parseFloat(c.getAttribute("data-iva")),
         unidad: c.getAttribute("data-unidad"),
         card: c
       };
@@ -1630,13 +1664,24 @@ document.addEventListener('DOMContentLoaded', () => {
     return t;
   }
 
-  function subtotal() {
-    var s = 0;
+  // Mismos cálculos que el servidor: IVA redondeado una vez por cada tipo.
+  function calculos() {
+    var base = 0;
+    var porTipo = {};
     for (var i = 0; i < orden.length; i++) {
       var r = orden[i];
-      if (pedido[r]) { s += pedido[r] * catalogo[r].precio; }
+      var q = pedido[r];
+      if (!q) { continue; }
+      var linea = q * catalogo[r].centimos;
+      base += linea;
+      porTipo[catalogo[r].iva] = (porTipo[catalogo[r].iva] || 0) + linea;
     }
-    return Math.round(s * 100) / 100;
+    var iva = 0;
+    var tipos = Object.keys(porTipo);
+    for (var k = 0; k < tipos.length; k++) {
+      iva += Math.round(porTipo[tipos[k]] * Number(tipos[k]) / 100);
+    }
+    return { base: base, iva: iva, total: base + iva, tipos: tipos };
   }
 
   function panelAbierto() { return $("may-panel").classList.contains("abierto"); }
@@ -1644,6 +1689,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function textoPedido() {
     var nombre = $("may-nombre").value.trim();
     var notas = $("may-notas").value.trim();
+    var c = calculos();
     var l = ["Hola, quiero hacer un pedido mayorista:", ""];
     for (var i = 0; i < orden.length; i++) {
       var r = orden[i];
@@ -1653,7 +1699,9 @@ document.addEventListener('DOMContentLoaded', () => {
       l.push("- " + q + " x " + p.nombre + " (REF " + p.ref + ") - " + eur(p.precio) + " = " + eur(q * p.precio));
     }
     l.push("");
-    l.push("Total sin IVA: " + eur(subtotal()));
+    l.push("Total sin IVA: " + eurCent(c.base));
+    l.push("IVA: " + eurCent(c.iva));
+    l.push("Total con IVA: " + eurCent(c.total));
     l.push("Recogida en el local.");
     if (nombre) { l.push("Nombre: " + nombre); }
     if (notas) { l.push("Notas: " + notas); }
@@ -1666,7 +1714,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return { ok: false, msg: "Pedido mínimo: " + MIN_UNIDADES + " cajas. Añade " + (MIN_UNIDADES - total) + " más.", campo: "" };
     }
     if ($("may-nombre").value.trim().length < 2) {
-      return { ok: false, msg: "Escribe tu nombre o el de tu negocio para enviar el pedido.", campo: "may-nombre" };
+      return { ok: false, msg: "Escribe tu nombre o el de tu negocio para continuar.", campo: "may-nombre" };
     }
     return { ok: true, msg: "", campo: "" };
   }
@@ -1674,6 +1722,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function actualizarEnvio() {
     var e = estado();
     var a = $("may-enviar");
+    var pagar = $("may-pagar");
     var aviso = $("may-aviso");
     aviso.textContent = e.msg;
     aviso.hidden = e.ok;
@@ -1681,10 +1730,14 @@ document.addEventListener('DOMContentLoaded', () => {
       a.href = "https://wa.me/" + WA_NUMERO + "?text=" + encodeURIComponent(textoPedido());
       a.setAttribute("aria-disabled", "false");
       a.classList.remove("desactivado");
+      pagar.setAttribute("aria-disabled", "false");
+      pagar.classList.remove("desactivado");
     } else {
       a.href = "#";
       a.setAttribute("aria-disabled", "true");
       a.classList.add("desactivado");
+      pagar.setAttribute("aria-disabled", "true");
+      pagar.classList.add("desactivado");
     }
   }
 
@@ -1735,9 +1788,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    var c = calculos();
     $("may-vacio").hidden = total > 0;
     $("may-pie").hidden = total === 0;
-    $("may-subtotal").textContent = eur(subtotal());
+    $("may-subtotal").textContent = eurCent(c.base);
+    $("may-iva").textContent = eurCent(c.iva);
+    $("may-iva-etiqueta").textContent = c.tipos.length === 1 ? "IVA " + c.tipos[0] + "%" : "IVA";
+    $("may-total").textContent = eurCent(c.total);
 
     var contadores = document.querySelectorAll(".may-n");
     for (var k = 0; k < contadores.length; k++) { contadores[k].textContent = String(total); }
@@ -1750,6 +1807,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var q = (pedido[ref] || 0) + delta;
     if (q <= 0) { delete pedido[ref]; } else { pedido[ref] = Math.min(q, MAX_POR_PRODUCTO); }
     guardar();
+    mostrarErrorPago("");
     render();
   }
 
@@ -1770,10 +1828,83 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   }
 
+  function mostrarErrorPago(texto) {
+    var e = $("may-error-pago");
+    e.textContent = texto;
+    e.hidden = !texto;
+  }
+
+  function restaurarBotonPago() {
+    var b = $("may-pagar");
+    enCurso = false;
+    b.textContent = "Pagar con tarjeta";
+    b.removeAttribute("aria-busy");
+  }
+
+  function pagar() {
+    if (enCurso) { return; }
+    var e = estado();
+    if (!e.ok) {
+      if (e.campo) { $(e.campo).focus(); }
+      return;
+    }
+    enCurso = true;
+    mostrarErrorPago("");
+    var b = $("may-pagar");
+    b.textContent = "Conectando con Stripe...";
+    b.setAttribute("aria-busy", "true");
+
+    var items = [];
+    for (var i = 0; i < orden.length; i++) {
+      if (pedido[orden[i]]) { items.push({ ref: orden[i], qty: pedido[orden[i]] }); }
+    }
+    var cuerpo = JSON.stringify({ items: items, nombre: $("may-nombre").value.trim(), notas: $("may-notas").value.trim() });
+
+    fetch(API_PAGO, { method: "POST", headers: { "Content-Type": "application/json" }, body: cuerpo })
+      .then(function (r) {
+        return r.json().then(function (d) { return { ok: r.ok, data: d }; }, function () { return { ok: r.ok, data: {} }; });
+      })
+      .then(function (res) {
+        var url = res.data && res.data.url;
+        if (res.ok && typeof url === "string" && url.indexOf(URL_STRIPE) === 0) {
+          window.location.href = url;
+          return;
+        }
+        throw { mensaje: res.data && typeof res.data.error === "string" ? res.data.error : MSG_GENERICO };
+      })
+      .catch(function (err) {
+        restaurarBotonPago();
+        mostrarErrorPago(err && err.mensaje ? err.mensaje : MSG_GENERICO);
+      });
+  }
+
+  function mostrarBanner(clase, texto) {
+    var b = $("may-banner-pago");
+    b.className = "may-banner " + clase;
+    b.textContent = texto;
+    b.hidden = false;
+  }
+
+  function tratarRetornoDePago() {
+    var estadoPago = "";
+    try { estadoPago = new URLSearchParams(window.location.search).get("pago_mayorista") || ""; } catch (e) { estadoPago = ""; }
+    if (estadoPago === "ok") {
+      pedido = {};
+      guardar();
+      mostrarBanner("may-banner-ok", "¡Gracias por tu pedido! Si el pago se completó, Stripe te enviará el recibo por correo y nosotros te confirmaremos por WhatsApp. Recogida en el local entre 3 y 7 días.");
+    } else if (estadoPago === "cancelado") {
+      mostrarBanner("may-banner-aviso", "Pago cancelado. Tu pedido sigue guardado: puedes volver a intentarlo o enviarlo por WhatsApp.");
+    }
+    if (estadoPago) {
+      try { window.history.replaceState(null, "", window.location.pathname + window.location.hash); } catch (e) { /* nada */ }
+    }
+  }
+
   function init() {
     if (!$("may-panel")) { return; }
     leerCatalogo();
     cargar();
+    tratarRetornoDePago();
 
     document.addEventListener("click", function (ev) {
       var add = ev.target.closest("[data-may-add]");
@@ -1802,11 +1933,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $("may-nombre").addEventListener("input", actualizarEnvio);
     $("may-notas").addEventListener("input", actualizarEnvio);
+    $("may-pagar").addEventListener("click", pagar);
+
+    // Si vuelve atrás desde Stripe, el botón no debe quedarse en "Conectando..."
+    window.addEventListener("pageshow", function (ev) {
+      if (ev.persisted) { restaurarBotonPago(); render(); }
+    });
 
     $("may-vaciar").addEventListener("click", function () {
       if (window.confirm("¿Vaciar el pedido mayorista?")) {
         pedido = {};
         guardar();
+        mostrarErrorPago("");
         render();
       }
     });
