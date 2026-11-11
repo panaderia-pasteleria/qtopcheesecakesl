@@ -905,7 +905,7 @@ footer::before {
     <div class="seccion-header reveal">
       <p class="etiqueta">Venta al por mayor</p>
       <h2 class="seccion-titulo" id="mayoristas-titulo">Mayoristas</h2>
-      <p class="seccion-subtitulo">Precios para negocios: bares, tiendas, pastelerías y restaurantes. Arma tu pedido y envíalo por WhatsApp; lo recoges en el local.</p>
+      <p class="seccion-subtitulo">Precios para negocios: bares, tiendas, pastelerías y restaurantes. Arma tu pedido, págalo con tarjeta o envíalo por WhatsApp; lo recoges en el local.</p>
       <div class="linea-dorada"></div>
     </div>
     <div id="may-banner-pago" class="may-banner" role="status" hidden></div>
@@ -1891,7 +1891,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (estadoPago === "ok") {
       pedido = {};
       guardar();
-      mostrarBanner("may-banner-ok", "¡Gracias por tu pedido! Si el pago se completó, Stripe te enviará el recibo por correo y nosotros te confirmaremos por WhatsApp. Recogida en el local entre 3 y 7 días.");
+      mostrarBanner("may-banner-ok", "¡Gracias por tu pedido! Si el pago se completó, te lo confirmaremos por WhatsApp. Recogida en el local entre 3 y 7 días.");
     } else if (estadoPago === "cancelado") {
       mostrarBanner("may-banner-aviso", "Pago cancelado. Tu pedido sigue guardado: puedes volver a intentarlo o enviarlo por WhatsApp.");
     }
