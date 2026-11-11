@@ -399,6 +399,26 @@
     .btn-anadir-catalogo:disabled { opacity: .3; cursor: not-allowed; border-color: var(--gris2); color: var(--gris2); }
     #sin-resultados { display: none; text-align: center; color: var(--gris); font-size: .9rem; padding: 3rem; grid-column: 1/-1; }
 
+    /* ── MAYORISTAS ── */
+    #mayoristas { background: var(--negro2); }
+    .may-reglas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 860px; margin: 0 auto 2.5rem; }
+    .may-regla { border: 1px solid rgba(184,151,62,.2); border-radius: var(--radio); padding: 1rem 1.2rem; text-align: center; background: var(--negro3); }
+    .may-regla span { display: block; font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); margin-bottom: .35rem; }
+    .may-regla strong { font-family: var(--font-titulo); font-size: 1.05rem; font-weight: 600; color: var(--crema); line-height: 1.3; }
+    .may-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+    .may-card { background: var(--negro3); border: 1px solid rgba(184,151,62,.08); border-radius: var(--radio); padding: 1.3rem; display: flex; flex-direction: column; transition: border-color var(--trans), transform var(--trans); }
+    .may-card:hover { border-color: rgba(184,151,62,.25); transform: translateY(-3px); }
+    .may-ref { align-self: flex-start; font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dorado); border: 1px solid rgba(184,151,62,.35); border-radius: 2px; padding: .2rem .55rem; margin-bottom: .9rem; }
+    .may-nombre { font-family: var(--font-titulo); font-size: 1.25rem; color: var(--crema); line-height: 1.2; margin-bottom: .4rem; }
+    .may-formato { font-size: .78rem; color: var(--gris); line-height: 1.5; flex: 1; margin-bottom: 1.1rem; }
+    .may-pie { display: flex; flex-direction: column; gap: .9rem; }
+    .may-precio { font-family: var(--font-titulo); font-size: 1.6rem; font-weight: 600; color: var(--dorado); }
+    .may-precio span { font-family: var(--font-texto); font-size: .68rem; font-weight: 500; color: var(--gris); letter-spacing: .5px; }
+    .may-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; background: transparent; border: 1px solid rgba(184,151,62,.4); color: var(--dorado); padding: .65rem 1rem; font-size: .68rem; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; border-radius: 2px; transition: all var(--trans); text-align: center; }
+    .may-btn:hover { background: #25D366; border-color: #25D366; color: #fff; }
+    .may-nota { text-align: center; font-size: .72rem; color: var(--gris); margin-top: 1.8rem; }
+    @media (max-width: 768px) { .may-reglas { grid-template-columns: 1fr; } }
+
     /* ── CÓMO FUNCIONA ── */
     #como-funciona { background: var(--negro); }
     .pasos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3rem; position: relative; }
@@ -688,6 +708,7 @@ footer::before {
       <a href="#hero">Inicio</a>
       <a href="#seleccion">Bakery</a>
       <a href="#catalogo">Menú</a>
+      <a href="#mayoristas">Mayoristas</a>
       <a href="#filosofia">Nosotros</a>
       <a href="#visitanos">Visítanos</a>
     </nav>
@@ -709,6 +730,7 @@ footer::before {
   <a href="#hero" onclick="toggleMenu()">Inicio</a>
   <a href="#seleccion" onclick="toggleMenu()">Bakery</a>
   <a href="#catalogo" onclick="toggleMenu()">Menú completo</a>
+  <a href="#mayoristas" onclick="toggleMenu()">Mayoristas</a>
   <a href="#filosofia" onclick="toggleMenu()">Nosotros</a>
   <a href="#visitanos" onclick="toggleMenu()">Visítanos</a>
   <a href="https://wa.me/34645052784" target="_blank" rel="noopener" onclick="toggleMenu()">WhatsApp</a>
@@ -808,6 +830,62 @@ footer::before {
 </section>
 
 <!-- CÓMO FUNCIONA -->
+<!-- ═══ MAYORISTAS ═══ -->
+<section id="mayoristas" class="seccion" aria-labelledby="mayoristas-titulo">
+  <div class="container">
+    <div class="seccion-header reveal">
+      <p class="etiqueta">Venta al por mayor</p>
+      <h2 class="seccion-titulo" id="mayoristas-titulo">Mayoristas</h2>
+      <p class="seccion-subtitulo">Precios para negocios: bares, tiendas, pastelerías y restaurantes. Pide por WhatsApp y recoge en el local.</p>
+      <div class="linea-dorada"></div>
+    </div>
+    <div class="may-reglas reveal">
+      <div class="may-regla"><span>Pedido m&iacute;nimo</span><strong>2 cajas</strong></div>
+      <div class="may-regla"><span>Entrega</span><strong>Solo recogida en el local</strong></div>
+      <div class="may-regla"><span>Plazo</span><strong>Listo entre 3 y 7 d&iacute;as</strong></div>
+    </div>
+    <div class="may-grid">
+      <article class="may-card reveal">
+        <span class="may-ref">REF 17039</span>
+        <h3 class="may-nombre">Patatas Fritas 2 kg</h3>
+        <p class="may-formato">Caja de 4 bolsas de 500 g</p>
+        <div class="may-pie">
+          <p class="may-precio">12,00 &euro; <span>/ caja &middot; + IVA</span></p>
+          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Patatas%20Fritas%202%20kg%20-%20Caja%20de%204%20bolsas%20de%20500%20g%20%28REF%2017039%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+        </div>
+      </article>
+      <article class="may-card reveal">
+        <span class="may-ref">REF 16971</span>
+        <h3 class="may-nombre">Patatas Fritas Artesanas Sin Sal 4 kg</h3>
+        <p class="may-formato">Caja de 4 kg</p>
+        <div class="may-pie">
+          <p class="may-precio">22,15 &euro; <span>/ caja &middot; + IVA</span></p>
+          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Patatas%20Fritas%20Artesanas%20Sin%20Sal%204%20kg%20-%20Caja%20de%204%20kg%20%28REF%2016971%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+        </div>
+      </article>
+      <article class="may-card reveal">
+        <span class="may-ref">REF 17709</span>
+        <h3 class="may-nombre">Cacahuete Saladillo USA</h3>
+        <p class="may-formato">Bote de 2 kg</p>
+        <div class="may-pie">
+          <p class="may-precio">7,90 &euro; <span>/ bote &middot; + IVA</span></p>
+          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Cacahuete%20Saladillo%20USA%20-%20Bote%20de%202%20kg%20%28REF%2017709%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+        </div>
+      </article>
+      <article class="may-card reveal">
+        <span class="may-ref">REF 13411</span>
+        <h3 class="may-nombre">Nueces Peladas Mitades 80%</h3>
+        <p class="may-formato">Venta por kilo</p>
+        <div class="may-pie">
+          <p class="may-precio">11,25 &euro; <span>/ kilo &middot; + IVA</span></p>
+          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Nueces%20Peladas%20Mitades%2080%25%20-%20Venta%20por%20kilo%20%28REF%2013411%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+        </div>
+      </article>
+    </div>
+    <p class="may-nota">Todos los precios son sin IVA.</p>
+  </div>
+</section>
+
 <section id="como-funciona" class="seccion" aria-labelledby="como-titulo">
   <div class="container">
     <div class="seccion-header reveal">
