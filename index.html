@@ -401,23 +401,75 @@
 
     /* ── MAYORISTAS ── */
     #mayoristas { background: var(--negro2); }
-    .may-reglas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 860px; margin: 0 auto 2.5rem; }
+    .may-reglas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 860px; margin: 0 auto 1.8rem; }
     .may-regla { border: 1px solid rgba(184,151,62,.2); border-radius: var(--radio); padding: 1rem 1.2rem; text-align: center; background: var(--negro3); }
     .may-regla span { display: block; font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); margin-bottom: .35rem; }
     .may-regla strong { font-family: var(--font-titulo); font-size: 1.05rem; font-weight: 600; color: var(--crema); line-height: 1.3; }
+    .may-barra { text-align: center; margin-bottom: 2rem; }
+    .may-abrir { display: inline-flex; align-items: center; gap: .6rem; font-family: inherit; background: transparent; border: 1px solid var(--dorado); color: var(--dorado); padding: .7rem 1.3rem; font-size: .7rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: all var(--trans); }
+    .may-abrir:hover { background: var(--dorado); color: var(--negro); }
+    .may-n { display: inline-flex; align-items: center; justify-content: center; min-width: 1.4rem; height: 1.4rem; padding: 0 .35rem; border-radius: 999px; background: var(--dorado); color: var(--negro); font-size: .68rem; font-weight: 700; letter-spacing: 0; }
+    .may-abrir:hover .may-n { background: var(--negro); color: var(--dorado); }
     .may-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
     .may-card { background: var(--negro3); border: 1px solid rgba(184,151,62,.08); border-radius: var(--radio); padding: 1.3rem; display: flex; flex-direction: column; transition: border-color var(--trans), transform var(--trans); }
     .may-card:hover { border-color: rgba(184,151,62,.25); transform: translateY(-3px); }
     .may-ref { align-self: flex-start; font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dorado); border: 1px solid rgba(184,151,62,.35); border-radius: 2px; padding: .2rem .55rem; margin-bottom: .9rem; }
     .may-nombre { font-family: var(--font-titulo); font-size: 1.25rem; color: var(--crema); line-height: 1.2; margin-bottom: .4rem; }
     .may-formato { font-size: .78rem; color: var(--gris); line-height: 1.5; flex: 1; margin-bottom: 1.1rem; }
-    .may-pie { display: flex; flex-direction: column; gap: .9rem; }
+    .may-pie { display: flex; flex-direction: column; gap: .8rem; }
     .may-precio { font-family: var(--font-titulo); font-size: 1.6rem; font-weight: 600; color: var(--dorado); }
     .may-precio span { font-family: var(--font-texto); font-size: .68rem; font-weight: 500; color: var(--gris); letter-spacing: .5px; }
-    .may-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; background: transparent; border: 1px solid rgba(184,151,62,.4); color: var(--dorado); padding: .65rem 1rem; font-size: .68rem; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; border-radius: 2px; transition: all var(--trans); text-align: center; }
-    .may-btn:hover { background: #25D366; border-color: #25D366; color: #fff; }
+    .may-enpedido { font-size: .72rem; font-weight: 600; color: var(--crema); letter-spacing: .5px; }
+    .may-btn { display: inline-flex; align-items: center; justify-content: center; font-family: inherit; background: transparent; border: 1px solid rgba(184,151,62,.4); color: var(--dorado); padding: .7rem 1rem; font-size: .68rem; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; border-radius: 2px; cursor: pointer; transition: all var(--trans); }
+    .may-btn:hover { background: var(--dorado); border-color: var(--dorado); color: var(--negro); }
     .may-nota { text-align: center; font-size: .72rem; color: var(--gris); margin-top: 1.8rem; }
-    @media (max-width: 768px) { .may-reglas { grid-template-columns: 1fr; } }
+
+    /* panel del pedido mayorista (independiente del carrito normal) */
+    #may-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); z-index: 990; }
+    #may-overlay[hidden] { display: none; }
+    #may-panel { position: fixed; top: 0; right: 0; width: min(420px, 95vw); height: 100%; background: var(--negro2); border-left: 1px solid rgba(184,151,62,.2); z-index: 995; display: flex; flex-direction: column; transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility 0s linear .3s; }
+    #may-panel.abierto { transform: translateX(0); visibility: visible; transition: transform .3s ease, visibility 0s; }
+    .may-panel-cab { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.3rem; border-bottom: 1px solid rgba(184,151,62,.15); }
+    .may-panel-cab h2 { font-family: var(--font-titulo); font-size: 1.4rem; color: var(--crema); font-weight: 600; }
+    #may-cerrar { background: none; border: none; color: var(--crema); font-size: 1.8rem; line-height: 1; cursor: pointer; padding: .2rem .5rem; }
+    .may-panel-cuerpo { flex: 1; overflow-y: auto; padding: .5rem 1.3rem; }
+    .may-vacio { color: var(--gris); font-size: .85rem; line-height: 1.7; padding: 2rem 0; text-align: center; }
+    .may-vacio[hidden], .may-panel-pie[hidden], .may-enpedido[hidden], .may-aviso[hidden], #may-flotante[hidden] { display: none; }
+    .may-lineas { list-style: none; margin: 0; padding: 0; }
+    .may-linea { display: grid; grid-template-columns: 1fr auto; gap: .5rem .8rem; padding: .95rem 0; border-bottom: 1px solid rgba(255,255,255,.06); align-items: center; }
+    .may-linea-info strong { display: block; font-family: var(--font-titulo); font-size: 1rem; color: var(--crema); line-height: 1.25; font-weight: 600; }
+    .may-linea-info small { display: block; font-size: .68rem; color: var(--gris); margin-top: .25rem; line-height: 1.45; }
+    .may-linea-total { font-family: var(--font-titulo); font-size: 1.05rem; color: var(--dorado); font-weight: 600; text-align: right; }
+    .may-linea-ctrl { display: flex; align-items: center; gap: .5rem; }
+    .may-qbtn { width: 30px; height: 30px; border: 1px solid rgba(184,151,62,.35); background: none; color: var(--crema); border-radius: 2px; font-size: 1.05rem; line-height: 1; cursor: pointer; transition: all var(--trans); }
+    .may-qbtn:hover { background: var(--dorado); border-color: var(--dorado); color: var(--negro); }
+    .may-q { min-width: 1.6rem; text-align: center; font-size: .9rem; color: var(--crema); font-weight: 600; }
+    .may-quitar { justify-self: end; background: none; border: none; color: var(--gris); font-family: inherit; font-size: .68rem; letter-spacing: .5px; text-decoration: underline; cursor: pointer; padding: .3rem 0; }
+    .may-quitar:hover { color: var(--error); }
+    .may-panel-pie { padding: 1rem 1.3rem 1.3rem; border-top: 1px solid rgba(184,151,62,.15); max-height: 62%; overflow-y: auto; background: var(--negro2); }
+    .may-totales { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: .3rem; }
+    .may-totales span { font-size: .7rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); }
+    .may-totales strong { font-family: var(--font-titulo); font-size: 1.5rem; color: var(--dorado); font-weight: 600; }
+    .may-condiciones { font-size: .68rem; color: var(--gris); line-height: 1.55; margin-bottom: .9rem; }
+    .may-aviso { font-size: .74rem; color: var(--dorado3); line-height: 1.5; margin-bottom: .8rem; }
+    .may-panel-pie label { display: block; font-size: .62rem; font-weight: 600; letter-spacing: 1.3px; text-transform: uppercase; color: var(--gris); margin-bottom: .3rem; }
+    .may-panel-pie input, .may-panel-pie textarea { width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(184,151,62,.2); border-radius: 2px; color: var(--crema); padding: .6rem .75rem; font-size: .85rem; font-family: inherit; outline: none; margin-bottom: .8rem; resize: vertical; }
+    .may-panel-pie input:focus, .may-panel-pie textarea:focus { border-color: rgba(184,151,62,.55); }
+    .may-enviar { display: flex; align-items: center; justify-content: center; gap: .55rem; background: #25D366; color: #fff; padding: .85rem 1rem; font-size: .74rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; border-radius: 2px; transition: background var(--trans), opacity var(--trans); }
+    .may-enviar:hover { background: #1ebe52; }
+    .may-enviar.desactivado { opacity: .35; cursor: not-allowed; }
+    .may-enviar.desactivado:hover { background: #25D366; }
+    .may-vaciar { display: block; margin: .9rem auto 0; background: none; border: none; color: var(--gris); font-family: inherit; font-size: .68rem; letter-spacing: .5px; text-decoration: underline; cursor: pointer; }
+    .may-vaciar:hover { color: var(--error); }
+    #may-flotante { position: fixed; right: 1rem; bottom: 1.2rem; z-index: 870; display: inline-flex; align-items: center; gap: .6rem; background: var(--dorado); color: var(--negro); border: none; border-radius: 999px; padding: .75rem 1.1rem; font-family: inherit; font-size: .7rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; box-shadow: 0 6px 24px rgba(0,0,0,.45); cursor: pointer; }
+    #may-flotante .may-n { background: var(--negro); color: var(--dorado); }
+    @media (max-width: 768px) {
+      .may-reglas { grid-template-columns: 1fr; gap: .6rem; }
+      .may-regla { display: flex; align-items: center; justify-content: space-between; gap: 1rem; text-align: left; padding: .8rem 1rem; }
+      .may-regla span { margin-bottom: 0; }
+      .may-regla strong { text-align: right; font-size: .98rem; }
+      #may-flotante { bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); }
+    }
 
     /* ── CÓMO FUNCIONA ── */
     #como-funciona { background: var(--negro); }
@@ -836,7 +888,7 @@ footer::before {
     <div class="seccion-header reveal">
       <p class="etiqueta">Venta al por mayor</p>
       <h2 class="seccion-titulo" id="mayoristas-titulo">Mayoristas</h2>
-      <p class="seccion-subtitulo">Precios para negocios: bares, tiendas, pastelerías y restaurantes. Pide por WhatsApp y recoge en el local.</p>
+      <p class="seccion-subtitulo">Precios para negocios: bares, tiendas, pastelerías y restaurantes. Arma tu pedido y envíalo por WhatsApp; lo recoges en el local.</p>
       <div class="linea-dorada"></div>
     </div>
     <div class="may-reglas reveal">
@@ -844,41 +896,48 @@ footer::before {
       <div class="may-regla"><span>Entrega</span><strong>Solo recogida en el local</strong></div>
       <div class="may-regla"><span>Plazo</span><strong>Listo entre 3 y 7 d&iacute;as</strong></div>
     </div>
+    <div class="may-barra">
+      <button type="button" id="may-abrir-seccion" class="may-abrir">Ver mi pedido mayorista <span class="may-n">0</span></button>
+    </div>
     <div class="may-grid">
-      <article class="may-card reveal">
+      <article class="may-card reveal" data-ref="17039" data-nombre="Patatas Fritas 2 kg" data-formato="Caja de 4 bolsas de 500 g" data-precio="12.00" data-unidad="caja">
         <span class="may-ref">REF 17039</span>
         <h3 class="may-nombre">Patatas Fritas 2 kg</h3>
         <p class="may-formato">Caja de 4 bolsas de 500 g</p>
         <div class="may-pie">
           <p class="may-precio">12,00 &euro; <span>/ caja &middot; + IVA</span></p>
-          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Patatas%20Fritas%202%20kg%20-%20Caja%20de%204%20bolsas%20de%20500%20g%20%28REF%2017039%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+          <p class="may-enpedido" hidden></p>
+          <button type="button" class="may-btn" data-may-add>A&ntilde;adir al pedido</button>
         </div>
       </article>
-      <article class="may-card reveal">
+      <article class="may-card reveal" data-ref="16971" data-nombre="Patatas Fritas Artesanas Sin Sal 4 kg" data-formato="Caja de 4 kg" data-precio="22.15" data-unidad="caja">
         <span class="may-ref">REF 16971</span>
         <h3 class="may-nombre">Patatas Fritas Artesanas Sin Sal 4 kg</h3>
         <p class="may-formato">Caja de 4 kg</p>
         <div class="may-pie">
           <p class="may-precio">22,15 &euro; <span>/ caja &middot; + IVA</span></p>
-          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Patatas%20Fritas%20Artesanas%20Sin%20Sal%204%20kg%20-%20Caja%20de%204%20kg%20%28REF%2016971%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+          <p class="may-enpedido" hidden></p>
+          <button type="button" class="may-btn" data-may-add>A&ntilde;adir al pedido</button>
         </div>
       </article>
-      <article class="may-card reveal">
+      <article class="may-card reveal" data-ref="17709" data-nombre="Cacahuete Saladillo USA" data-formato="Bote de 2 kg" data-precio="7.90" data-unidad="bote">
         <span class="may-ref">REF 17709</span>
         <h3 class="may-nombre">Cacahuete Saladillo USA</h3>
         <p class="may-formato">Bote de 2 kg</p>
         <div class="may-pie">
           <p class="may-precio">7,90 &euro; <span>/ bote &middot; + IVA</span></p>
-          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Cacahuete%20Saladillo%20USA%20-%20Bote%20de%202%20kg%20%28REF%2017709%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+          <p class="may-enpedido" hidden></p>
+          <button type="button" class="may-btn" data-may-add>A&ntilde;adir al pedido</button>
         </div>
       </article>
-      <article class="may-card reveal">
+      <article class="may-card reveal" data-ref="13411" data-nombre="Nueces Peladas Mitades 80%" data-formato="Venta por kilo" data-precio="11.25" data-unidad="kilo">
         <span class="may-ref">REF 13411</span>
         <h3 class="may-nombre">Nueces Peladas Mitades 80%</h3>
         <p class="may-formato">Venta por kilo</p>
         <div class="may-pie">
           <p class="may-precio">11,25 &euro; <span>/ kilo &middot; + IVA</span></p>
-          <a class="may-btn" href="https://wa.me/34645052784?text=Hola%2C%20quiero%20hacer%20un%20pedido%20mayorista%3A%20Nueces%20Peladas%20Mitades%2080%25%20-%20Venta%20por%20kilo%20%28REF%2013411%29.%20Cantidad%3A%20" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Pedir por WhatsApp</a>
+          <p class="may-enpedido" hidden></p>
+          <button type="button" class="may-btn" data-may-add>A&ntilde;adir al pedido</button>
         </div>
       </article>
     </div>
@@ -1488,6 +1547,288 @@ document.addEventListener('DOMContentLoaded', () => {
     cab.style.background = window.scrollY>60 ? 'rgba(8,8,8,.98)' : 'rgba(14,14,14,.96)';
   }, { passive:true });
 });
+</script>
+<!-- ═══ PANEL PEDIDO MAYORISTA ═══ -->
+<div id="may-overlay" hidden></div>
+<aside id="may-panel" role="dialog" aria-modal="true" aria-labelledby="may-panel-titulo" aria-hidden="true">
+  <div class="may-panel-cab">
+    <h2 id="may-panel-titulo">Pedido mayorista</h2>
+    <button type="button" id="may-cerrar" aria-label="Cerrar pedido mayorista">&times;</button>
+  </div>
+  <div class="may-panel-cuerpo">
+    <p id="may-vacio" class="may-vacio">Tu pedido est&aacute; vac&iacute;o. A&ntilde;ade productos desde la lista de mayoristas.</p>
+    <ul id="may-lineas" class="may-lineas"></ul>
+  </div>
+  <div id="may-pie" class="may-panel-pie" hidden>
+    <div class="may-totales"><span>Total sin IVA</span><strong id="may-subtotal">0,00 &euro;</strong></div>
+    <p class="may-condiciones">IVA no incluido. Solo recogida en el local, listo entre 3 y 7 d&iacute;as. El importe definitivo lo confirmamos por WhatsApp.</p>
+    <p id="may-aviso" class="may-aviso" hidden></p>
+    <label for="may-nombre">Tu nombre o el de tu negocio</label>
+    <input id="may-nombre" type="text" autocomplete="organization" maxlength="80" placeholder="Ej.: Bar Los Arcos - Juan P&eacute;rez">
+    <label for="may-notas">Notas (opcional)</label>
+    <textarea id="may-notas" rows="2" maxlength="300" placeholder="Ej.: paso a recogerlo el jueves por la tarde"></textarea>
+    <a id="may-enviar" class="may-enviar desactivado" href="#" target="_blank" rel="noopener" aria-disabled="true"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Enviar pedido por WhatsApp</a>
+    <button type="button" id="may-vaciar" class="may-vaciar">Vaciar pedido</button>
+  </div>
+</aside>
+<button type="button" id="may-flotante" hidden>Pedido mayorista <span class="may-n">0</span></button>
+<script>
+(function () {
+  "use strict";
+
+  var WA_NUMERO = "34645052784";
+  var MIN_UNIDADES = 2;
+  var MAX_POR_PRODUCTO = 99;
+  var CLAVE = "qtop_may_pedido_v1";
+
+  var catalogo = {};
+  var orden = [];
+  var pedido = {};
+
+  function $(id) { return document.getElementById(id); }
+
+  function eur(n) {
+    return new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR" }).format(n);
+  }
+
+  function leerCatalogo() {
+    var cards = document.querySelectorAll(".may-card[data-ref]");
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i];
+      var ref = c.getAttribute("data-ref");
+      catalogo[ref] = {
+        ref: ref,
+        nombre: c.getAttribute("data-nombre"),
+        formato: c.getAttribute("data-formato"),
+        precio: parseFloat(c.getAttribute("data-precio")),
+        unidad: c.getAttribute("data-unidad"),
+        card: c
+      };
+      orden.push(ref);
+    }
+  }
+
+  function cargar() {
+    try {
+      var raw = window.localStorage.getItem(CLAVE);
+      if (!raw) { return; }
+      var guardado = JSON.parse(raw);
+      for (var i = 0; i < orden.length; i++) {
+        var q = parseInt(guardado[orden[i]], 10);
+        if (q > 0) { pedido[orden[i]] = Math.min(q, MAX_POR_PRODUCTO); }
+      }
+    } catch (e) { /* sin almacenamiento: el pedido vive solo en esta visita */ }
+  }
+
+  function guardar() {
+    try { window.localStorage.setItem(CLAVE, JSON.stringify(pedido)); } catch (e) { /* nada */ }
+  }
+
+  function totalUnidades() {
+    var t = 0;
+    for (var i = 0; i < orden.length; i++) { t += pedido[orden[i]] || 0; }
+    return t;
+  }
+
+  function subtotal() {
+    var s = 0;
+    for (var i = 0; i < orden.length; i++) {
+      var r = orden[i];
+      if (pedido[r]) { s += pedido[r] * catalogo[r].precio; }
+    }
+    return Math.round(s * 100) / 100;
+  }
+
+  function panelAbierto() { return $("may-panel").classList.contains("abierto"); }
+
+  function textoPedido() {
+    var nombre = $("may-nombre").value.trim();
+    var notas = $("may-notas").value.trim();
+    var l = ["Hola, quiero hacer un pedido mayorista:", ""];
+    for (var i = 0; i < orden.length; i++) {
+      var r = orden[i];
+      var q = pedido[r];
+      if (!q) { continue; }
+      var p = catalogo[r];
+      l.push("- " + q + " x " + p.nombre + " (REF " + p.ref + ") - " + eur(p.precio) + " = " + eur(q * p.precio));
+    }
+    l.push("");
+    l.push("Total sin IVA: " + eur(subtotal()));
+    l.push("Recogida en el local.");
+    if (nombre) { l.push("Nombre: " + nombre); }
+    if (notas) { l.push("Notas: " + notas); }
+    return l.join("\n");
+  }
+
+  function estado() {
+    var total = totalUnidades();
+    if (total < MIN_UNIDADES) {
+      return { ok: false, msg: "Pedido mínimo: " + MIN_UNIDADES + " cajas. Añade " + (MIN_UNIDADES - total) + " más.", campo: "" };
+    }
+    if ($("may-nombre").value.trim().length < 2) {
+      return { ok: false, msg: "Escribe tu nombre o el de tu negocio para enviar el pedido.", campo: "may-nombre" };
+    }
+    return { ok: true, msg: "", campo: "" };
+  }
+
+  function actualizarEnvio() {
+    var e = estado();
+    var a = $("may-enviar");
+    var aviso = $("may-aviso");
+    aviso.textContent = e.msg;
+    aviso.hidden = e.ok;
+    if (e.ok) {
+      a.href = "https://wa.me/" + WA_NUMERO + "?text=" + encodeURIComponent(textoPedido());
+      a.setAttribute("aria-disabled", "false");
+      a.classList.remove("desactivado");
+    } else {
+      a.href = "#";
+      a.setAttribute("aria-disabled", "true");
+      a.classList.add("desactivado");
+    }
+  }
+
+  function crear(tag, clase, texto) {
+    var el = document.createElement(tag);
+    if (clase) { el.className = clase; }
+    if (texto !== undefined) { el.textContent = texto; }
+    return el;
+  }
+
+  function boton(clase, texto, accion, ref, etiqueta) {
+    var b = crear("button", clase, texto);
+    b.type = "button";
+    b.setAttribute("data-accion", accion);
+    b.setAttribute("data-ref", ref);
+    b.setAttribute("aria-label", etiqueta);
+    return b;
+  }
+
+  function render() {
+    var total = totalUnidades();
+    var lista = $("may-lineas");
+    while (lista.firstChild) { lista.removeChild(lista.firstChild); }
+
+    for (var i = 0; i < orden.length; i++) {
+      var ref = orden[i];
+      var q = pedido[ref];
+      var p = catalogo[ref];
+      var enCard = p.card.querySelector(".may-enpedido");
+      if (q) {
+        var li = crear("li", "may-linea");
+        var info = crear("div", "may-linea-info");
+        info.appendChild(crear("strong", "", p.nombre));
+        info.appendChild(crear("small", "", "REF " + p.ref + " · " + p.formato + " · " + eur(p.precio) + " / " + p.unidad));
+        var ctrl = crear("div", "may-linea-ctrl");
+        ctrl.appendChild(boton("may-qbtn", "−", "menos", ref, "Quitar una unidad de " + p.nombre));
+        ctrl.appendChild(crear("span", "may-q", String(q)));
+        ctrl.appendChild(boton("may-qbtn", "+", "mas", ref, "Añadir una unidad de " + p.nombre));
+        li.appendChild(info);
+        li.appendChild(crear("div", "may-linea-total", eur(q * p.precio)));
+        li.appendChild(ctrl);
+        li.appendChild(boton("may-quitar", "Quitar", "quitar", ref, "Quitar " + p.nombre + " del pedido"));
+        lista.appendChild(li);
+        enCard.textContent = "En tu pedido: " + q;
+        enCard.hidden = false;
+      } else {
+        enCard.hidden = true;
+      }
+    }
+
+    $("may-vacio").hidden = total > 0;
+    $("may-pie").hidden = total === 0;
+    $("may-subtotal").textContent = eur(subtotal());
+
+    var contadores = document.querySelectorAll(".may-n");
+    for (var k = 0; k < contadores.length; k++) { contadores[k].textContent = String(total); }
+
+    $("may-flotante").hidden = total === 0 || panelAbierto();
+    actualizarEnvio();
+  }
+
+  function cambiar(ref, delta) {
+    var q = (pedido[ref] || 0) + delta;
+    if (q <= 0) { delete pedido[ref]; } else { pedido[ref] = Math.min(q, MAX_POR_PRODUCTO); }
+    guardar();
+    render();
+  }
+
+  function abrir() {
+    $("may-overlay").hidden = false;
+    $("may-panel").classList.add("abierto");
+    $("may-panel").setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    render();
+    $("may-cerrar").focus();
+  }
+
+  function cerrar() {
+    $("may-panel").classList.remove("abierto");
+    $("may-panel").setAttribute("aria-hidden", "true");
+    $("may-overlay").hidden = true;
+    document.body.style.overflow = "";
+    render();
+  }
+
+  function init() {
+    if (!$("may-panel")) { return; }
+    leerCatalogo();
+    cargar();
+
+    document.addEventListener("click", function (ev) {
+      var add = ev.target.closest("[data-may-add]");
+      if (add) {
+        var card = add.closest(".may-card");
+        if (card) { cambiar(card.getAttribute("data-ref"), 1); }
+        return;
+      }
+      var acc = ev.target.closest("#may-lineas [data-accion]");
+      if (acc) {
+        var ref = acc.getAttribute("data-ref");
+        var a = acc.getAttribute("data-accion");
+        if (a === "mas") { cambiar(ref, 1); }
+        if (a === "menos") { cambiar(ref, -1); }
+        if (a === "quitar") { cambiar(ref, -(pedido[ref] || 0)); }
+      }
+    });
+
+    $("may-abrir-seccion").addEventListener("click", abrir);
+    $("may-flotante").addEventListener("click", abrir);
+    $("may-cerrar").addEventListener("click", cerrar);
+    $("may-overlay").addEventListener("click", cerrar);
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && panelAbierto()) { cerrar(); }
+    });
+
+    $("may-nombre").addEventListener("input", actualizarEnvio);
+    $("may-notas").addEventListener("input", actualizarEnvio);
+
+    $("may-vaciar").addEventListener("click", function () {
+      if (window.confirm("¿Vaciar el pedido mayorista?")) {
+        pedido = {};
+        guardar();
+        render();
+      }
+    });
+
+    $("may-enviar").addEventListener("click", function (ev) {
+      var e = estado();
+      if (!e.ok) {
+        ev.preventDefault();
+        if (e.campo) { $(e.campo).focus(); }
+      }
+    });
+
+    render();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
 </script>
 </body>
 </html>
