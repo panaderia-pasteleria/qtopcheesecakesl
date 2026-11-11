@@ -413,6 +413,7 @@
     .may-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
     .may-card { background: var(--negro3); border: 1px solid rgba(184,151,62,.08); border-radius: var(--radio); padding: 1.3rem; display: flex; flex-direction: column; transition: border-color var(--trans), transform var(--trans); }
     .may-card:hover { border-color: rgba(184,151,62,.25); transform: translateY(-3px); }
+ .may-foto { display: block; width: 100%; height: auto; border-radius: 6px; margin-bottom: 1.1rem; background: #000; }
     .may-ref { align-self: flex-start; font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dorado); border: 1px solid rgba(184,151,62,.35); border-radius: 2px; padding: .2rem .55rem; margin-bottom: .9rem; }
     .may-nombre { font-family: var(--font-titulo); font-size: 1.25rem; color: var(--crema); line-height: 1.2; margin-bottom: .4rem; }
     .may-formato { font-size: .78rem; color: var(--gris); line-height: 1.5; flex: 1; margin-bottom: 1.1rem; }
@@ -932,6 +933,7 @@
         </div>
       </article>
       <article class="may-card reveal" data-ref="00901" data-nombre="Fruta Italiana 3 kg Panda" data-formato="Caja de 3 kg" data-precio="25.48" data-unidad="caja" data-iva="10">
+        <img class="may-foto" src="fruta-italiana-caja-3kg.jpg" alt="Caja de gominolas Fruta Italiana Panda, 3 kg" width="900" height="672" loading="lazy" decoding="async">
         <span class="may-ref">REF 00901</span>
         <h3 class="may-nombre">Fruta Italiana 3 kg Panda</h3>
         <p class="may-formato">Caja de 3 kg</p>
