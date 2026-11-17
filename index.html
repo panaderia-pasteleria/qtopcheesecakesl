@@ -378,6 +378,7 @@
     .card-producto-img-wrap { position: relative; aspect-ratio: 1; overflow: hidden; background: #111; }
     .card-producto-img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
     .card-producto:hover .card-producto-img { transform: scale(1.04); }
+    .btn-encargo { display:inline-block; text-decoration:none; text-align:center; }
     .badge-agotado {
       position: absolute; top: .6rem; left: .6rem;
       background: rgba(14,14,14,.85); color: var(--gris);
@@ -1185,7 +1186,7 @@ const CONFIG = {
 
 const PRODUCTOS = [
   // BAKERY
-  { id:'cheesecake-entera', cat:'bakery', nombre:'Cheesecake Entera', desc:'Textura cremosa, horneado delicado y acabado tostado. Para compartir, o no.', precio:30.00, img:'cheesecake-entera-v2.png', alt:'Cheesecake entera QTOP', estrella:true, agotado:false },
+  { id:'cheesecake-entera', cat:'bakery', nombre:'Cheesecake Entera', desc:'Textura cremosa, horneado delicado y acabado tostado. Para compartir, o no.', precio:30.00, img:'cheesecake-entera-v2.png', alt:'Cheesecake entera QTOP', estrella:true, agotado:false, encargo:true },
   { id:'cheesecake-porcion', cat:'bakery', nombre:'Porción Cheesecake', desc:'La misma cheesecake de siempre, en formato individual. Cremosa, con base crujiente y ese tostado característico.', precio:4.00, img:'porcion-cheesecake-1784393403.png', alt:'Porción de cheesecake QTOP', estrella:true, agotado:false },
   { id:'cinnamon-roll', cat:'bakery', nombre:'Cinnamon Roll Clásico', desc:'Masa tierna, canela aromática y un glaseado equilibrado. Un clásico preparado con el sello QTOP.', precio:2.00, img:'cinnamon-roll-1784393403.png', alt:'Cinnamon Roll clásico QTOP', estrella:true, agotado:false },
   { id:'cookie-double', cat:'bakery', nombre:'Cookie Double Chocolate', desc:'Grande, blanda en el centro y con una cantidad generosa de chocolate. Sin medias tintas.', precio:2.00, img:'blob-f433227.png', alt:'Cookie double chocolate QTOP', estrella:true, agotado:false },
@@ -1247,9 +1248,13 @@ const PRODUCTOS = [
 ];
 
 /* ── CARRITO ── */
-let carrito = JSON.parse(localStorage.getItem('qtop_carrito') || '[]');
+let carrito = JSON.parse(localStorage.getItem('qtop_carrito') || '[]').filter(i=>{const q=PRODUCTOS.find(p=>p.id===i.id);return q&&!q.encargo&&!q.agotado;});
 function guardarCarrito() { localStorage.setItem('qtop_carrito', JSON.stringify(carrito)); }
 
+function btnProd(p, cls) {
+  if (p.encargo) return `<a class="${cls} btn-encargo" href="https://wa.me/34645052784?text=${encodeURIComponent('Hola, quiero encargar: '+p.nombre)}" target="_blank" rel="noopener" aria-label="Encargar ${p.nombre} por WhatsApp">Solo por encargo</a>`;
+  return `<button class="${cls}" onclick="addCart('${p.id}')" ${p.agotado?'disabled':''} aria-label="Añadir ${p.nombre}">${p.agotado?'Fuera de stock':'Añadir'}</button>`;
+}
 function renderEstrella() {
   const grid = document.getElementById('grid-estrella');
   const estrellas = PRODUCTOS.filter(p => p.estrella);
@@ -1261,7 +1266,7 @@ function renderEstrella() {
         <p class="card-estrella-desc">${p.desc}</p>
         <div class="card-estrella-pie">
           <span class="card-estrella-precio">${fmt(p.precio)}</span>
-          <button class="btn-anadir-estrella" onclick="addCart('${p.id}')" ${p.agotado?'disabled':''} aria-label="Añadir ${p.nombre}">${p.agotado?'Agotado':'Añadir'}</button>
+          ${btnProd(p,'btn-anadir-estrella')}
         </div>
       </div>
     </article>`).join('');
@@ -1284,7 +1289,7 @@ function renderCatalogo() {
     <article class="card-producto" aria-label="${p.nombre}">
       <div class="card-producto-img-wrap">
         <img src="${p.img}" alt="${p.alt}" class="card-producto-img" loading="lazy">
-        ${p.agotado?'<span class="badge-agotado">Agotado</span>':''}
+        ${p.encargo?'<span class="badge-agotado">Por encargo</span>':p.agotado?'<span class="badge-agotado">Fuera de stock</span>':''}
       </div>
       <div class="card-producto-body">
         <p class="card-producto-cat">${cats[p.cat]||p.cat}</p>
@@ -1292,7 +1297,7 @@ function renderCatalogo() {
         <p class="card-producto-desc">${p.desc}</p>
         <div class="card-producto-pie">
           <span class="card-producto-precio">${fmt(p.precio)}</span>
-          <button class="btn-anadir-catalogo" onclick="addCart('${p.id}')" ${p.agotado?'disabled':''} aria-label="Añadir ${p.nombre}">${p.agotado?'Agotado':'Añadir'}</button>
+          ${btnProd(p,'btn-anadir-catalogo')}
         </div>
       </div>
     </article>`).join('');
@@ -1308,7 +1313,7 @@ function buscar(v) { busqActiva=v; renderCatalogo(); }
 
 function addCart(id) {
   const prod = PRODUCTOS.find(p=>p.id===id);
-  if (!prod||prod.agotado) return;
+  if (!prod||prod.agotado||prod.encargo) return;
   const ex = carrito.find(i=>i.id===id);
   if (ex) ex.qty++; else carrito.push({id,qty:1});
   guardarCarrito(); updateCounter();
