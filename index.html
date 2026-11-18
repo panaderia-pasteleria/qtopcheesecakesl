@@ -1187,7 +1187,9 @@
     <button type="button" id="btn-pagar" onclick="procesarPago()" style="width:100%;background:#b8973e;color:#0e0e0e;border:none;padding:1rem;font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s;">
       <i class="fa-solid fa-lock"></i> Pagar con tarjeta
     </button>
-    <p style="text-align:center;font-size:.65rem;color:#555;">
+    <div id="checkout-error" role="alert" style="display:none;background:rgba(192,57,79,.12);border:1px solid rgba(192,57,79,.4);color:#f2c9d0;border-radius:6px;padding:.8rem 1rem;font-size:.78rem;line-height:1.5;"></div>
+    <button type="button" onclick="pedidoWhatsApp()" style="width:100%;background:transparent;color:#f2ede4;border:1px solid rgba(184,151,62,.4);padding:.75rem;font-size:.74rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;cursor:pointer;">Prefiero pedir por WhatsApp y pagar en tienda</button>
+    <p style="text-align:center;font-size:.65rem;color:#8a8a8a;">
       <i class="fa-solid fa-shield-halved"></i> Pago seguro procesado por Stripe · SSL encriptado
     </p>
   </div>
@@ -1440,85 +1442,129 @@ function cerrarCheckout() {
   document.body.style.overflow = '';
 }
 
+const API_TIENDA = 'https://qtop-pagos.juandanielrocha.workers.dev';
+const MSG_PAGO_FALLO = 'No se pudo iniciar el pago. Inténtalo de nuevo o envía el pedido por WhatsApp.';
+
+function resetBtnPagar() {
+  const btn = document.getElementById('btn-pagar');
+  if (!btn) return;
+  btn.disabled = false;
+  btn.innerHTML = '<i class="fa-solid fa-lock"></i> Pagar con tarjeta';
+}
+window.addEventListener('pageshow', e => { if (e.persisted) resetBtnPagar(); });
+
+function errorPago(msg) {
+  const el = document.getElementById('checkout-error');
+  if (!el) { toast(msg); return; }
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
 async function procesarPago() {
   const nombre = document.getElementById('checkout-nombre').value.trim();
   const email  = document.getElementById('checkout-email').value.trim();
   const tel    = document.getElementById('checkout-telefono').value.trim();
+  const err = document.getElementById('checkout-error');
+  if (err) err.style.display = 'none';
 
-  if (!nombre) { toast('Introduce tu nombre'); return; }
-  if (!email || !email.includes('@')) { toast('Introduce un email válido'); return; }
+  if (nombre.length < 2) { toast('Introduce tu nombre'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast('Introduce un email válido'); return; }
+  if (!carrito.length) { toast('Tu carrito está vacío'); return; }
 
   const btn = document.getElementById('btn-pagar');
   btn.disabled = true;
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando…';
 
-  // Calcular total
-  const totalEur = carrito.reduce((s, item) => {
+  const total = carrito.reduce((s, item) => {
     const p = PRODUCTOS.find(pr => pr.id === item.id);
-    return s + p.precio * item.qty;
+    return s + (p ? p.precio * item.qty : 0);
   }, 0);
 
-  // Construir detalle del pedido
-  const detalle = carrito.map(item => {
-    const p = PRODUCTOS.find(pr => pr.id === item.id);
-    return `${p.nombre} x${item.qty}`;
-  }).join(', ');
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 15000);
+  try {
+    const r = await fetch(API_TIENDA + '/checkout-tienda', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: carrito.map(i => ({ id: i.id, qty: i.qty })), nombre, email, telefono: tel }),
+      signal: ctl.signal
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.url || String(j.url).indexOf('https://checkout.stripe.com/') !== 0) {
+      throw new Error(r.status === 400 && j.error ? j.error : MSG_PAGO_FALLO);
+    }
+    try {
+      localStorage.setItem('qtop_pedido_pendiente', JSON.stringify({ nombre, email, telefono: tel, items: carrito, total, fecha: new Date().toISOString() }));
+    } catch (e) { /* sin almacenamiento: el pago sigue funcionando */ }
+    window.location.href = j.url;
+  } catch (e) {
+    resetBtnPagar();
+    const propio = e && e.message && e.name === 'Error' && e.message !== 'Failed to fetch';
+    errorPago(propio ? e.message : MSG_PAGO_FALLO);
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
-  // Enviar WhatsApp con el pedido
-  const lineasWA = carrito.map(item => {
-    const p = PRODUCTOS.find(pr => pr.id === item.id);
-    return `• ${p.nombre} x${item.qty} — ${fmt(p.precio * item.qty)}`;
-  }).join('%0A');
-
-  const msgWA = `🛒 NUEVO PEDIDO QTOP%0A%0ACliente: ${encodeURIComponent(nombre)}%0AEmail: ${encodeURIComponent(email)}${tel ? '%0ATel: ' + encodeURIComponent(tel) : ''}%0A%0AProductos:%0A${lineasWA}%0A%0A💳 TOTAL: ${fmt(totalEur)}%0A%0A⚠️ El cliente va a pagar con tarjeta. Confirma disponibilidad.`;
-
-  // Guardar pedido
-  localStorage.setItem('qtop_pedido_pendiente', JSON.stringify({
-    nombre, email, telefono: tel,
-    items: carrito, total: totalEur,
-    fecha: new Date().toISOString()
-  }));
-
-  // Limpiar carrito
-  carrito = [];
-  guardarCarrito();
-  updateCounter();
-  cerrarCheckout();
-
-  // Abrir WhatsApp con el pedido
-  window.open('https://wa.me/34645052784?text=' + msgWA, '_blank');
-
-  // Mostrar pantalla intermedia: reseña → luego Stripe
-  setTimeout(() => {
-    const stripeUrl = `https://buy.stripe.com/00w3cy6LUeNy2Um3G64gg00?prefilled_email=${encodeURIComponent(email)}&client_reference_id=${encodeURIComponent(nombre)}&locale=es`;
-
-    document.body.insertAdjacentHTML('beforeend', `
-      <div id="modal-review" style="position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
-        <div style="background:#161616;border:1px solid rgba(184,151,62,.25);border-radius:12px;padding:2rem;text-align:center;max-width:400px;width:100%;">
-          <div style="font-size:2.5rem;margin-bottom:.8rem;">⭐⭐⭐⭐⭐</div>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#f2ede4;margin-bottom:.6rem;">¡Gracias ${esc(nombre)}!</h2>
-          <p style="font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem;">
-            Hemos recibido tu pedido. Ahora te llevamos a completar el pago: el pedido queda confirmado cuando pagas.<br><br>
-            <strong style="color:#b8973e;">¿Te gustó QTOP?</strong><br>
-            Déjanos una reseña en Google — ¡nos ayuda muchísimo!
-          </p>
-          <a href="https://search.google.com/local/writereview?placeid=ChIJv-siy-wxQw0Rmi38JZjBmK8"
-             target="_blank" rel="noopener"
-             style="display:block;background:#4285F4;color:#fff;text-decoration:none;padding:.85rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem;"
-             onclick="setTimeout(() => { window.location.href = '${stripeUrl}'; }, 2000);">
-            ⭐ Dejar reseña en Google
-          </a>
-          <button type="button" onclick="window.location.href='${stripeUrl}'"
-             style="display:block;width:100%;background:#b8973e;color:#0e0e0e;border:none;padding:.85rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">
-            💳 Ir a pagar ahora
-          </button>
-          <p style="font-size:.65rem;color:#555;margin-top:1rem;">
-            Si dejas la reseña, te llevaremos automáticamente al pago en 2 segundos.
-          </p>
-        </div>
+/* ── RESULTADO DEL PAGO (vuelta desde Stripe, verificada en el servidor) ── */
+function modalPago(titulo, icono, cuerpoHtml, botonesHtml) {
+  const previo = document.getElementById('modal-resultado-pago');
+  if (previo) previo.remove();
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="modal-resultado-pago" role="dialog" aria-modal="true" aria-label="${esc(titulo)}" style="position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
+      <div style="background:#161616;border:1px solid rgba(184,151,62,.3);border-radius:12px;padding:2.2rem 2rem;text-align:center;max-width:420px;width:100%;max-height:92vh;overflow:auto;">
+        <div style="font-size:2.6rem;margin-bottom:.8rem;">${icono}</div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#f2ede4;margin-bottom:.8rem;">${esc(titulo)}</h2>
+        <div style="font-size:.85rem;color:#a0a0a0;line-height:1.7;margin-bottom:1.4rem;">${cuerpoHtml}</div>
+        ${botonesHtml || ''}
       </div>
-    `);
-  }, 800);
+    </div>`);
+}
+function cerrarModalPago() {
+  const m = document.getElementById('modal-resultado-pago');
+  if (m) m.remove();
+  window.history.replaceState({}, '', window.location.pathname);
+}
+const BTN_DORADO = 'display:block;width:100%;background:#b8973e;color:#0e0e0e;border:none;padding:.85rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;cursor:pointer;margin-bottom:.7rem;';
+const BTN_BORDE = 'display:block;width:100%;background:transparent;color:#f2ede4;border:1px solid rgba(184,151,62,.4);padding:.8rem;border-radius:6px;font-size:.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;cursor:pointer;margin-bottom:.7rem;';
+
+async function verificarRetornoPago(sid) {
+  const pedido = leerLS('qtop_pedido_pendiente', {});
+  modalPago('Comprobando tu pago…', '⏳', 'Un momento, lo estamos confirmando con Stripe.', '');
+  let estado = 'error';
+  try {
+    if (/^cs_(live|test)_[A-Za-z0-9]+$/.test(sid || '')) {
+      const r = await fetch(API_TIENDA + '/verificar-pago?sid=' + encodeURIComponent(sid));
+      if (r.ok) { const j = await r.json(); estado = j.pagado ? 'pagado' : 'no_pagado'; }
+    }
+  } catch (e) { estado = 'error'; }
+
+  const items = (Array.isArray(pedido.items) ? pedido.items : []).filter(i => PRODUCTOS.find(pr => pr.id === i.id));
+  const lineas = items.map(i => { const p = PRODUCTOS.find(pr => pr.id === i.id); return `• ${p.nombre} ×${i.qty} – ${fmt(p.precio * i.qty)}`; }).join('\n');
+  const waGenerico = 'https://wa.me/34645052784?text=' + encodeURIComponent('Hola QTOP, acabo de hacer un pedido en la web.');
+  const cerrar = `<button type="button" onclick="cerrarModalPago()" style="${BTN_BORDE}">Cerrar</button>`;
+
+  if (estado === 'pagado') {
+    carrito = []; guardarCarrito(); updateCounter();
+    try { localStorage.removeItem('qtop_pedido_pendiente'); } catch (e) {}
+    let wa = waGenerico;
+    if (pedido.nombre && items.length) {
+      wa = 'https://wa.me/34645052784?text=' + encodeURIComponent(
+        `✅ PEDIDO PAGADO CON TARJETA\n\nCliente: ${pedido.nombre}\nEmail: ${pedido.email || ''}${pedido.telefono ? '\nTel: ' + pedido.telefono : ''}\n\nProductos:\n${lineas}\n\nTotal: ${fmt(pedido.total || 0)}\n\nRecojo en tienda.`);
+    }
+    const saludo = pedido.nombre ? `Hola <strong style="color:#f2ede4;">${esc(pedido.nombre)}</strong>, tu pedido está pagado y confirmado.` : 'Tu pedido está pagado y confirmado.';
+    const recibo = pedido.email ? `<br>Recibirás el recibo en <strong style="color:#b8973e;">${esc(pedido.email)}</strong>.` : '';
+    modalPago('¡Pago realizado!', '✅',
+      `${saludo}${recibo}<br><br>Pulsa el botón para avisarnos por WhatsApp y te decimos cuándo puedes recogerlo.`,
+      `<a href="${wa}" target="_blank" rel="noopener" style="${BTN_DORADO}">Enviar confirmación por WhatsApp</a>
+       <a href="https://search.google.com/local/writereview?placeid=ChIJv-siy-wxQw0Rmi38JZjBmK8" target="_blank" rel="noopener" style="${BTN_BORDE}">⭐ Dejar una reseña en Google</a>${cerrar}`);
+  } else if (estado === 'no_pagado') {
+    modalPago('El pago no se completó', '⚠️', 'No se ha cobrado nada. Tu carrito sigue guardado: puedes volver a intentarlo cuando quieras.', cerrar);
+  } else {
+    modalPago('No pudimos comprobar el pago', 'ℹ️',
+      'Si Stripe te ha enviado el recibo, tu pedido está pagado. Escríbenos por WhatsApp y lo confirmamos enseguida. Si no se ha cobrado, tu carrito sigue guardado.',
+      `<a href="${waGenerico}" target="_blank" rel="noopener" style="${BTN_DORADO}">Escribir por WhatsApp</a>${cerrar}`);
+  }
 }
 
 function checkout() { abrirCheckout(); }
@@ -1557,38 +1603,10 @@ function initReveal() {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('anio-footer').textContent = new Date().getFullYear();
 
-  // Detectar retorno de Stripe
+  // Detectar retorno de Stripe (se verifica en el servidor antes de dar el pedido por pagado)
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('pago') === 'ok') {
-    const pedido = leerLS('qtop_pedido_pendiente', {});
-    if (pedido.nombre) {
-      // Limpiar carrito
-      carrito = [];
-      guardarCarrito();
-      updateCounter();
-      // Enviar pedido por WhatsApp automáticamente
-      setTimeout(() => {
-        const lineas = (Array.isArray(pedido.items) ? pedido.items : []).filter(item => PRODUCTOS.find(pr => pr.id === item.id)).map(item => {
-          const p = PRODUCTOS.find(pr => pr.id === item.id);
-          return `• ${p.nombre} ×${item.qty} – ${fmt(p.precio * item.qty)}`;
-        }).join('%0A');
-        const msg = `✅ PEDIDO PAGADO CON TARJETA%0A%0ACliente: ${pedido.nombre}%0AEmail: ${pedido.email}%0A${pedido.telefono ? 'Tel: ' + pedido.telefono + '%0A' : ''}%0AProductos:%0A${lineas}%0A%0ATotal: ${fmt(pedido.total)}%0A%0APago confirmado por Stripe.`;
-        window.open('https://wa.me/34645052784?text=' + msg, '_blank');
-        localStorage.removeItem('qtop_pedido_pendiente');
-      }, 1000);
-      // Mostrar mensaje de éxito
-      document.body.insertAdjacentHTML('beforeend', `
-        <div style="position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;display:flex;align-items:center;justify-content:center;padding:2rem;">
-          <div style="background:#161616;border:1px solid rgba(184,151,62,.3);border-radius:12px;padding:2.5rem;text-align:center;max-width:400px;">
-            <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
-            <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:#f2ede4;margin-bottom:.8rem;">¡Pago realizado!</h2>
-            <p style="font-size:.85rem;color:#888;margin-bottom:.5rem;">Hola <strong style="color:#f2ede4;">${esc(pedido.nombre)}</strong>, tu pedido está confirmado.</p>
-            <p style="font-size:.82rem;color:#888;margin-bottom:1.5rem;">Recibirás el recibo en <strong style="color:#b8973e;">${esc(pedido.email)}</strong>.<br>Te avisamos por WhatsApp cuando esté listo para recoger.</p>
-            <button type="button" onclick="this.closest('div[style]').remove();window.history.replaceState({},'',window.location.pathname);" style="background:#b8973e;color:#0e0e0e;border:none;padding:.85rem 2rem;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;cursor:pointer;">Ver el menú</button>
-          </div>
-        </div>
-      `);
-    }
+    verificarRetornoPago(urlParams.get('sid'));
   } else if (urlParams.get('pago') === 'cancelado') {
     toast('Pago cancelado. Tu carrito sigue guardado.');
     window.history.replaceState({}, '', window.location.pathname);
