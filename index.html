@@ -10,15 +10,19 @@
   <link rel="canonical" href="https://qtopcoslada.com/">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon-qtop.png">
-  <link rel="apple-touch-icon" href="favicon-qtop.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="QTOP | Cheesecake, Cinnamon Rolls y Bakery en Coslada">
   <meta property="og:description" content="Cheesecakes, cinnamon rolls clásicos, cookies y pastelería seleccionada. Recogida en tienda en Coslada.">
   <meta property="og:url" content="https://qtopcoslada.com/">
-  <meta property="og:image" content="https://qtopcoslada.com/porcion-cheesecake-1784393403.png">
+  <meta property="og:image" content="https://qtopcoslada.com/og-qtop.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="theme-color" content="#0e0e0e">
+  <link rel="manifest" href="manifest.webmanifest">
   <meta property="og:locale" content="es_ES">
   <meta property="og:site_name" content="QTOP">
 
@@ -26,14 +30,13 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="QTOP | Bakery en Coslada">
   <meta name="twitter:description" content="Cheesecakes, cinnamon rolls y bakery artesanal. Recogida en tienda en Coslada.">
-  <meta name="twitter:image" content="https://qtopcoslada.com/porcion-cheesecake-1784393403.png">
+  <meta name="twitter:image" content="https://qtopcoslada.com/og-qtop.jpg">
 
   <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://js.stripe.com/v3/" async></script>
 
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -241,7 +244,7 @@
       position: absolute; inset: 0;
       background:
         linear-gradient(105deg, rgba(14,14,14,.92) 0%, rgba(14,14,14,.6) 55%, rgba(14,14,14,.75) 100%),
-        url('porcion-cheesecake-1784393403.png') center/cover no-repeat;
+        url('porcion-cheesecake-1784393403.webp') center/cover no-repeat;
     }
     .hero-bg::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
@@ -343,7 +346,7 @@
       display: flex; align-items: center; justify-content: center;
       color: var(--dorado); font-size: .8rem; flex-shrink: 0;
     }
-    .filosofia-item-texto h4 { font-family: var(--font-texto); font-size: .78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--crema); margin-bottom: .2rem; }
+    .filosofia-item-texto h3 { font-family: var(--font-texto); font-size: .78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--crema); margin-bottom: .2rem; }
     .filosofia-item-texto p { font-size: .78rem; color: var(--gris); line-height: 1.5; margin: 0; }
 
     /* ── CATÁLOGO ── */
@@ -389,7 +392,7 @@
     .card-producto-body { padding: 1.1rem; display: flex; flex-direction: column; flex: 1; }
     .card-producto-cat { font-size: .6rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dorado); margin-bottom: .3rem; }
     .card-producto-nombre { font-family: var(--font-titulo); font-size: 1.15rem; color: var(--crema); margin-bottom: .3rem; line-height: 1.2; }
-    .card-producto-desc { font-size: .73rem; color: var(--gris2); line-height: 1.55; flex: 1; margin-bottom: .9rem; }
+    .card-producto-desc { font-size: .73rem; color: var(--gris); line-height: 1.55; flex: 1; margin-bottom: .9rem; }
     .card-producto-pie { display: flex; align-items: center; justify-content: space-between; }
     .card-producto-precio { font-family: var(--font-titulo); font-size: 1.25rem; color: var(--dorado); font-weight: 600; }
     .btn-anadir-catalogo {
@@ -518,7 +521,7 @@
       display: flex; align-items: center; justify-content: center;
       color: var(--dorado); font-size: .75rem; flex-shrink: 0;
     }
-    .visitanos-dato-texto h4 { font-family: var(--font-texto); font-size: .7rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); margin-bottom: .3rem; }
+    .visitanos-dato-texto h3 { font-family: var(--font-texto); font-size: .7rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gris); margin-bottom: .3rem; }
     .visitanos-dato-texto p, .visitanos-dato-texto a { font-size: .88rem; color: var(--crema); line-height: 1.6; }
     .visitanos-dato-texto a { transition: color var(--trans); }
     .visitanos-dato-texto a:hover { color: var(--dorado); }
@@ -663,6 +666,14 @@
       .reveal { opacity: 1; transform: none; }
     }
   
+/* Áreas táctiles cómodas en móvil y tablet (mín. 44 px) */
+@media (max-width: 900px), (pointer: coarse) {
+  .btn-anadir-catalogo, .btn-anadir-estrella, .btn-filtro, .btn-encargo { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  #buscador { min-height: 44px; }
+  #footer a { display: inline-block; padding: .6rem 0; }
+  .footer-col li { margin-bottom: 0; }
+}
+
 /* ═══════════════════════════════════════════════
    TEMA NAVIDAD — Quitar después del 6 de enero
    Para desactivar: borrar este bloque CSS y el bloque
@@ -782,7 +793,7 @@
 <header id="cabecera" role="banner">
   <div class="cab-inner">
     <a href="#" class="cab-logo" aria-label="QTOP – Inicio">
-      <img src="QTOP_CON_takeaway.png" alt="QTOP Takeaway" height="48" style="width:auto;">
+      <img src="QTOP_CON_takeaway.webp" alt="QTOP Takeaway" height="48" style="width:auto;">
     </a>
     <nav class="cab-nav" aria-label="Navegación principal">
       <a href="#hero">Inicio</a>
@@ -793,13 +804,13 @@
       <a href="#visitanos">Visítanos</a>
     </nav>
     <div class="cab-acciones">
-      <button id="btn-carrito-cab" aria-label="Abrir carrito" onclick="abrirCarrito()">
+      <button type="button" id="btn-carrito-cab" aria-label="Abrir carrito" onclick="abrirCarrito()">
         <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
         <span class="sr-only">Carrito</span>
         <span id="contador-carrito-cab" aria-live="polite">0</span>
       </button>
-      <button id="btn-pedido-cab" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Hacer pedido</button>
-      <button id="btn-menu" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
+      <button type="button" id="btn-pedido-cab" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Hacer pedido</button>
+      <button type="button" id="btn-menu" aria-label="Abrir menú" aria-expanded="false" onclick="toggleMenu()">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -825,8 +836,8 @@
       <h1 class="hero-titulo">Hay cosas que<br>no se explican.<br><em>Se prueban.</em></h1>
       <p class="hero-subtitulo">Cheesecakes, cinnamon rolls clásicos, cookies y pastelería seleccionada, preparados para convertir una pausa cualquiera en tu momento QTOP.</p>
       <div class="hero-acciones">
-        <button class="btn-primary" onclick="document.getElementById('seleccion').scrollIntoView({behavior:'smooth'})">Ver la Bakery</button>
-        <button class="btn-secondary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Hacer pedido</button>
+        <button type="button" class="btn-primary" onclick="document.getElementById('seleccion').scrollIntoView({behavior:'smooth'})">Ver la Bakery</button>
+        <button type="button" class="btn-secondary" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})">Hacer pedido</button>
       </div>
       <p class="hero-info">Recogida en tienda · Coslada, Madrid</p>
     </div>
@@ -858,7 +869,7 @@
   <div class="container">
     <div class="filosofia-grid">
       <div class="reveal">
-        <img src="cinnamon-roll-1784393403.png" alt="Cinnamon Roll artesanal QTOP" class="filosofia-img" loading="lazy">
+        <img src="cinnamon-roll-1784393403.webp" alt="Cinnamon Roll artesanal QTOP" class="filosofia-img" width="1000" height="1000" loading="lazy">
       </div>
       <div class="filosofia-texto reveal reveal-delay-2">
         <p class="etiqueta">Nuestra filosofía</p>
@@ -868,15 +879,15 @@
         <div class="filosofia-detalle">
           <div class="filosofia-item">
             <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-leaf"></i></div>
-            <div class="filosofia-item-texto"><h4>Elaboración cuidada</h4><p>Cada producto se prepara con atención al proceso y al resultado final.</p></div>
+            <div class="filosofia-item-texto"><h3>Elaboración cuidada</h3><p>Cada producto se prepara con atención al proceso y al resultado final.</p></div>
           </div>
           <div class="filosofia-item">
             <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-star"></i></div>
-            <div class="filosofia-item-texto"><h4>Selección del producto</h4><p>Solo lo que merece estar en el mostrador. Calidad por encima del volumen.</p></div>
+            <div class="filosofia-item-texto"><h3>Selección del producto</h3><p>Solo lo que merece estar en el mostrador. Calidad por encima del volumen.</p></div>
           </div>
           <div class="filosofia-item">
             <div class="filosofia-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="filosofia-item-texto"><h4>Cercanía y recogida en tienda</h4><p>Haz tu pedido, pásate a recogerlo. Sin intermediarios, sin esperas largas.</p></div>
+            <div class="filosofia-item-texto"><h3>Cercanía y recogida en tienda</h3><p>Haz tu pedido, pásate a recogerlo. Sin intermediarios, sin esperas largas.</p></div>
           </div>
         </div>
       </div>
@@ -894,11 +905,11 @@
       <div class="linea-dorada"></div>
     </div>
     <div class="filtros-barra" role="group" aria-label="Filtrar productos">
-      <button class="btn-filtro activo" onclick="filtrar('todos',this)">Todos</button>
-      <button class="btn-filtro" onclick="filtrar('bakery',this)">Bakery</button>
-      <button class="btn-filtro" onclick="filtrar('aperitivos',this)">Aperitivos</button>
-      <button class="btn-filtro" onclick="filtrar('bebidas',this)">Bebidas</button>
-        <button class="btn-filtro" onclick="filtrar('snack',this)">Snack</button>
+      <button type="button" class="btn-filtro activo" onclick="filtrar('todos',this)">Todos</button>
+      <button type="button" class="btn-filtro" onclick="filtrar('bakery',this)">Bakery</button>
+      <button type="button" class="btn-filtro" onclick="filtrar('aperitivos',this)">Aperitivos</button>
+      <button type="button" class="btn-filtro" onclick="filtrar('bebidas',this)">Bebidas</button>
+        <button type="button" class="btn-filtro" onclick="filtrar('snack',this)">Snack</button>
       <div id="buscador-wrap">
         <input type="search" id="buscador" placeholder="Buscar…" aria-label="Buscar producto" oninput="buscar(this.value)">
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
@@ -930,7 +941,7 @@
     </div>
     <div class="may-grid">
       <article class="may-card reveal" data-ref="17039" data-nombre="Patatas Fritas 2 kg" data-formato="Caja de 4 bolsas de 500 g" data-precio="12.00" data-unidad="caja" data-iva="10">
-        <img class="may-foto" src="patatas-fritas-2kg-caja.jpg" alt="Caja de Patatas Fritas 2 kg (4 bolsas de 500 g)" width="900" height="672" loading="lazy" decoding="async">
+        <img class="may-foto" src="patatas-fritas-2kg-caja.webp" alt="Caja de Patatas Fritas 2 kg (4 bolsas de 500 g)" width="900" height="672" loading="lazy" decoding="async">
         <span class="may-ref">REF 17039</span>
         <h3 class="may-nombre">Patatas Fritas 2 kg</h3>
         <p class="may-formato">Caja de 4 bolsas de 500 g</p>
@@ -941,7 +952,7 @@
         </div>
       </article>
       <article class="may-card reveal" data-ref="16971" data-nombre="Patatas Fritas Artesanas Sin Sal 4 kg" data-formato="Caja de 4 kg" data-precio="22.15" data-unidad="caja" data-iva="10">
-        <img class="may-foto" src="patatas-fritas-artesanas-sin-sal-4kg-caja.jpg" alt="Caja de Patatas Fritas Artesanas Sin Sal 4 kg" width="900" height="672" loading="lazy" decoding="async">
+        <img class="may-foto" src="patatas-fritas-artesanas-sin-sal-4kg-caja.webp" alt="Caja de Patatas Fritas Artesanas Sin Sal 4 kg" width="900" height="672" loading="lazy" decoding="async">
         <span class="may-ref">REF 16971</span>
         <h3 class="may-nombre">Patatas Fritas Artesanas Sin Sal 4 kg</h3>
         <p class="may-formato">Caja de 4 kg</p>
@@ -952,7 +963,7 @@
         </div>
       </article>
       <article class="may-card reveal" data-ref="17709" data-nombre="Cacahuete Saladillo USA" data-formato="Bote de 2 kg" data-precio="7.90" data-unidad="bote" data-iva="10">
-        <img class="may-foto" src="cacahuete-saladillo-mayorista.jpg" alt="Montón de cacahuetes salados, Cacahuete Saladillo USA" width="900" height="672" loading="lazy" decoding="async">
+        <img class="may-foto" src="cacahuete-saladillo-mayorista.webp" alt="Montón de cacahuetes salados, Cacahuete Saladillo USA" width="900" height="672" loading="lazy" decoding="async">
         <span class="may-ref">REF 17709</span>
         <h3 class="may-nombre">Cacahuete Saladillo USA</h3>
         <p class="may-formato">Bote de 2 kg</p>
@@ -963,7 +974,7 @@
         </div>
       </article>
       <article class="may-card reveal" data-ref="13411" data-nombre="Nueces Peladas Mitades 80%" data-formato="Venta por kilo" data-precio="11.25" data-unidad="kilo" data-iva="4">
-        <img class="may-foto" src="nueces-peladas-mitades-mayorista.jpg" alt="Nueces peladas mitades 80%" width="900" height="672" loading="lazy" decoding="async">
+        <img class="may-foto" src="nueces-peladas-mitades-mayorista.webp" alt="Nueces peladas mitades 80%" width="900" height="672" loading="lazy" decoding="async">
         <span class="may-ref">REF 13411</span>
         <h3 class="may-nombre">Nueces Peladas Mitades 80%</h3>
         <p class="may-formato">Venta por kilo</p>
@@ -974,7 +985,7 @@
         </div>
       </article>
       <article class="may-card reveal" data-ref="00901" data-nombre="Fruta Italiana 3 kg Panda" data-formato="Caja de 3 kg" data-precio="25.48" data-unidad="caja" data-iva="10">
-        <img class="may-foto" src="fruta-italiana-caja-3kg.jpg" alt="Caja de gominolas Fruta Italiana Panda, 3 kg" width="900" height="672" loading="lazy" decoding="async">
+        <img class="may-foto" src="fruta-italiana-caja-3kg.webp" alt="Caja de gominolas Fruta Italiana Panda, 3 kg" width="900" height="672" loading="lazy" decoding="async">
         <span class="may-ref">REF 00901</span>
         <h3 class="may-nombre">Fruta Italiana 3 kg Panda</h3>
         <p class="may-formato">Caja de 3 kg</p>
@@ -1029,14 +1040,14 @@
         <div class="visitanos-dato">
           <div class="visitanos-icono" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
           <div class="visitanos-dato-texto">
-            <h4>Dirección</h4>
+            <h3>Dirección</h3>
             <p>Av. del Plantío, 4, 4B<br>28821 Coslada, Madrid</p>
           </div>
         </div>
         <div class="visitanos-dato">
           <div class="visitanos-icono" aria-hidden="true"><i class="fa-regular fa-clock"></i></div>
           <div class="visitanos-dato-texto">
-            <h4>Horario</h4>
+            <h3>Horario</h3>
             <p style="font-size:.82rem;line-height:2;">
               Lun – Vie &nbsp;&nbsp; 9:30–15:00 · 17:00–22:00<br>
               Sábado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10:30–15:00 · 17:00–22:00<br>
@@ -1047,14 +1058,14 @@
         <div class="visitanos-dato">
           <div class="visitanos-icono" aria-hidden="true"><i class="fa-solid fa-phone"></i></div>
           <div class="visitanos-dato-texto">
-            <h4>Teléfono / WhatsApp</h4>
+            <h3>Teléfono / WhatsApp</h3>
             <a href="tel:+34645052784">+34 645 052 784</a>
           </div>
         </div>
         <div class="visitanos-dato">
           <div class="visitanos-icono" aria-hidden="true"><i class="fa-brands fa-instagram"></i></div>
           <div class="visitanos-dato-texto">
-            <h4>Instagram</h4>
+            <h3>Instagram</h3>
             <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener">@Qtop_Coslada</a>
           </div>
         </div>
@@ -1082,7 +1093,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-logo">
-        <img src="QTOP_CON_takeaway.png" alt="QTOP" height="44" loading="lazy" style="width:auto;">
+        <img src="QTOP_CON_takeaway.webp" alt="QTOP" height="44" loading="lazy" style="width:auto;">
         <p>Bakery &amp; Pastry artesanal en Coslada, Madrid.<br>Cheesecakes, cinnamon rolls, cookies y selección cuidada.</p>
         <div class="footer-sociales">
           <a href="https://www.instagram.com/Qtop_Coslada" target="_blank" rel="noopener" class="footer-social-btn" aria-label="Instagram QTOP"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
@@ -1132,11 +1143,11 @@
 
 <!-- BARRA INFERIOR MÓVIL -->
 <nav id="barra-movil" aria-label="Navegación rápida móvil">
-  <button class="barra-movil-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})" aria-label="Ver menú">
+  <button type="button" class="barra-movil-btn" onclick="document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})" aria-label="Ver menú">
     <i class="fa-solid fa-utensils" aria-hidden="true"></i>
     <span>Menú</span>
   </button>
-  <button class="barra-movil-btn" onclick="abrirCarrito()" aria-label="Abrir carrito">
+  <button type="button" class="barra-movil-btn" onclick="abrirCarrito()" aria-label="Abrir carrito">
     <span class="barra-movil-carrito-badge" id="barra-carrito-badge" data-count="0">
       <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
     </span>
@@ -1157,7 +1168,7 @@
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#f2ede4;">Datos de contacto</h2>
       <p style="font-size:.72rem;color:#888;margin-top:.2rem;">Para enviarte el recibo y confirmar tu pedido</p>
     </div>
-    <button onclick="cerrarCheckout()" style="background:none;border:none;color:#888;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
+    <button type="button" onclick="cerrarCheckout()" style="background:none;border:none;color:#888;font-size:1.4rem;cursor:pointer;line-height:1;">×</button>
   </div>
   <div style="padding:1.6rem;display:flex;flex-direction:column;gap:1rem;">
     <div>
@@ -1173,7 +1184,7 @@
       <input id="checkout-telefono" type="tel" placeholder="+34 600 000 000" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(184,151,62,.2);border-radius:4px;color:#f2ede4;padding:.65rem .9rem;font-size:.85rem;font-family:'Inter',sans-serif;outline:none;" onfocus="this.style.borderColor='rgba(184,151,62,.5)'" onblur="this.style.borderColor='rgba(184,151,62,.2)'">
     </div>
     <div id="resumen-checkout" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem;font-size:.78rem;color:#888;line-height:1.8;"></div>
-    <button id="btn-pagar" onclick="procesarPago()" style="width:100%;background:#b8973e;color:#0e0e0e;border:none;padding:1rem;font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s;">
+    <button type="button" id="btn-pagar" onclick="procesarPago()" style="width:100%;background:#b8973e;color:#0e0e0e;border:none;padding:1rem;font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s;">
       <i class="fa-solid fa-lock"></i> Pagar con tarjeta
     </button>
     <p style="text-align:center;font-size:.65rem;color:#555;">
@@ -1184,10 +1195,10 @@
 
 <!-- CARRITO -->
 <div id="overlay-carrito" onclick="cerrarCarrito()" aria-hidden="true"></div>
-<aside id="carrito-panel" role="dialog" aria-label="Tu carrito" aria-modal="true">
+<div id="carrito-panel" role="dialog" aria-label="Tu carrito" aria-modal="true">
   <div class="carrito-cabecera">
     <h2>Tu carrito</h2>
-    <button id="btn-cerrar-carrito" onclick="cerrarCarrito()" aria-label="Cerrar carrito">×</button>
+    <button type="button" id="btn-cerrar-carrito" onclick="cerrarCarrito()" aria-label="Cerrar carrito">×</button>
   </div>
   <div class="carrito-cuerpo" id="carrito-cuerpo"></div>
   <div class="carrito-pie" id="carrito-pie" style="display:none">
@@ -1196,14 +1207,14 @@
       <span>Total</span>
       <span class="carrito-total-precio" id="carrito-total">0,00 €</span>
     </div>
-    <button class="btn-checkout" onclick="abrirCheckout()">
+    <button type="button" class="btn-checkout" onclick="abrirCheckout()">
       <i class="fa-solid fa-credit-card" aria-hidden="true"></i> Pagar con tarjeta
     </button>
-    <button class="btn-checkout-wa" onclick="pedidoWhatsApp()">
+    <button type="button" class="btn-checkout-wa" onclick="pedidoWhatsApp()">
       <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Confirmar por WhatsApp
     </button>
   </div>
-</aside>
+</div>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -1222,22 +1233,22 @@ const CONFIG = {
 
 const PRODUCTOS = [
   // BAKERY
-  { id:'cheesecake-entera', cat:'bakery', nombre:'Cheesecake Entera', desc:'Textura cremosa, horneado delicado y acabado tostado. Para compartir, o no.', precio:30.00, img:'cheesecake-entera-v2.png', alt:'Cheesecake entera QTOP', estrella:true, agotado:false, encargo:true },
-  { id:'cheesecake-porcion', cat:'bakery', nombre:'Porción Cheesecake', desc:'La misma cheesecake de siempre, en formato individual. Cremosa, con base crujiente y ese tostado característico.', precio:4.00, img:'porcion-cheesecake-1784393403.png', alt:'Porción de cheesecake QTOP', estrella:true, agotado:false },
-  { id:'cinnamon-roll', cat:'bakery', nombre:'Cinnamon Roll Clásico', desc:'Masa tierna, canela aromática y un glaseado equilibrado. Un clásico preparado con el sello QTOP.', precio:2.00, img:'cinnamon-roll-1784393403.png', alt:'Cinnamon Roll clásico QTOP', estrella:true, agotado:false },
-  { id:'cookie-double', cat:'bakery', nombre:'Cookie Double Chocolate', desc:'Grande, blanda en el centro y con una cantidad generosa de chocolate. Sin medias tintas.', precio:2.00, img:'blob-f433227.png', alt:'Cookie double chocolate QTOP', estrella:true, agotado:false },
-  { id:'tarta-sacher', cat:'bakery', nombre:'Tarta Sacher', desc:'Bizcocho de chocolate intenso, ganache espejo y el equilibrio justo entre dulzor y amargor.', precio:4.00, img:'tarta-sacher-1784393403.png', alt:'Tarta Sacher QTOP', estrella:true, agotado:false },
-  { id:'pan-dulce-pack4', cat:'bakery', nombre:'Pan Dulce Pack 4', desc:'Pan Dulce esponjosos, (Tunja) o (Piñita). Decorado con Azúcar Granulada. Pack de 4 unidades (~560g). · Por encargo.', precio:6.00, img:'pan-dulce.jpg', alt:'Pan Dulce Tunja Piñita QTOP pack 4', estrella:false, agotado:false },
-  { id:'pan-dulce-pack8', cat:'bakery', nombre:'Pan Dulce Pack 8', desc:'Pan Dulce esponjosos, (Tunja) o (Piñita). Decorado con Azúcar Granulada. Pack de 8 unidades (~1120g). · Por encargo.', precio:12.00, img:'pan-dulce.jpg', alt:'Pan Dulce Tunja Piñita QTOP pack 8', estrella:false, agotado:false },
-  { id:'magdalenas-sin-azucar', cat:'bakery', nombre:'Magdalenas Artesanales Sin Azúcar', desc:'Magdalenas artesanales sin azúcar, esponjosas y con un dorado perfecto. Paquete de 6 unidades.', precio:5.00, img:'magdalenas.jpg', alt:'Magdalenas artesanales sin azúcar QTOP', estrella:false, agotado:false },
-  { id:'magdalenas-oliva', cat:'bakery', nombre:'Magdalenas con Aceite de Oliva', desc:'Magdalenas artesanales elaboradas con aceite de oliva. Esponjosas, con miga tierna y un dorado característico. Paquete de 6 unidades.', precio:5.00, img:'magdalenas-oliva.jpg', alt:'Magdalenas con aceite de oliva QTOP', estrella:false, agotado:false },
-  { id:'cookie-triple-chocolate', cat:'bakery', nombre:'Cookie Fully Baked Triple Chocolate', desc:'Mantequilla, 33% de chocolate leche, huevo y azúcar moreno.', precio:2.00, img:'cookie-triple-chocolate.jpg', alt:'Cookie Triple Chocolate QTOP', estrella:false, agotado:false },
+  { id:'cheesecake-entera', cat:'bakery', nombre:'Cheesecake Entera', desc:'Textura cremosa, horneado delicado y acabado tostado. Para compartir, o no.', precio:30.00, img:'cheesecake-entera-v2.webp', alt:'Cheesecake entera QTOP', estrella:true, agotado:false, encargo:true },
+  { id:'cheesecake-porcion', cat:'bakery', nombre:'Porción Cheesecake', desc:'La misma cheesecake de siempre, en formato individual. Cremosa, con base crujiente y ese tostado característico.', precio:4.00, img:'porcion-cheesecake-1784393403.webp', alt:'Porción de cheesecake QTOP', estrella:true, agotado:false },
+  { id:'cinnamon-roll', cat:'bakery', nombre:'Cinnamon Roll Clásico', desc:'Masa tierna, canela aromática y un glaseado equilibrado. Un clásico preparado con el sello QTOP.', precio:2.00, img:'cinnamon-roll-1784393403.webp', alt:'Cinnamon Roll clásico QTOP', estrella:true, agotado:false },
+  { id:'cookie-double', cat:'bakery', nombre:'Cookie Double Chocolate', desc:'Grande, blanda en el centro y con una cantidad generosa de chocolate. Sin medias tintas.', precio:2.00, img:'blob-f433227.webp', alt:'Cookie double chocolate QTOP', estrella:true, agotado:false },
+  { id:'tarta-sacher', cat:'bakery', nombre:'Tarta Sacher', desc:'Bizcocho de chocolate intenso, ganache espejo y el equilibrio justo entre dulzor y amargor.', precio:4.00, img:'tarta-sacher-1784393403.webp', alt:'Tarta Sacher QTOP', estrella:true, agotado:false },
+  { id:'pan-dulce-pack4', cat:'bakery', nombre:'Pan Dulce Pack 4', desc:'Pan Dulce esponjosos, (Tunja) o (Piñita). Decorado con Azúcar Granulada. Pack de 4 unidades (~560g). · Por encargo.', precio:6.00, img:'pan-dulce.webp', alt:'Pan Dulce Tunja Piñita QTOP pack 4', estrella:false, agotado:false },
+  { id:'pan-dulce-pack8', cat:'bakery', nombre:'Pan Dulce Pack 8', desc:'Pan Dulce esponjosos, (Tunja) o (Piñita). Decorado con Azúcar Granulada. Pack de 8 unidades (~1120g). · Por encargo.', precio:12.00, img:'pan-dulce.webp', alt:'Pan Dulce Tunja Piñita QTOP pack 8', estrella:false, agotado:false },
+  { id:'magdalenas-sin-azucar', cat:'bakery', nombre:'Magdalenas Artesanales Sin Azúcar', desc:'Magdalenas artesanales sin azúcar, esponjosas y con un dorado perfecto. Paquete de 6 unidades.', precio:5.00, img:'magdalenas.webp', alt:'Magdalenas artesanales sin azúcar QTOP', estrella:false, agotado:false },
+  { id:'magdalenas-oliva', cat:'bakery', nombre:'Magdalenas con Aceite de Oliva', desc:'Magdalenas artesanales elaboradas con aceite de oliva. Esponjosas, con miga tierna y un dorado característico. Paquete de 6 unidades.', precio:5.00, img:'magdalenas-oliva.webp', alt:'Magdalenas con aceite de oliva QTOP', estrella:false, agotado:false },
+  { id:'cookie-triple-chocolate', cat:'bakery', nombre:'Cookie Fully Baked Triple Chocolate', desc:'Mantequilla, 33% de chocolate leche, huevo y azúcar moreno.', precio:2.00, img:'cookie-triple-chocolate.webp', alt:'Cookie Triple Chocolate QTOP', estrella:false, agotado:false },
   // SNACKS
   { id:'palomitas-caramelo', cat:'snack', nombre:'Palomitas Caramelo', desc:'Bolsa grande de palomitas al caramelo Flaper.', precio:2.00, img:'palomitas-caramelo.webp', alt:'Palomitas de caramelo', estrella:false, agotado:false },
   { id:'palomitas-colores', cat:'snack', nombre:'Palomitas de Colores', desc:'Palomitas multicolor, formato largo.', precio:1.50, img:'palomitas-colores.webp', alt:'Palomitas de colores', estrella:false, agotado:false },
   { id:'coctel-picante', cat:'aperitivos', nombre:'Cóctel Picante Chilly', desc:'Mix de aperitivos con toque picante.', precio:4.00, img:'coctel-picante.webp', alt:'Cóctel picante chilly', estrella:false, agotado:false },
   { id:'pipas', cat:'aperitivos', nombre:'Pipas Gigante Aguasal', desc:'Pipas de girasol gigantes con sal.', precio:1.50, img:'pipas-gigante.webp', alt:'Pipas gigante aguasal', estrella:false, agotado:false },
-  { id:'cacahuete-concha', cat:'aperitivos', nombre:'Cacahuete Salado Concha', desc:'Cacahuetes con cáscara, salados.', precio:1.50, img:'cacahuete-concha.jpg', alt:'Cacahuete salado con concha', estrella:false, agotado:false },
+  { id:'cacahuete-concha', cat:'aperitivos', nombre:'Cacahuete Salado Concha', desc:'Cacahuetes con cáscara, salados.', precio:1.50, img:'cacahuete-concha.webp', alt:'Cacahuete salado con concha', estrella:false, agotado:false },
   { id:'cacahuete-repelado', cat:'aperitivos', nombre:'Cacahuete Repelado', desc:'Cacahuetes pelados naturales.', precio:2.00, img:'cacahuete-repelado.webp', alt:'Cacahuete repelado', estrella:false, agotado:false },
   { id:'cacahuete-tostado', cat:'aperitivos', nombre:'Cacahuete Salado Tostado', desc:'Tostados y salados, muy crujientes.', precio:3.00, img:'cachuete-salado-tostado.webp', alt:'Cacahuete salado tostado', estrella:false, agotado:false },
   { id:'cacahuete-garrapinado', cat:'aperitivos', nombre:'Cacahuete Garrapiñado', desc:'Con cobertura de azúcar caramelizada.', precio:3.00, img:'cacahuete-garrapinado.webp', alt:'Cacahuete garrapiñado', estrella:false, agotado:false },
@@ -1245,51 +1256,53 @@ const PRODUCTOS = [
   { id:'anacardo', cat:'aperitivos', nombre:'Anacardo Grande Frito', desc:'Anacardos grandes fritos.', precio:5.00, img:'anacardo-frito.webp', alt:'Anacardo grande frito', estrella:false, agotado:false },
   { id:'pistacho', cat:'aperitivos', nombre:'Pistacho Nacional Tostado', desc:'Pistacho español tostado. Premium.', precio:6.50, img:'pistacho.webp', alt:'Pistacho nacional tostado', estrella:false, agotado:false },
   { id:'uvas-pasas', cat:'aperitivos', nombre:'Uvas Pasas Sultanas', desc:'Pasas sultanas naturales.', precio:2.00, img:'uvas-pasas.webp', alt:'Uvas pasas sultanas', estrella:false, agotado:false },
-  { id:'patatas-santa-ana', cat:'snack', nombre:'Patatas Fritas Santa Ana 220g', desc:'Churrería Santa Ana. Un clásico.', precio:2.50, img:'patatas-santa-ana.jpg', alt:'Patatas fritas Santa Ana', estrella:false, agotado:false },
-  { id:'patatas-chic', cat:'snack', nombre:'Bolsa Patatas Chic', desc:'Sin colorantes, sin conservantes y bajo en sal.', precio:1.50, img:'patatas-chic.jpg', alt:'Bolsa Patatas Chic QTOP', estrella:false, agotado:false },
-  { id:'nueces-peladas', cat:'aperitivos', nombre:'Nueces Peladas 200g', desc:'Nueces peladas naturales. 200g.', precio:4.00, img:'obando-gourmet.jpg', alt:'Nueces peladas 200g QTOP', estrella:false, agotado:false },
-  { id:'higo-pais', cat:'aperitivos', nombre:'Higo País', desc:'Higos secos naturales, dulces y carnosos. Snack saludable y energético.', precio:2.00, img:'higo-pais.jpg', alt:'Higo País QTOP', estrella:false, agotado:false },
-  { id:'galletas-rizadas', cat:'aperitivos', nombre:'Galletas Rizadas Artesanales', desc:'Galletas onduladas artesanales, crujientes y con sabor casero. Bandeja generosa.', precio:2.50, img:'galletas-rizadas.jpg', alt:'Galletas Rizadas Artesanales QTOP', estrella:false, agotado:false },
-  { id:'pasta-seca-surtida', cat:'aperitivos', nombre:'Pasta Seca Surtida', desc:'Mix de galletas de mantequilla variadas. Perfectas para compartir.', precio:4.00, img:'pasta-seca-surtida.jpg', alt:'Pasta Seca Surtida QTOP', estrella:false, agotado:false },
-  { id:'lenguas-con-azucar', cat:'aperitivos', nombre:'Lenguas Con Azúcar', desc:'Galletas lengua clásicas bañadas en azúcar. Crujientes y tradicionales.', precio:2.00, img:'lenguas-con-azucar.jpg', alt:'Lenguas con azúcar QTOP', estrella:false, agotado:false },
-  { id:'nuez-chandler', cat:'aperitivos', nombre:'Nuez Chandler', desc:'Nueces enteras con cáscara variedad Chandler. Carne abundante y sabor suave.', precio:2.50, img:'nuez-chandler.jpg', alt:'Nuez Chandler QTOP', estrella:false, agotado:false },
-  { id:'pipa-salada', cat:'aperitivos', nombre:'Pipa Salada', desc:'Pipas de girasol saladas. El aperitivo clásico de toda la vida.', precio:1.00, img:'pipa-salada.jpg', alt:'Pipa Salada QTOP', estrella:false, agotado:false },
-  { id:'galleta-setas-chocolate', cat:'aperitivos', nombre:'Galleta Setas Sabor Chocolate', desc:'Galletitas con forma de seta, sabor a chocolate. Irresistibles para los más golosos.', precio:5.00, img:'galleta-setas-chocolate.jpg', alt:'Galleta Setas Chocolate QTOP', estrella:false, agotado:false },
-  { id:'mantecado', cat:'aperitivos', nombre:'Mantecado', desc:'Mantecado artesanal, suave y con ese sabor tradicional de siempre.', precio:3.00, img:'mantecado.jpg', alt:'Mantecado QTOP', estrella:false, agotado:false },
-  { id:'avellana-tostada', cat:'aperitivos', nombre:'Avellana Tostada', desc:'Avellanas tostadas al punto justo. Crujientes, nutritivas y llenas de sabor.', precio:6.50, img:'avellana-tostada.jpg', alt:'Avellana Tostada QTOP', estrella:false, agotado:false },
-  { id:'banana-chips', cat:'aperitivos', nombre:'Banana Chips', desc:'Trozos de plátano deshidratado. Crujientes, dulces y cien por cien naturales.', precio:2.50, img:'banana-chips.jpg', alt:'Banana Chips QTOP', estrella:false, agotado:false },
-  { id:'cintas-pica-fresa', cat:'snack', nombre:'Cintas Pica Sabor Fresa', desc:'Gominolas de cinta pica sabor fresa. El capricho ácido que engancha.', precio:1.70, img:'cintas-pica-fresa.jpg', alt:'Cintas Pica Fresa QTOP', estrella:false, agotado:false },
-  { id:'fruta-italiana', cat:'snack', nombre:'Fruta Italiana', desc:'Gominolas de fruta italiana clásicas, azucaradas y con sabores variados.', precio:4.50, img:'arandano-rojo.jpg', alt:'Fruta Italiana QTOP', estrella:false, agotado:false },
-  { id:'arandano-rojo', cat:'aperitivos', nombre:'Arándano Rojo', desc:'Arándanos rojos deshidratados, levemente dulces y con un toque ácido natural.', precio:3.50, img:'almendra-cruda-repelada.jpg', alt:'Arándano Rojo QTOP', estrella:false, agotado:false },
-  { id:'obando-gourmet', cat:'aperitivos', nombre:'Obando Selección Gourmet', desc:'Palitos de pan artesano Panadería Obando, desde 1965. Crujientes y de calidad premium.', precio:6.50, img:'higos-cuello-dama.jpg', alt:'Obando Selección Gourmet QTOP', estrella:false, agotado:false },
-  { id:'almendra-cruda-repelada', cat:'aperitivos', nombre:'Almendra Cruda Repelada', desc:'Almendras crudas sin piel, naturales y sin sal. Perfectas para comer o cocinar.', precio:5.00, img:'cintas-pica-multicolor.jpg', alt:'Almendra Cruda Repelada QTOP', estrella:false, agotado:false },
-  { id:'higos-cuello-dama', cat:'aperitivos', nombre:'Higos Cuello Dama 1ª', desc:'Higos secos premium variedad Cuello de Dama de primera calidad. Dulces y carnosos.', precio:3.00, img:'nueces-peladas-new.jpg', alt:'Higos Cuello Dama QTOP', estrella:false, agotado:false },
-  { id:'cintas-pica-multicolor', cat:'aperitivos', nombre:'Cintas Pica Multicolor', desc:'Gominolas de cinta pica en colores variados. Ácidas, coloridas y adictivas.', precio:2.00, img:'fruta-italiana.jpg', alt:'Cintas Pica Multicolor QTOP', estrella:false, agotado:false },
-  { id:'lays-sal', cat:'snack', nombre:"Lay's Al Punto de Sal", desc:"Patatas fritas Lay's de alta calidad, al punto de sal. El clásico irresistible.", precio:2.50, img:'lays-sal.jpg', alt:'Lays Al Punto de Sal QTOP', estrella:false, agotado:false },
-  { id:'palomitas-colores-flaper', cat:'snack', nombre:'Palomitas de Colores Flaper', desc:'Palomitas multicolor Flaper, crujientes y llenas de sabor. En bolsa grande.', precio:1.50, img:'palomitas-colores-flaper.jpg', alt:'Palomitas de Colores Flaper QTOP', estrella:false, agotado:false },
-  { id:'cortezas-cerdo', cat:'snack', nombre:'Cortezas de Cerdo Flaper 500g', desc:'Bolsa grande de cortezas crujientes Flaper.', precio:8.95, img:'cortezas-cerdo.jpg', alt:'Cortezas de cerdo Flaper', estrella:false, agotado:false },
+  { id:'patatas-santa-ana', cat:'snack', nombre:'Patatas Fritas Santa Ana 220g', desc:'Churrería Santa Ana. Un clásico.', precio:2.50, img:'patatas-santa-ana.webp', alt:'Patatas fritas Santa Ana', estrella:false, agotado:false },
+  { id:'patatas-chic', cat:'snack', nombre:'Bolsa Patatas Chic', desc:'Sin colorantes, sin conservantes y bajo en sal.', precio:1.50, img:'patatas-chic.webp', alt:'Bolsa Patatas Chic QTOP', estrella:false, agotado:false },
+  { id:'nueces-peladas', cat:'aperitivos', nombre:'Nueces Peladas 200g', desc:'Nueces peladas naturales. 200g.', precio:4.00, img:'obando-gourmet.webp', alt:'Nueces peladas 200g QTOP', estrella:false, agotado:false },
+  { id:'higo-pais', cat:'aperitivos', nombre:'Higo País', desc:'Higos secos naturales, dulces y carnosos. Snack saludable y energético.', precio:2.00, img:'higo-pais.webp', alt:'Higo País QTOP', estrella:false, agotado:false },
+  { id:'galletas-rizadas', cat:'aperitivos', nombre:'Galletas Rizadas Artesanales', desc:'Galletas onduladas artesanales, crujientes y con sabor casero. Bandeja generosa.', precio:2.50, img:'galletas-rizadas.webp', alt:'Galletas Rizadas Artesanales QTOP', estrella:false, agotado:false },
+  { id:'pasta-seca-surtida', cat:'aperitivos', nombre:'Pasta Seca Surtida', desc:'Mix de galletas de mantequilla variadas. Perfectas para compartir.', precio:4.00, img:'pasta-seca-surtida.webp', alt:'Pasta Seca Surtida QTOP', estrella:false, agotado:false },
+  { id:'lenguas-con-azucar', cat:'aperitivos', nombre:'Lenguas Con Azúcar', desc:'Galletas lengua clásicas bañadas en azúcar. Crujientes y tradicionales.', precio:2.00, img:'lenguas-con-azucar.webp', alt:'Lenguas con azúcar QTOP', estrella:false, agotado:false },
+  { id:'nuez-chandler', cat:'aperitivos', nombre:'Nuez Chandler', desc:'Nueces enteras con cáscara variedad Chandler. Carne abundante y sabor suave.', precio:2.50, img:'nuez-chandler.webp', alt:'Nuez Chandler QTOP', estrella:false, agotado:false },
+  { id:'pipa-salada', cat:'aperitivos', nombre:'Pipa Salada', desc:'Pipas de girasol saladas. El aperitivo clásico de toda la vida.', precio:1.00, img:'pipa-salada.webp', alt:'Pipa Salada QTOP', estrella:false, agotado:false },
+  { id:'galleta-setas-chocolate', cat:'aperitivos', nombre:'Galleta Setas Sabor Chocolate', desc:'Galletitas con forma de seta, sabor a chocolate. Irresistibles para los más golosos.', precio:5.00, img:'galleta-setas-chocolate.webp', alt:'Galleta Setas Chocolate QTOP', estrella:false, agotado:false },
+  { id:'mantecado', cat:'aperitivos', nombre:'Mantecado', desc:'Mantecado artesanal, suave y con ese sabor tradicional de siempre.', precio:3.00, img:'mantecado.webp', alt:'Mantecado QTOP', estrella:false, agotado:false },
+  { id:'avellana-tostada', cat:'aperitivos', nombre:'Avellana Tostada', desc:'Avellanas tostadas al punto justo. Crujientes, nutritivas y llenas de sabor.', precio:6.50, img:'avellana-tostada.webp', alt:'Avellana Tostada QTOP', estrella:false, agotado:false },
+  { id:'banana-chips', cat:'aperitivos', nombre:'Banana Chips', desc:'Trozos de plátano deshidratado. Crujientes, dulces y cien por cien naturales.', precio:2.50, img:'banana-chips.webp', alt:'Banana Chips QTOP', estrella:false, agotado:false },
+  { id:'cintas-pica-fresa', cat:'snack', nombre:'Cintas Pica Sabor Fresa', desc:'Gominolas de cinta pica sabor fresa. El capricho ácido que engancha.', precio:1.70, img:'cintas-pica-fresa.webp', alt:'Cintas Pica Fresa QTOP', estrella:false, agotado:false },
+  { id:'fruta-italiana', cat:'snack', nombre:'Fruta Italiana', desc:'Gominolas de fruta italiana clásicas, azucaradas y con sabores variados.', precio:4.50, img:'arandano-rojo.webp', alt:'Fruta Italiana QTOP', estrella:false, agotado:false },
+  { id:'arandano-rojo', cat:'aperitivos', nombre:'Arándano Rojo', desc:'Arándanos rojos deshidratados, levemente dulces y con un toque ácido natural.', precio:3.50, img:'almendra-cruda-repelada.webp', alt:'Arándano Rojo QTOP', estrella:false, agotado:false },
+  { id:'obando-gourmet', cat:'aperitivos', nombre:'Obando Selección Gourmet', desc:'Palitos de pan artesano Panadería Obando, desde 1965. Crujientes y de calidad premium.', precio:6.50, img:'higos-cuello-dama.webp', alt:'Obando Selección Gourmet QTOP', estrella:false, agotado:false },
+  { id:'almendra-cruda-repelada', cat:'aperitivos', nombre:'Almendra Cruda Repelada', desc:'Almendras crudas sin piel, naturales y sin sal. Perfectas para comer o cocinar.', precio:5.00, img:'cintas-pica-multicolor.webp', alt:'Almendra Cruda Repelada QTOP', estrella:false, agotado:false },
+  { id:'higos-cuello-dama', cat:'aperitivos', nombre:'Higos Cuello Dama 1ª', desc:'Higos secos premium variedad Cuello de Dama de primera calidad. Dulces y carnosos.', precio:3.00, img:'nueces-peladas-new.webp', alt:'Higos Cuello Dama QTOP', estrella:false, agotado:false },
+  { id:'cintas-pica-multicolor', cat:'aperitivos', nombre:'Cintas Pica Multicolor', desc:'Gominolas de cinta pica en colores variados. Ácidas, coloridas y adictivas.', precio:2.00, img:'fruta-italiana.webp', alt:'Cintas Pica Multicolor QTOP', estrella:false, agotado:false },
+  { id:'lays-sal', cat:'snack', nombre:"Lay's Al Punto de Sal", desc:"Patatas fritas Lay's de alta calidad, al punto de sal. El clásico irresistible.", precio:2.50, img:'lays-sal.webp', alt:'Lays Al Punto de Sal QTOP', estrella:false, agotado:false },
+  { id:'palomitas-colores-flaper', cat:'snack', nombre:'Palomitas de Colores Flaper', desc:'Palomitas multicolor Flaper, crujientes y llenas de sabor. En bolsa grande.', precio:1.50, img:'palomitas-colores-flaper.webp', alt:'Palomitas de Colores Flaper QTOP', estrella:false, agotado:false },
+  { id:'cortezas-cerdo', cat:'snack', nombre:'Cortezas de Cerdo Flaper 500g', desc:'Bolsa grande de cortezas crujientes Flaper.', precio:8.95, img:'cortezas-cerdo.webp', alt:'Cortezas de cerdo Flaper', estrella:false, agotado:false },
   // BEBIDAS
-  { id:'coca-cola', cat:'bebidas', nombre:'Coca-Cola', desc:'Lata 33cl.', precio:1.90, img:'coca-cola-premium.jpg', alt:'Coca-Cola lata', estrella:false, agotado:false },
-  { id:'coca-cola-zero', cat:'bebidas', nombre:'Coca-Cola Zero', desc:'Lata 33cl.', precio:1.90, img:'coca-cola-zero.jpg', alt:'Coca-Cola Zero lata', estrella:false, agotado:false },
-  { id:'fanta', cat:'bebidas', nombre:'Fanta Naranja', desc:'Lata 33cl.', precio:1.90, img:'fanta-premium.png', alt:'Fanta Naranja lata', estrella:false, agotado:false },
-  { id:'sprite', cat:'bebidas', nombre:'Sprite', desc:'Lata 33cl.', precio:1.90, img:'sprite-lata-24x33cl.jpg', alt:'Sprite lata', estrella:false, agotado:false },
-  { id:'aquarius', cat:'bebidas', nombre:'Aquarius Limón', desc:'Lata 33cl.', precio:1.90, img:'aquarius-premium.png', alt:'Aquarius Limón lata', estrella:false, agotado:false },
-  { id:'cafe-cappuccino', cat:'bebidas', nombre:'Café Cappuccino Mocay', desc:'Café Arábica 100% de Colombia. Para llevar.', precio:1.90, img:'cappuccino-premium.jpg', alt:'Café Cappuccino Mocay', estrella:false, agotado:false },
-  { id:'agua', cat:'bebidas', nombre:'Agua Mineral Cuevas 500ml', desc:'Agua mineral natural de la montaña asturiana.', precio:1.00, img:'agua-cuevas.jpg', alt:'Agua Mineral Cuevas', estrella:false, agotado:false },
-  { id:'rockstar', cat:'bebidas', nombre:'Rockstar Energy Original', desc:'Energy drink. Lata 500ml.', precio:1.10, img:'rockstar-premium.jpg', alt:'Rockstar Energy Original', estrella:false, agotado:false },
-  { id:'gatorade', cat:'bebidas', nombre:'Gatorade Cool Blue', desc:'Bebida isotónica. Botella 500ml.', precio:2.20, img:'gatorade-premium.png', alt:'Gatorade Cool Blue', estrella:false, agotado:false },
-  { id:'lipton', cat:'bebidas', nombre:'Lipton Ice Tea Mango Maracuyá', desc:'Té frío. Botella 500ml.', precio:1.80, img:'lipton-1784393101.jpg', alt:'Lipton Ice Tea Mango Maracuyá', estrella:false, agotado:false },
-  { id:'mahou-5', cat:'bebidas', nombre:'Mahou 5 Estrellas', desc:'Cerveza especial de Madrid. Lata 33cl.', precio:1.20, img:'mahou-cinco-estrellas.png', alt:'Mahou 5 Estrellas', estrella:false, agotado:false },
-  { id:'mahou-clasica', cat:'bebidas', nombre:'Mahou Clásica', desc:'La clásica de Mahou. Cerveza de Madrid. Lata 33cl.', precio:1.10, img:'mahou-clasica.png', alt:'Mahou Clásica', estrella:false, agotado:false },
+  { id:'coca-cola', cat:'bebidas', nombre:'Coca-Cola', desc:'Lata 33cl.', precio:1.90, img:'coca-cola-premium.webp', alt:'Coca-Cola lata', estrella:false, agotado:false },
+  { id:'coca-cola-zero', cat:'bebidas', nombre:'Coca-Cola Zero', desc:'Lata 33cl.', precio:1.90, img:'coca-cola-zero.webp', alt:'Coca-Cola Zero lata', estrella:false, agotado:false },
+  { id:'fanta', cat:'bebidas', nombre:'Fanta Naranja', desc:'Lata 33cl.', precio:1.90, img:'fanta-premium.webp', alt:'Fanta Naranja lata', estrella:false, agotado:false },
+  { id:'sprite', cat:'bebidas', nombre:'Sprite', desc:'Lata 33cl.', precio:1.90, img:'sprite-lata-24x33cl.webp', alt:'Sprite lata', estrella:false, agotado:false },
+  { id:'aquarius', cat:'bebidas', nombre:'Aquarius Limón', desc:'Lata 33cl.', precio:1.90, img:'aquarius-premium.webp', alt:'Aquarius Limón lata', estrella:false, agotado:false },
+  { id:'cafe-cappuccino', cat:'bebidas', nombre:'Café Cappuccino Mocay', desc:'Café Arábica 100% de Colombia. Para llevar.', precio:1.90, img:'cappuccino-premium.webp', alt:'Café Cappuccino Mocay', estrella:false, agotado:false },
+  { id:'agua', cat:'bebidas', nombre:'Agua Mineral Cuevas 500ml', desc:'Agua mineral natural de la montaña asturiana.', precio:1.00, img:'agua-cuevas.webp', alt:'Agua Mineral Cuevas', estrella:false, agotado:false },
+  { id:'rockstar', cat:'bebidas', nombre:'Rockstar Energy Original', desc:'Energy drink. Lata 500ml.', precio:1.10, img:'rockstar-premium.webp', alt:'Rockstar Energy Original', estrella:false, agotado:false },
+  { id:'gatorade', cat:'bebidas', nombre:'Gatorade Cool Blue', desc:'Bebida isotónica. Botella 500ml.', precio:2.20, img:'gatorade-premium.webp', alt:'Gatorade Cool Blue', estrella:false, agotado:false },
+  { id:'lipton', cat:'bebidas', nombre:'Lipton Ice Tea Mango Maracuyá', desc:'Té frío. Botella 500ml.', precio:1.80, img:'lipton-1784393101.webp', alt:'Lipton Ice Tea Mango Maracuyá', estrella:false, agotado:false },
+  { id:'mahou-5', cat:'bebidas', nombre:'Mahou 5 Estrellas', desc:'Cerveza especial de Madrid. Lata 33cl.', precio:1.20, img:'mahou-cinco-estrellas.webp', alt:'Mahou 5 Estrellas', estrella:false, agotado:false },
+  { id:'mahou-clasica', cat:'bebidas', nombre:'Mahou Clásica', desc:'La clásica de Mahou. Cerveza de Madrid. Lata 33cl.', precio:1.10, img:'mahou-clasica.webp', alt:'Mahou Clásica', estrella:false, agotado:false },
 ];
 
 /* ── CARRITO ── */
-let carrito = JSON.parse(localStorage.getItem('qtop_carrito') || '[]').filter(i=>{const q=PRODUCTOS.find(p=>p.id===i.id);return q&&!q.encargo&&!q.agotado;});
+function leerLS(k, def) { try { const v = JSON.parse(localStorage.getItem(k)); return (v && typeof v === 'object') ? v : def; } catch (e) { return def; } }
+function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+let carrito = (Array.isArray(leerLS('qtop_carrito', [])) ? leerLS('qtop_carrito', []) : []).filter(i=>{const q=PRODUCTOS.find(p=>p.id===i.id);return q&&!q.encargo&&!q.agotado;});
 function guardarCarrito() { localStorage.setItem('qtop_carrito', JSON.stringify(carrito)); }
 
 function btnProd(p, cls) {
   if (p.encargo) return `<a class="${cls} btn-encargo" href="https://wa.me/34645052784?text=${encodeURIComponent('Hola, quiero encargar: '+p.nombre)}" target="_blank" rel="noopener" aria-label="Encargar ${p.nombre} por WhatsApp">Solo por encargo</a>`;
-  return `<button class="${cls}" onclick="addCart('${p.id}')" ${p.agotado?'disabled':''} aria-label="Añadir ${p.nombre}">${p.agotado?'Fuera de stock':'Añadir'}</button>`;
+  return `<button type="button" class="${cls}" onclick="addCart('${p.id}')" ${p.agotado?'disabled':''} aria-label="Añadir ${p.nombre}">${p.agotado?'Fuera de stock':'Añadir'}</button>`;
 }
 function renderEstrella() {
   const grid = document.getElementById('grid-estrella');
@@ -1389,10 +1402,10 @@ function renderCarrito() {
         <p class="carrito-item-nombre">${p.nombre}</p>
         <p class="carrito-item-precio">${fmt(sub)}</p>
         <div class="carrito-item-controles">
-          <button class="btn-qty" onclick="changeQty('${item.id}',-1)" aria-label="Reducir">−</button>
+          <button type="button" class="btn-qty" onclick="changeQty('${item.id}',-1)" aria-label="Reducir">−</button>
           <span class="qty-val">${item.qty}</span>
-          <button class="btn-qty" onclick="changeQty('${item.id}',1)" aria-label="Aumentar">+</button>
-          <button class="btn-eliminar" onclick="removeItem('${item.id}')" aria-label="Eliminar"><i class="fa-solid fa-xmark"></i></button>
+          <button type="button" class="btn-qty" onclick="changeQty('${item.id}',1)" aria-label="Aumentar">+</button>
+          <button type="button" class="btn-eliminar" onclick="removeItem('${item.id}')" aria-label="Eliminar"><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
     </div>`;
@@ -1403,7 +1416,6 @@ function renderCarrito() {
 function abrirCarrito() { renderCarrito(); document.getElementById('overlay-carrito').classList.add('visible'); document.getElementById('carrito-panel').classList.add('visible'); document.body.style.overflow='hidden'; }
 function cerrarCarrito() { document.getElementById('overlay-carrito').classList.remove('visible'); document.getElementById('carrito-panel').classList.remove('visible'); document.body.style.overflow=''; }
 
-const STRIPE_PK = 'pk_live_51TucasV05ledaIxifQgUlZdvo9yJzdV7NfmOJPJfquht6RzJyfoaI05TMoCc1MnBbNsQ7uEFkIyTXZrSXKBe3AeV00QLxRhgEZ';
 
 function abrirCheckout() {
   if (!carrito.length) return;
@@ -1484,19 +1496,19 @@ async function procesarPago() {
       <div id="modal-review" style="position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
         <div style="background:#161616;border:1px solid rgba(184,151,62,.25);border-radius:12px;padding:2rem;text-align:center;max-width:400px;width:100%;">
           <div style="font-size:2.5rem;margin-bottom:.8rem;">⭐⭐⭐⭐⭐</div>
-          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#f2ede4;margin-bottom:.6rem;">¡Gracias ${nombre}!</h2>
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#f2ede4;margin-bottom:.6rem;">¡Gracias ${esc(nombre)}!</h2>
           <p style="font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem;">
-            Tu pedido está confirmado. Ahora te llevaremos a completar el pago.<br><br>
+            Hemos recibido tu pedido. Ahora te llevamos a completar el pago: el pedido queda confirmado cuando pagas.<br><br>
             <strong style="color:#b8973e;">¿Te gustó QTOP?</strong><br>
             Déjanos una reseña en Google — ¡nos ayuda muchísimo!
           </p>
           <a href="https://search.google.com/local/writereview?placeid=ChIJv-siy-wxQw0Rmi38JZjBmK8"
-             target="_blank"
+             target="_blank" rel="noopener"
              style="display:block;background:#4285F4;color:#fff;text-decoration:none;padding:.85rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem;"
              onclick="setTimeout(() => { window.location.href = '${stripeUrl}'; }, 2000);">
             ⭐ Dejar reseña en Google
           </a>
-          <button onclick="window.location.href='${stripeUrl}'"
+          <button type="button" onclick="window.location.href='${stripeUrl}'"
              style="display:block;width:100%;background:#b8973e;color:#0e0e0e;border:none;padding:.85rem;border-radius:6px;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">
             💳 Ir a pagar ahora
           </button>
@@ -1548,7 +1560,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Detectar retorno de Stripe
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('pago') === 'ok') {
-    const pedido = JSON.parse(localStorage.getItem('qtop_pedido_pendiente') || '{}');
+    const pedido = leerLS('qtop_pedido_pendiente', {});
     if (pedido.nombre) {
       // Limpiar carrito
       carrito = [];
@@ -1556,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCounter();
       // Enviar pedido por WhatsApp automáticamente
       setTimeout(() => {
-        const lineas = pedido.items.map(item => {
+        const lineas = (Array.isArray(pedido.items) ? pedido.items : []).filter(item => PRODUCTOS.find(pr => pr.id === item.id)).map(item => {
           const p = PRODUCTOS.find(pr => pr.id === item.id);
           return `• ${p.nombre} ×${item.qty} – ${fmt(p.precio * item.qty)}`;
         }).join('%0A');
@@ -1570,9 +1582,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <div style="background:#161616;border:1px solid rgba(184,151,62,.3);border-radius:12px;padding:2.5rem;text-align:center;max-width:400px;">
             <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
             <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:#f2ede4;margin-bottom:.8rem;">¡Pago realizado!</h2>
-            <p style="font-size:.85rem;color:#888;margin-bottom:.5rem;">Hola <strong style="color:#f2ede4;">${pedido.nombre}</strong>, tu pedido está confirmado.</p>
-            <p style="font-size:.82rem;color:#888;margin-bottom:1.5rem;">Recibirás el recibo en <strong style="color:#b8973e;">${pedido.email}</strong>.<br>Te avisamos por WhatsApp cuando esté listo para recoger.</p>
-            <button onclick="this.closest('div[style]').remove();window.history.replaceState({},'',window.location.pathname);" style="background:#b8973e;color:#0e0e0e;border:none;padding:.85rem 2rem;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;cursor:pointer;">Ver el menú</button>
+            <p style="font-size:.85rem;color:#888;margin-bottom:.5rem;">Hola <strong style="color:#f2ede4;">${esc(pedido.nombre)}</strong>, tu pedido está confirmado.</p>
+            <p style="font-size:.82rem;color:#888;margin-bottom:1.5rem;">Recibirás el recibo en <strong style="color:#b8973e;">${esc(pedido.email)}</strong>.<br>Te avisamos por WhatsApp cuando esté listo para recoger.</p>
+            <button type="button" onclick="this.closest('div[style]').remove();window.history.replaceState({},'',window.location.pathname);" style="background:#b8973e;color:#0e0e0e;border:none;padding:.85rem 2rem;font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:4px;cursor:pointer;">Ver el menú</button>
           </div>
         </div>
       `);
@@ -1598,7 +1610,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 <!-- ═══ PANEL PEDIDO MAYORISTA ═══ -->
 <div id="may-overlay" hidden></div>
-<aside id="may-panel" role="dialog" aria-modal="true" aria-labelledby="may-panel-titulo" aria-hidden="true">
+<div id="may-panel" role="dialog" aria-modal="true" aria-labelledby="may-panel-titulo" aria-hidden="true">
   <div class="may-panel-cab">
     <h2 id="may-panel-titulo">Pedido mayorista</h2>
     <button type="button" id="may-cerrar" aria-label="Cerrar pedido mayorista">&times;</button>
@@ -1625,7 +1637,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <p class="may-seguro">Por WhatsApp acordamos el pago contigo.</p>
     <button type="button" id="may-vaciar" class="may-vaciar">Vaciar pedido</button>
   </div>
-</aside>
+</div>
 <button type="button" id="may-flotante" hidden>Pedido mayorista <span class="may-n">0</span></button>
 <script>
 (function () {
