@@ -378,7 +378,8 @@
     .card-producto-img-wrap { position: relative; aspect-ratio: 1; overflow: hidden; background: #111; }
     .card-producto-img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
     .card-producto:hover .card-producto-img { transform: scale(1.04); }
-    .btn-encargo { display:inline-block; text-decoration:none; text-align:center; }
+    .btn-encargo { display:inline-block; text-decoration:none; text-align:center; white-space:nowrap; font-size:.58rem !important; letter-spacing:1px !important; padding:.4rem .6rem !important; }
+    .card-producto-precio { white-space:nowrap; }
     .badge-agotado {
       position: absolute; top: .6rem; left: .6rem;
       background: rgba(14,14,14,.85); color: var(--gris);
@@ -664,77 +665,112 @@
   
 /* ═══════════════════════════════════════════════
    TEMA NAVIDAD — Quitar después del 6 de enero
-   Para desactivar: borrar este bloque completo
-   Estilo: sobrio y minimalista (negro · oro · burdeos)
+   Para desactivar: borrar este bloque CSS y el bloque
+   el bloque de JavaScript "TEMA NAVIDAD" al final de la página
+   Estilo: clásico y moderno · negro · oro · burdeos · pino
    ═══════════════════════════════════════════════ */
 :root {
-  --nav-burdeos:  #4d101c;
-  --nav-burdeos2: #6e1a2b;
-  --nav-champan:  #e8d9b0;
-  --dorado3:      #dfc589;
+  --nav-burdeos:  #5a1220;
+  --nav-burdeos2: #7d1f33;
+  --nav-pino:     #10291c;
+  --nav-pino2:    #1a4430;
+  --nav-champan:  #efe0b6;
+  --dorado3:      #e2c77f;
 }
 
-/* Menú: filo fino degradado en oro y burdeos */
-#cabecera { border-bottom-color: rgba(184,151,62,.28); }
+/* Menú: guirnalda de luces cálidas colgando bajo la cabecera */
+#cabecera { border-bottom-color: rgba(184,151,62,.35); }
 #cabecera::after {
   content: '';
-  position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--nav-burdeos2) 22%, var(--dorado) 50%, var(--nav-burdeos2) 78%, transparent 100%);
-  opacity: .9; pointer-events: none;
+  position: absolute; left: 0; right: 0; top: 100%; height: 14px;
+  background:
+    radial-gradient(circle at 50% 4px, #f3d98e 0 2px, rgba(243,217,142,.35) 3px, transparent 6px) 0 0 / 46px 14px repeat-x,
+    radial-gradient(circle at 50% 4px, #c0394f 0 2px, rgba(192,57,79,.35) 3px, transparent 6px) 23px 0 / 92px 14px repeat-x;
+  opacity: .9; pointer-events: none; z-index: 2;
+  animation: nav-luces 3.2s ease-in-out infinite alternate;
 }
+@keyframes nav-luces { from { opacity: .55; } to { opacity: 1; } }
 
-/* Hero: resplandor burdeos muy suave en la esquina superior */
+/* Hero: resplandor burdeos arriba y pino abajo, más presencia */
 .hero-bg::before {
   content: '';
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: radial-gradient(ellipse 48% 55% at 94% 0%, rgba(110,26,43,.24), transparent 72%);
+  background:
+    radial-gradient(ellipse 55% 60% at 96% 0%, rgba(125,31,51,.42), transparent 70%),
+    radial-gradient(ellipse 50% 55% at 0% 100%, rgba(26,68,48,.55), transparent 72%);
 }
-.hero-eyebrow::after { content: '—  Edición Navidad'; color: var(--nav-champan); opacity: .75; }
+.hero-eyebrow::after { content: '—  Edición Navidad  ✦'; color: var(--nav-champan); opacity: .9; }
 @media (max-width: 720px) {
   .hero-eyebrow { flex-wrap: wrap; row-gap: .45rem; }
-  .hero-eyebrow::after { content: 'Edición Navidad'; flex-basis: 100%; margin-left: calc(28px + .75rem); }
+  .hero-eyebrow::after { content: 'Edición Navidad  ✦'; flex-basis: 100%; margin-left: calc(28px + .75rem); }
 }
 .hero-titulo em {
-  background: linear-gradient(100deg, #f1e4bd 0%, #d9bd7c 55%, #b8973e 100%);
+  background: linear-gradient(100deg, #f6ebc8 0%, #e2c77f 50%, #b8973e 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
 }
 
+/* Bolas colgantes del hero */
+.nav-bolas { position: absolute; top: 68px; right: 7%; z-index: 3; pointer-events: none; display: flex; gap: 2.2rem; align-items: flex-start; }
+.nav-bola { transform-origin: top center; animation: nav-balanceo 5s ease-in-out infinite alternate; }
+.nav-bola:nth-child(2) { animation-duration: 6.2s; animation-delay: -1.5s; }
+.nav-bola:nth-child(3) { animation-duration: 4.6s; animation-delay: -3s; }
+@keyframes nav-balanceo { from { transform: rotate(-3.5deg); } to { transform: rotate(3.5deg); } }
+@media (max-width: 900px) { .nav-bolas { right: 4%; gap: 1.1rem; transform: scale(.62); transform-origin: top right; } }
+
+/* Nieve fina */
+#nav-nieve { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 800; }
+
 /* Cinta: burdeos profundo con filos dorados y texto champán */
 .strip-dorado {
-  background: var(--nav-burdeos);
-  border-top: 1px solid rgba(184,151,62,.45);
-  border-bottom: 1px solid rgba(184,151,62,.45);
+  background: linear-gradient(90deg, var(--nav-burdeos) 0%, var(--nav-burdeos2) 50%, var(--nav-burdeos) 100%);
+  border-top: 1px solid rgba(226,199,127,.55);
+  border-bottom: 1px solid rgba(226,199,127,.55);
 }
 .strip-inner span { color: var(--nav-champan); }
 
-/* Separador de secciones: filo dorado con rombo central */
+/* Separador de secciones: filo dorado con copo central */
 .linea-dorada {
-  position: relative; width: 64px; opacity: .8;
-  background: linear-gradient(90deg, var(--dorado) 0 41%, transparent 41% 59%, var(--dorado) 59% 100%);
+  position: relative; width: 96px; height: 1px; opacity: .95; overflow: visible;
+  background: linear-gradient(90deg, transparent, var(--dorado) 30%, var(--dorado) 70%, transparent);
 }
 .linea-dorada::after {
-  content: '';
-  position: absolute; left: 50%; top: 50%;
-  width: 5px; height: 5px; background: var(--dorado);
-  transform: translate(-50%, -50%) rotate(45deg);
+  content: '❄'; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -52%);
+  background: var(--negro); padding: 0 .55rem;
+  color: var(--dorado3); font-size: .85rem; line-height: 1;
 }
-
-/* Carta de productos: filo dorado y sombra burdeos al pasar el ratón */
-#menu-section { border-top: 1px solid rgba(184,151,62,.2); }
-.prod-card:hover {
-  border-color: rgba(184,151,62,.4) !important;
-  box-shadow: 0 8px 30px rgba(77,16,28,.45);
+.seccion-titulo::after {
+  content: ''; display: block; width: 44px; height: 2px; margin-top: .8rem;
+  background: linear-gradient(90deg, var(--nav-burdeos2), var(--dorado));
 }
+.seccion-cabecera .seccion-titulo::after, .text-center .seccion-titulo::after, [style*="text-align:center"] .seccion-titulo::after, [style*="text-align: center"] .seccion-titulo::after { margin-left: auto; margin-right: auto; }
 
-/* Pie: felicitación discreta */
+/* Tarjetas: lazo dorado en la esquina y sombra burdeos */
+.card-estrella, .card-producto { position: relative; }
+.card-estrella::before, .card-producto::before {
+  content: '✦'; position: absolute; top: .55rem; right: .7rem; z-index: 3;
+  color: var(--dorado3); font-size: .8rem; text-shadow: 0 0 8px rgba(226,199,127,.6);
+  pointer-events: none;
+}
+.card-estrella:hover, .card-producto:hover, .prod-card:hover {
+  border-color: rgba(226,199,127,.5) !important;
+  box-shadow: 0 10px 34px rgba(90,18,32,.55);
+}
+#menu-section, #catalogo { border-top: 1px solid rgba(226,199,127,.22); }
+#filosofia { background-image: radial-gradient(ellipse 60% 70% at 100% 0%, rgba(125,31,51,.18), transparent 70%); }
+#visitanos { background-image: radial-gradient(ellipse 60% 70% at 0% 100%, rgba(26,68,48,.35), transparent 70%); }
+
+/* Pie: felicitación con ramas */
+#footer { border-top: 1px solid rgba(226,199,127,.35); background-image: linear-gradient(180deg, rgba(16,41,28,.55), transparent 60%); }
 #footer::before {
-  content: '✦  Feliz Navidad  ✦';
+  content: '✦   FELICES FIESTAS   ✦';
   display: block; text-align: center;
-  color: rgba(232,217,176,.5);
-  font-size: .7rem; letter-spacing: .38em; text-transform: uppercase;
-  margin-bottom: 2.5rem;
+  font-family: var(--font-titulo); color: var(--nav-champan);
+  font-size: 1.05rem; letter-spacing: .42em; text-transform: uppercase;
+  margin-bottom: 2.5rem; opacity: .9;
 }
+@media (prefers-reduced-motion: reduce) { #nav-nieve { display: none; } .nav-bola, #cabecera::after { animation: none; } }
 /* ═══════════════════════════════════════════════
    FIN TEMA NAVIDAD
    ═══════════════════════════════════════════════ */
@@ -1962,5 +1998,36 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 </script>
+<!-- TEMA NAVIDAD (JS) — Quitar después del 6 de enero -->
+<script>
+(function(){
+  try {
+    var hero=document.getElementById('hero');
+    if(hero){
+      var d=document.createElement('div'); d.className='nav-bolas'; d.setAttribute('aria-hidden','true');
+      function bola(l,c1,c2,r){return '<svg width="'+(r*2+4)+'" height="'+(l+r*2+16)+'" viewBox="0 0 '+(r*2+4)+' '+(l+r*2+16)+'"><defs><radialGradient id="g'+c1.slice(1)+l+'" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".25" stop-color="'+c1+'"/><stop offset="1" stop-color="'+c2+'"/></radialGradient></defs><line x1="'+(r+2)+'" y1="0" x2="'+(r+2)+'" y2="'+l+'" stroke="#b8973e" stroke-width="1"/><rect x="'+(r-4)+'" y="'+l+'" width="12" height="9" rx="2" fill="#b8973e"/><circle cx="'+(r+2)+'" cy="'+(l+9+r)+'" r="'+r+'" fill="url(#g'+c1.slice(1)+l+')"/></svg>';}
+      d.innerHTML=bola(70,'#e2c77f','#8a6d22',20)+bola(130,'#8e2339','#3c0a15',26)+bola(40,'#efe0b6','#a58f55',16);
+      hero.appendChild(d);
+    }
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var c=document.createElement('canvas'); c.id='nav-nieve'; c.setAttribute('aria-hidden','true'); document.body.appendChild(c);
+    var x=c.getContext('2d'), W,H, n=window.innerWidth<720?28:60, f=[];
+    function rs(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+    rs(); window.addEventListener('resize',rs);
+    for(var i=0;i<n;i++) f.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.1+.7,v:Math.random()*.6+.25,d:Math.random()*Math.PI*2,o:Math.random()*.5+.35,g:Math.random()<.3});
+    var on=true; document.addEventListener('visibilitychange',function(){on=!document.hidden; if(on) loop();});
+    function loop(){
+      if(!on) return;
+      x.clearRect(0,0,W,H);
+      for(var i=0;i<f.length;i++){var p=f[i]; p.y+=p.v; p.d+=.012; p.x+=Math.sin(p.d)*.35;
+        if(p.y>H+5){p.y=-5;p.x=Math.random()*W;} if(p.x>W+5)p.x=-5; if(p.x<-5)p.x=W+5;
+        x.beginPath(); x.arc(p.x,p.y,p.r,0,6.283); x.fillStyle=(p.g?'rgba(226,199,127,':'rgba(255,255,255,')+p.o+')'; x.fill();}
+      requestAnimationFrame(loop);
+    }
+    loop();
+  } catch(e){}
+})();
+</script>
+<!-- FIN TEMA NAVIDAD (JS) -->
 </body>
 </html>
